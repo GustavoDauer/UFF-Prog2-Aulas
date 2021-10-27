@@ -1,0 +1,2444 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html class="linux firefox firefox3 gecko gecko1" dir="ltr" 
+xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head>
+
+
+<title>Quicksort - Wikipédia, a enciclopédia livre</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta name="generator" content="MediaWiki 1.16wmf4">
+<link rel="alternate" type="application/x-wiki" title="Editar" 
+href="http://pt.wikipedia.org/w/index.php?title=Quicksort&amp;action=edit">
+<link rel="edit" title="Editar" 
+href="http://pt.wikipedia.org/w/index.php?title=Quicksort&amp;action=edit">
+<link rel="apple-touch-icon" 
+href="http://pt.wikipedia.org/apple-touch-icon.png">
+<link rel="shortcut icon" href="http://pt.wikipedia.org/favicon.ico">
+<link rel="search" type="application/opensearchdescription+xml" 
+href="http://pt.wikipedia.org/w/opensearch_desc.php" title="Wikipedia 
+(pt)">
+<link rel="copyright" 
+href="http://creativecommons.org/licenses/by-sa/3.0/">
+<link rel="alternate" type="application/atom+xml" title="''Feed'' Atom 
+Wikipedia" 
+href="http://pt.wikipedia.org/w/index.php?title=Especial:Mudan%C3%A7as_recentes&amp;feed=atom">
+<link rel="stylesheet" href="Quicksort_arquivos/main-ltr.css" 
+type="text/css" media="screen">
+<link rel="stylesheet" href="Quicksort_arquivos/shared.css" 
+type="text/css" media="screen">
+<link rel="stylesheet" href="Quicksort_arquivos/commonPrint.css" 
+type="text/css" media="print">
+<link rel="stylesheet" href="Quicksort_arquivos/combined.css" 
+type="text/css" media="all">
+<link rel="stylesheet" href="Quicksort_arquivos/jquery-ui-1.css" 
+type="text/css" media="all">
+<link rel="stylesheet" href="Quicksort_arquivos/index.css" 
+type="text/css" media="all">
+<link rel="stylesheet" href="Quicksort_arquivos/index_005.css" 
+type="text/css" media="print">
+<link rel="stylesheet" href="Quicksort_arquivos/index_004.css" 
+type="text/css" media="handheld">
+<link rel="stylesheet" href="Quicksort_arquivos/index_003.css" 
+type="text/css" media="all">
+<link rel="stylesheet" href="Quicksort_arquivos/index_002.css" 
+type="text/css" media="all">
+<script type="text/javascript">
+var skin="vector",
+stylepath="http://bits.wikimedia.org/skins-1.5",
+wgUrlProtocols="http\\:\\/\\/|https\\:\\/\\/|ftp\\:\\/\\/|irc\\:\\/\\/|gopher\\:\\/\\/|telnet\\:\\/\\/|nntp\\:\\/\\/|worldwind\\:\\/\\/|mailto\\:|news\\:|svn\\:\\/\\/",
+wgArticlePath="/wiki/$1",
+wgScriptPath="/w",
+wgScriptExtension=".php",
+wgScript="/w/index.php",
+wgVariantArticlePath=false,
+wgActionPaths={},
+wgServer="http://pt.wikipedia.org",
+wgCanonicalNamespace="",
+wgCanonicalSpecialPageName=false,
+wgNamespaceNumber=0,
+wgPageName="Quicksort",
+wgTitle="Quicksort",
+wgAction="view",
+wgArticleId=9762,
+wgIsArticle=true,
+wgUserName=null,
+wgUserGroups=null,
+wgUserLanguage="pt",
+wgContentLanguage="pt",
+wgBreakFrames=false,
+wgCurRevisionId=20880902,
+wgVersion="1.16wmf4",
+wgEnableAPI=true,
+wgEnableWriteAPI=true,
+wgSeparatorTransformTable=[",	.", " 	,"],
+wgDigitTransformTable=["", ""],
+wgMainPageTitle="Página principal",
+wgFormattedNamespaces={"-2": "Multimédia", "-1": "Especial", "0": "", "1": "Discussão", "2": "Usuário", "3": "Usuário Discussão", "4": "Wikipedia", "5": "Wikipedia Discussão", "6": "Ficheiro", "7": "Ficheiro Discussão", "8": "MediaWiki", "9": "MediaWiki Discussão", "10": "Predefinição", "11": "Predefinição Discussão", "12": "Ajuda", "13": "Ajuda Discussão", "14": "Categoria", "15": "Categoria Discussão", "100": "Portal", "101": "Portal Discussão", "102": "Anexo", "103": "Anexo Discussão"},
+wgNamespaceIds={"multimédia": -2, "especial": -1, "": 0, "discussão": 1, "usuário": 2, "usuário_discussão": 3, "wikipedia": 4, "wikipedia_discussão": 5, "ficheiro": 6, "ficheiro_discussão": 7, "mediawiki": 8, "mediawiki_discussão": 9, "predefinição": 10, "predefinição_discussão": 11, "ajuda": 12, "ajuda_discussão": 13, "categoria": 14, "categoria_discussão": 15, "portal": 100, "portal_discussão": 101, "anexo": 102, "anexo_discussão": 103, "utilizador": 2, "utilizador_discussão": 3, "imagem": 6, "imagem_discussão": 7, "arquivo": 6, "arquivo_discussão": 7, "discussão_portal": 101, "image": 6, "image_talk": 7},
+wgSiteName="Wikipedia",
+wgCategories=["Algoritmos de ordenação"],
+wgMWSuggestTemplate="http://pt.wikipedia.org/w/api.php?action=opensearch\x26search={searchTerms}\x26namespace={namespaces}\x26suggest",
+wgDBname="ptwiki",
+wgSearchNamespaces=[0],
+wgMWSuggestMessages=["com sugestões", "sem sugestões"],
+wgRestrictionEdit=[],
+wgRestrictionMove=[],
+wgWikimediaMobileUrl="http://pt.m.wikipedia.org/wiki",
+wgCollapsibleNavBucketTest=false,
+wgCollapsibleNavForceNewVersion=false,
+wgVectorPreferences={"collapsiblenav": {"enable": 1}, "editwarning": {"enable": 1}, "simplesearch": {"enable": 1, "disablesuggest": 0}},
+wgVectorEnabledModules={"collapsiblenav": true, "collapsibletabs": true, "editwarning": true, "expandablesearch": false, "footercleanup": false, "simplesearch": true},
+wgNotice="",
+wgNoticeLocal="";
+</script><script src="Quicksort_arquivos/wikibits.js" type="text/javascript"></script>
+<script type="text/javascript" src="Quicksort_arquivos/jquery.js"></script>
+<script src="Quicksort_arquivos/ajax.js" type="text/javascript"></script>
+<script src="Quicksort_arquivos/mwsuggest.js" type="text/javascript"></script>
+<script src="Quicksort_arquivos/MobileRedirect.js" type="text/javascript"></script>
+<script src="Quicksort_arquivos/plugins.js" type="text/javascript"></script>
+<script src="Quicksort_arquivos/Vector.js" type="text/javascript"></script>
+<script type="text/javascript">mw.usability.addMessages({'vector-collapsiblenav-more':'Mais línguas','vector-editwarning-warning':'Abandonar esta página pode fazer com que perca todas as suas alterações.\nSe estiver autenticado, pode desactivar este aviso na secção \"Edição\" das preferências.','vector-simplesearch-search':'Pesquisa','vector-simplesearch-containing':'contendo...'});</script>
+<script type="text/javascript" src="Quicksort_arquivos/centralnotice.js"></script><style type="text/css">
+#centralNotice .siteNoticeSmall{display:none;}
+#centralNotice .siteNoticeSmallAnon{display:none;}
+#centralNotice .siteNoticeSmallUser{display:none;}
+#centralNotice.collapsed .siteNoticeBig{display:none;}
+#centralNotice.collapsed .siteNoticeSmall{display:block;}
+#centralNotice.collapsed .siteNoticeSmallUser{display:block;}
+#centralNotice.collapsed .siteNoticeSmallAnon{display:block;}
+#centralNotice.anonnotice .siteNoticeSmallUser{display:none !important;}
+#centralNotice.usernotice .siteNoticeSmallAnon{display:none !important;}
+</style>
+
+
+<!--[if lt IE 7]><style type="text/css">body{behavior:url("/w/skins-1.5/vector/csshover.htc")}</style><![endif]-->
+<script src="Quicksort_arquivos/index_004.php" type="text/javascript"></script><style type="text/css">#interProject, #sisterProjects {display: none; speak: none;} #p-tb .pBody {padding-right: 0;}</style><script type="text/javascript" src="Quicksort_arquivos/index_003.php"></script><script type="text/javascript" src="Quicksort_arquivos/index.php"></script><script type="text/javascript" src="Quicksort_arquivos/index_002.php"></script>
+
+<style type="text/css">/*<![CDATA[*/
+.source-php {line-height: normal;}
+.source-php li, .source-php pre {
+	line-height: normal; border: 0px none white;
+}
+/**
+ * GeSHi Dynamically Generated Stylesheet
+ * --------------------------------------
+ * Dynamically generated stylesheet for php
+ * CSS class: source-php, CSS id: 
+ * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann
+ * (http://qbnz.com/highlighter/ and http://geshi.org/)
+ * --------------------------------------
+ */
+.php.source-php .de1, .php.source-php .de2 {font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;}
+.php.source-php  {font-family:monospace;}
+.php.source-php .imp {font-weight: bold; color: red;}
+.php.source-php li, .php.source-php .li1 {font-weight: normal; vertical-align:top;}
+.php.source-php .ln {width:1px;text-align:right;margin:0;padding:0 2px;vertical-align:top;}
+.php.source-php .li2 {font-weight: bold; vertical-align:top;}
+.php.source-php .kw1 {color: #b1b100;}
+.php.source-php .kw2 {color: #000000; font-weight: bold;}
+.php.source-php .kw3 {color: #990000;}
+.php.source-php .kw4 {color: #009900; font-weight: bold;}
+.php.source-php .co1 {color: #666666; font-style: italic;}
+.php.source-php .co2 {color: #666666; font-style: italic;}
+.php.source-php .co3 {color: #0000cc; font-style: italic;}
+.php.source-php .co4 {color: #009933; font-style: italic;}
+.php.source-php .coMULTI {color: #666666; font-style: italic;}
+.php.source-php .es0 {color: #000099; font-weight: bold;}
+.php.source-php .es1 {color: #000099; font-weight: bold;}
+.php.source-php .es2 {color: #660099; font-weight: bold;}
+.php.source-php .es3 {color: #660099; font-weight: bold;}
+.php.source-php .es4 {color: #006699; font-weight: bold;}
+.php.source-php .es5 {color: #006699; font-weight: bold; font-style: italic;}
+.php.source-php .es6 {color: #009933; font-weight: bold;}
+.php.source-php .es_h {color: #000099; font-weight: bold;}
+.php.source-php .br0 {color: #009900;}
+.php.source-php .sy0 {color: #339933;}
+.php.source-php .sy1 {color: #000000; font-weight: bold;}
+.php.source-php .st0 {color: #0000ff;}
+.php.source-php .st_h {color: #0000ff;}
+.php.source-php .nu0 {color: #cc66cc;}
+.php.source-php .nu8 {color: #208080;}
+.php.source-php .nu12 {color: #208080;}
+.php.source-php .nu19 {color:#800080;}
+.php.source-php .me1 {color: #004000;}
+.php.source-php .me2 {color: #004000;}
+.php.source-php .re0 {color: #000088;}
+.php.source-php .ln-xtra, .php.source-php li.ln-xtra, .php.source-php div.ln-xtra {background-color: #ffc;}
+.php.source-php span.xtra { display:block; }
+
+/*]]>*/
+</style>
+<style type="text/css">/*<![CDATA[*/
+@import "/w/index.php?title=MediaWiki:Geshi.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=2678400";
+/*]]>*/
+</style><style type="text/css">/*<![CDATA[*/
+.source-delphi {line-height: normal;}
+.source-delphi li, .source-delphi pre {
+	line-height: normal; border: 0px none white;
+}
+/**
+ * GeSHi Dynamically Generated Stylesheet
+ * --------------------------------------
+ * Dynamically generated stylesheet for delphi
+ * CSS class: source-delphi, CSS id: 
+ * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann
+ * (http://qbnz.com/highlighter/ and http://geshi.org/)
+ * --------------------------------------
+ */
+.delphi.source-delphi .de1, .delphi.source-delphi .de2 {font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;}
+.delphi.source-delphi  {font-family:monospace;}
+.delphi.source-delphi .imp {font-weight: bold; color: red;}
+.delphi.source-delphi li, .delphi.source-delphi .li1 {font-weight: normal; vertical-align:top;}
+.delphi.source-delphi .ln {width:1px;text-align:right;margin:0;padding:0 2px;vertical-align:top;}
+.delphi.source-delphi .li2 {font-weight: bold; vertical-align:top;}
+.delphi.source-delphi .kw1 {color: #000000; font-weight: bold;}
+.delphi.source-delphi .kw2 {color: #000000; font-weight: bold;}
+.delphi.source-delphi .kw3 {color: #000066;}
+.delphi.source-delphi .kw4 {color: #000066; font-weight: bold;}
+.delphi.source-delphi .co1 {color: #808080; font-style: italic;}
+.delphi.source-delphi .co2 {color: #008000; font-style: italic;}
+.delphi.source-delphi .coMULTI {color: #808080; font-style: italic;}
+.delphi.source-delphi .es0 {color: #ff0000; font-weight: bold;}
+.delphi.source-delphi .br0 {color: #000066;}
+.delphi.source-delphi .sy0 {color: #000066;}
+.delphi.source-delphi .sy1 {color: #000066;}
+.delphi.source-delphi .sy2 {color: #000066;}
+.delphi.source-delphi .sy3 {color: #000066;}
+.delphi.source-delphi .st0 {color: #ff0000;}
+.delphi.source-delphi .nu0 {color: #0000ff;}
+.delphi.source-delphi .me1 {color: #006600;}
+.delphi.source-delphi .re0 {color: #9ac;}
+.delphi.source-delphi .re1 {color: #ff0000;}
+.delphi.source-delphi .ln-xtra, .delphi.source-delphi li.ln-xtra, .delphi.source-delphi div.ln-xtra {background-color: #ffc;}
+.delphi.source-delphi span.xtra { display:block; }
+
+/*]]>*/
+</style>
+<style type="text/css">/*<![CDATA[*/
+@import "/w/index.php?title=MediaWiki:Geshi.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=2678400";
+/*]]>*/
+</style><style type="text/css">/*<![CDATA[*/
+.source-vb {line-height: normal;}
+.source-vb li, .source-vb pre {
+	line-height: normal; border: 0px none white;
+}
+/**
+ * GeSHi Dynamically Generated Stylesheet
+ * --------------------------------------
+ * Dynamically generated stylesheet for vb
+ * CSS class: source-vb, CSS id: 
+ * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann
+ * (http://qbnz.com/highlighter/ and http://geshi.org/)
+ * --------------------------------------
+ */
+.vb.source-vb .de1, .vb.source-vb .de2 {font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;}
+.vb.source-vb  {font-family:monospace;}
+.vb.source-vb .imp {font-weight: bold; color: red;}
+.vb.source-vb li, .vb.source-vb .li1 {font-weight: normal; vertical-align:top;}
+.vb.source-vb .ln {width:1px;text-align:right;margin:0;padding:0 2px;vertical-align:top;}
+.vb.source-vb .li2 {font-weight: bold; vertical-align:top;}
+.vb.source-vb .kw1 {color: #000080;}
+.vb.source-vb .co1 {color: #008000;}
+.vb.source-vb .es0 {color: #800000; font-weight: bold;}
+.vb.source-vb .st0 {color: #800000;}
+.vb.source-vb .ln-xtra, .vb.source-vb li.ln-xtra, .vb.source-vb div.ln-xtra {background-color: #ffc;}
+.vb.source-vb span.xtra { display:block; }
+
+/*]]>*/
+</style>
+<style type="text/css">/*<![CDATA[*/
+@import "/w/index.php?title=MediaWiki:Geshi.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=2678400";
+/*]]>*/
+</style><style type="text/css">/*<![CDATA[*/
+.source-python {line-height: normal;}
+.source-python li, .source-python pre {
+	line-height: normal; border: 0px none white;
+}
+/**
+ * GeSHi Dynamically Generated Stylesheet
+ * --------------------------------------
+ * Dynamically generated stylesheet for python
+ * CSS class: source-python, CSS id: 
+ * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann
+ * (http://qbnz.com/highlighter/ and http://geshi.org/)
+ * --------------------------------------
+ */
+.python.source-python .de1, .python.source-python .de2 {font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;}
+.python.source-python  {font-family:monospace;}
+.python.source-python .imp {font-weight: bold; color: red;}
+.python.source-python li, .python.source-python .li1 {font-weight: normal; vertical-align:top;}
+.python.source-python .ln {width:1px;text-align:right;margin:0;padding:0 2px;vertical-align:top;}
+.python.source-python .li2 {font-weight: bold; vertical-align:top;}
+.python.source-python .kw1 {color: #ff7700;font-weight:bold;}
+.python.source-python .kw2 {color: #008000;}
+.python.source-python .kw3 {color: #dc143c;}
+.python.source-python .kw4 {color: #0000cd;}
+.python.source-python .co1 {color: #808080; font-style: italic;}
+.python.source-python .coMULTI {color: #808080; font-style: italic;}
+.python.source-python .es0 {color: #000099; font-weight: bold;}
+.python.source-python .br0 {color: black;}
+.python.source-python .sy0 {color: #66cc66;}
+.python.source-python .st0 {color: #483d8b;}
+.python.source-python .nu0 {color: #ff4500;}
+.python.source-python .me1 {color: black;}
+.python.source-python .ln-xtra, .python.source-python li.ln-xtra, .python.source-python div.ln-xtra {background-color: #ffc;}
+.python.source-python span.xtra { display:block; }
+
+/*]]>*/
+</style>
+<style type="text/css">/*<![CDATA[*/
+@import "/w/index.php?title=MediaWiki:Geshi.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=2678400";
+/*]]>*/
+</style><style type="text/css">/*<![CDATA[*/
+.source-asm {line-height: normal;}
+.source-asm li, .source-asm pre {
+	line-height: normal; border: 0px none white;
+}
+/**
+ * GeSHi Dynamically Generated Stylesheet
+ * --------------------------------------
+ * Dynamically generated stylesheet for asm
+ * CSS class: source-asm, CSS id: 
+ * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann
+ * (http://qbnz.com/highlighter/ and http://geshi.org/)
+ * --------------------------------------
+ */
+.asm.source-asm .de1, .asm.source-asm .de2 {font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;}
+.asm.source-asm  {font-family:monospace;}
+.asm.source-asm .imp {font-weight: bold; color: red;}
+.asm.source-asm li, .asm.source-asm .li1 {font-weight: normal; vertical-align:top;}
+.asm.source-asm .ln {width:1px;text-align:right;margin:0;padding:0 2px;vertical-align:top;}
+.asm.source-asm .li2 {font-weight: bold; vertical-align:top;}
+.asm.source-asm .kw1 {color: #00007f; font-weight: bold;}
+.asm.source-asm .kw2 {color: #0000ff; font-weight: bold;}
+.asm.source-asm .kw3 {color: #00007f;}
+.asm.source-asm .kw4 {color: #000000; font-weight: bold;}
+.asm.source-asm .kw5 {color: #000000; font-weight: bold;}
+.asm.source-asm .co1 {color: #666666; font-style: italic;}
+.asm.source-asm .co2 {color: #adadad; font-style: italic;}
+.asm.source-asm .es0 {color: #000099; font-weight: bold;}
+.asm.source-asm .br0 {color: #009900; font-weight: bold;}
+.asm.source-asm .sy0 {color: #339933;}
+.asm.source-asm .st0 {color: #7f007f;}
+.asm.source-asm .nu0 {color: #0000ff;}
+.asm.source-asm .ln-xtra, .asm.source-asm li.ln-xtra, .asm.source-asm div.ln-xtra {background-color: #ffc;}
+.asm.source-asm span.xtra { display:block; }
+
+/*]]>*/
+</style>
+<style type="text/css">/*<![CDATA[*/
+@import "/w/index.php?title=MediaWiki:Geshi.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=2678400";
+/*]]>*/
+</style><style type="text/css">/*<![CDATA[*/
+.source-perl {line-height: normal;}
+.source-perl li, .source-perl pre {
+	line-height: normal; border: 0px none white;
+}
+/**
+ * GeSHi Dynamically Generated Stylesheet
+ * --------------------------------------
+ * Dynamically generated stylesheet for perl
+ * CSS class: source-perl, CSS id: 
+ * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann
+ * (http://qbnz.com/highlighter/ and http://geshi.org/)
+ * --------------------------------------
+ */
+.perl.source-perl .de1, .perl.source-perl .de2 {font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;}
+.perl.source-perl  {font-family:monospace;}
+.perl.source-perl .imp {font-weight: bold; color: red;}
+.perl.source-perl li, .perl.source-perl .li1 {font-weight: normal; vertical-align:top;}
+.perl.source-perl .ln {width:1px;text-align:right;margin:0;padding:0 2px;vertical-align:top;}
+.perl.source-perl .li2 {font-weight: bold; vertical-align:top;}
+.perl.source-perl .kw1 {color: #b1b100;}
+.perl.source-perl .kw2 {color: #000000; font-weight: bold;}
+.perl.source-perl .kw3 {color: #000066;}
+.perl.source-perl .co1 {color: #666666; font-style: italic;}
+.perl.source-perl .co2 {color: #009966; font-style: italic;}
+.perl.source-perl .co3 {color: #0000ff;}
+.perl.source-perl .co4 {color: #cc0000; font-style: italic;}
+.perl.source-perl .co5 {color: #0000ff;}
+.perl.source-perl .coMULTI {color: #666666; font-style: italic;}
+.perl.source-perl .es0 {color: #000099; font-weight: bold;}
+.perl.source-perl .es_h {color: #000099; font-weight: bold;}
+.perl.source-perl .br0 {color: #009900;}
+.perl.source-perl .sy0 {color: #339933;}
+.perl.source-perl .st0 {color: #ff0000;}
+.perl.source-perl .st_h {color: #ff0000;}
+.perl.source-perl .nu0 {color: #cc66cc;}
+.perl.source-perl .me1 {color: #006600;}
+.perl.source-perl .me2 {color: #006600;}
+.perl.source-perl .re0 {color: #0000ff;}
+.perl.source-perl .re4 {color: #009999;}
+.perl.source-perl .ln-xtra, .perl.source-perl li.ln-xtra, .perl.source-perl div.ln-xtra {background-color: #ffc;}
+.perl.source-perl span.xtra { display:block; }
+
+/*]]>*/
+</style>
+<style type="text/css">/*<![CDATA[*/
+@import "/w/index.php?title=MediaWiki:Geshi.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=2678400";
+/*]]>*/
+</style><style type="text/css">/*<![CDATA[*/
+.source-ruby {line-height: normal;}
+.source-ruby li, .source-ruby pre {
+	line-height: normal; border: 0px none white;
+}
+/**
+ * GeSHi Dynamically Generated Stylesheet
+ * --------------------------------------
+ * Dynamically generated stylesheet for ruby
+ * CSS class: source-ruby, CSS id: 
+ * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann
+ * (http://qbnz.com/highlighter/ and http://geshi.org/)
+ * --------------------------------------
+ */
+.ruby.source-ruby .de1, .ruby.source-ruby .de2 {font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;}
+.ruby.source-ruby  {font-family:monospace;}
+.ruby.source-ruby .imp {font-weight: bold; color: red;}
+.ruby.source-ruby li, .ruby.source-ruby .li1 {font-weight: normal; vertical-align:top;}
+.ruby.source-ruby .ln {width:1px;text-align:right;margin:0;padding:0 2px;vertical-align:top;}
+.ruby.source-ruby .li2 {font-weight: bold; vertical-align:top;}
+.ruby.source-ruby .kw1 {color:#9966CC; font-weight:bold;}
+.ruby.source-ruby .kw2 {color:#0000FF; font-weight:bold;}
+.ruby.source-ruby .kw3 {color:#CC0066; font-weight:bold;}
+.ruby.source-ruby .kw4 {color:#CC00FF; font-weight:bold;}
+.ruby.source-ruby .co1 {color:#008000; font-style:italic;}
+.ruby.source-ruby .coMULTI {color:#000080; font-style:italic;}
+.ruby.source-ruby .es0 {color:#000099;}
+.ruby.source-ruby .br0 {color:#006600; font-weight:bold;}
+.ruby.source-ruby .sy0 {color:#006600; font-weight:bold;}
+.ruby.source-ruby .st0 {color:#996600;}
+.ruby.source-ruby .nu0 {color:#006666;}
+.ruby.source-ruby .me1 {color:#9900CC;}
+.ruby.source-ruby .re0 {color:#ff6633; font-weight:bold;}
+.ruby.source-ruby .re1 {color:#0066ff; font-weight:bold;}
+.ruby.source-ruby .re2 {color:#6666ff; font-weight:bold;}
+.ruby.source-ruby .re3 {color:#ff3333; font-weight:bold;}
+.ruby.source-ruby .ln-xtra, .ruby.source-ruby li.ln-xtra, .ruby.source-ruby div.ln-xtra {background-color: #ffc;}
+.ruby.source-ruby span.xtra { display:block; }
+
+/*]]>*/
+</style>
+<style type="text/css">/*<![CDATA[*/
+@import "/w/index.php?title=MediaWiki:Geshi.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=2678400";
+/*]]>*/
+</style><style type="text/css">/*<![CDATA[*/
+.source-cpp {line-height: normal;}
+.source-cpp li, .source-cpp pre {
+	line-height: normal; border: 0px none white;
+}
+/**
+ * GeSHi Dynamically Generated Stylesheet
+ * --------------------------------------
+ * Dynamically generated stylesheet for cpp
+ * CSS class: source-cpp, CSS id: 
+ * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann
+ * (http://qbnz.com/highlighter/ and http://geshi.org/)
+ * --------------------------------------
+ */
+.cpp.source-cpp .de1, .cpp.source-cpp .de2 {font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;}
+.cpp.source-cpp  {font-family:monospace;}
+.cpp.source-cpp .imp {font-weight: bold; color: red;}
+.cpp.source-cpp li, .cpp.source-cpp .li1 {font-weight: normal; vertical-align:top;}
+.cpp.source-cpp .ln {width:1px;text-align:right;margin:0;padding:0 2px;vertical-align:top;}
+.cpp.source-cpp .li2 {font-weight: bold; vertical-align:top;}
+.cpp.source-cpp .kw1 {color: #0000ff;}
+.cpp.source-cpp .kw2 {color: #0000ff;}
+.cpp.source-cpp .kw3 {color: #0000dd;}
+.cpp.source-cpp .kw4 {color: #0000ff;}
+.cpp.source-cpp .co1 {color: #666666;}
+.cpp.source-cpp .co2 {color: #339900;}
+.cpp.source-cpp .coMULTI {color: #ff0000; font-style: italic;}
+.cpp.source-cpp .es0 {color: #000099; font-weight: bold;}
+.cpp.source-cpp .es1 {color: #000099; font-weight: bold;}
+.cpp.source-cpp .es2 {color: #660099; font-weight: bold;}
+.cpp.source-cpp .es3 {color: #660099; font-weight: bold;}
+.cpp.source-cpp .es4 {color: #660099; font-weight: bold;}
+.cpp.source-cpp .es5 {color: #006699; font-weight: bold;}
+.cpp.source-cpp .br0 {color: #008000;}
+.cpp.source-cpp .sy0 {color: #008000;}
+.cpp.source-cpp .sy1 {color: #000080;}
+.cpp.source-cpp .sy2 {color: #000040;}
+.cpp.source-cpp .sy3 {color: #000040;}
+.cpp.source-cpp .sy4 {color: #008080;}
+.cpp.source-cpp .st0 {color: #FF0000;}
+.cpp.source-cpp .nu0 {color: #0000dd;}
+.cpp.source-cpp .nu6 {color: #208080;}
+.cpp.source-cpp .nu8 {color: #208080;}
+.cpp.source-cpp .nu12 {color: #208080;}
+.cpp.source-cpp .nu16 {color:#800080;}
+.cpp.source-cpp .nu17 {color:#800080;}
+.cpp.source-cpp .nu18 {color:#800080;}
+.cpp.source-cpp .nu19 {color:#800080;}
+.cpp.source-cpp .me1 {color: #007788;}
+.cpp.source-cpp .me2 {color: #007788;}
+.cpp.source-cpp .ln-xtra, .cpp.source-cpp li.ln-xtra, .cpp.source-cpp div.ln-xtra {background-color: #ffc;}
+.cpp.source-cpp span.xtra { display:block; }
+
+/*]]>*/
+</style>
+<style type="text/css">/*<![CDATA[*/
+@import "/w/index.php?title=MediaWiki:Geshi.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=2678400";
+/*]]>*/
+</style><style type="text/css">/*<![CDATA[*/
+.source-c {line-height: normal;}
+.source-c li, .source-c pre {
+	line-height: normal; border: 0px none white;
+}
+/**
+ * GeSHi Dynamically Generated Stylesheet
+ * --------------------------------------
+ * Dynamically generated stylesheet for c
+ * CSS class: source-c, CSS id: 
+ * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann
+ * (http://qbnz.com/highlighter/ and http://geshi.org/)
+ * --------------------------------------
+ */
+.c.source-c .de1, .c.source-c .de2 {font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;}
+.c.source-c  {font-family:monospace;}
+.c.source-c .imp {font-weight: bold; color: red;}
+.c.source-c li, .c.source-c .li1 {font-weight: normal; vertical-align:top;}
+.c.source-c .ln {width:1px;text-align:right;margin:0;padding:0 2px;vertical-align:top;}
+.c.source-c .li2 {font-weight: bold; vertical-align:top;}
+.c.source-c .kw1 {color: #b1b100;}
+.c.source-c .kw2 {color: #000000; font-weight: bold;}
+.c.source-c .kw3 {color: #000066;}
+.c.source-c .kw4 {color: #993333;}
+.c.source-c .co1 {color: #666666; font-style: italic;}
+.c.source-c .co2 {color: #339933;}
+.c.source-c .coMULTI {color: #808080; font-style: italic;}
+.c.source-c .es0 {color: #000099; font-weight: bold;}
+.c.source-c .es1 {color: #000099; font-weight: bold;}
+.c.source-c .es2 {color: #660099; font-weight: bold;}
+.c.source-c .es3 {color: #660099; font-weight: bold;}
+.c.source-c .es4 {color: #660099; font-weight: bold;}
+.c.source-c .es5 {color: #006699; font-weight: bold;}
+.c.source-c .br0 {color: #009900;}
+.c.source-c .sy0 {color: #339933;}
+.c.source-c .st0 {color: #ff0000;}
+.c.source-c .nu0 {color: #0000dd;}
+.c.source-c .nu6 {color: #208080;}
+.c.source-c .nu8 {color: #208080;}
+.c.source-c .nu12 {color: #208080;}
+.c.source-c .nu16 {color:#800080;}
+.c.source-c .nu17 {color:#800080;}
+.c.source-c .nu18 {color:#800080;}
+.c.source-c .nu19 {color:#800080;}
+.c.source-c .me1 {color: #202020;}
+.c.source-c .me2 {color: #202020;}
+.c.source-c .ln-xtra, .c.source-c li.ln-xtra, .c.source-c div.ln-xtra {background-color: #ffc;}
+.c.source-c span.xtra { display:block; }
+
+/*]]>*/
+</style>
+<style type="text/css">/*<![CDATA[*/
+@import "/w/index.php?title=MediaWiki:Geshi.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=2678400";
+/*]]>*/
+</style><style type="text/css">/*<![CDATA[*/
+.source-java {line-height: normal;}
+.source-java li, .source-java pre {
+	line-height: normal; border: 0px none white;
+}
+/**
+ * GeSHi Dynamically Generated Stylesheet
+ * --------------------------------------
+ * Dynamically generated stylesheet for java
+ * CSS class: source-java, CSS id: 
+ * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann
+ * (http://qbnz.com/highlighter/ and http://geshi.org/)
+ * --------------------------------------
+ */
+.java.source-java .de1, .java.source-java .de2 {font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;}
+.java.source-java  {font-family:monospace;}
+.java.source-java .imp {font-weight: bold; color: red;}
+.java.source-java li, .java.source-java .li1 {font-weight: normal; vertical-align:top;}
+.java.source-java .ln {width:1px;text-align:right;margin:0;padding:0 2px;vertical-align:top;}
+.java.source-java .li2 {font-weight: bold; vertical-align:top;}
+.java.source-java .kw1 {color: #000000; font-weight: bold;}
+.java.source-java .kw2 {color: #000066; font-weight: bold;}
+.java.source-java .kw3 {color: #003399;}
+.java.source-java .kw4 {color: #000066; font-weight: bold;}
+.java.source-java .co1 {color: #666666; font-style: italic;}
+.java.source-java .co2 {color: #006699;}
+.java.source-java .co3 {color: #008000; font-style: italic; font-weight: bold;}
+.java.source-java .coMULTI {color: #666666; font-style: italic;}
+.java.source-java .es0 {color: #000099; font-weight: bold;}
+.java.source-java .br0 {color: #009900;}
+.java.source-java .sy0 {color: #339933;}
+.java.source-java .st0 {color: #0000ff;}
+.java.source-java .nu0 {color: #cc66cc;}
+.java.source-java .me1 {color: #006633;}
+.java.source-java .me2 {color: #006633;}
+.java.source-java .ln-xtra, .java.source-java li.ln-xtra, .java.source-java div.ln-xtra {background-color: #ffc;}
+.java.source-java span.xtra { display:block; }
+
+/*]]>*/
+</style>
+<style type="text/css">/*<![CDATA[*/
+@import "/w/index.php?title=MediaWiki:Geshi.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=2678400";
+/*]]>*/
+</style><style type="text/css">/*<![CDATA[*/
+.source-csharp {line-height: normal;}
+.source-csharp li, .source-csharp pre {
+	line-height: normal; border: 0px none white;
+}
+/**
+ * GeSHi Dynamically Generated Stylesheet
+ * --------------------------------------
+ * Dynamically generated stylesheet for csharp
+ * CSS class: source-csharp, CSS id: 
+ * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann
+ * (http://qbnz.com/highlighter/ and http://geshi.org/)
+ * --------------------------------------
+ */
+.csharp.source-csharp .de1, .csharp.source-csharp .de2 {font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;}
+.csharp.source-csharp  {font-family:monospace;}
+.csharp.source-csharp .imp {font-weight: bold; color: red;}
+.csharp.source-csharp li, .csharp.source-csharp .li1 {font-weight: normal; vertical-align:top;}
+.csharp.source-csharp .ln {width:1px;text-align:right;margin:0;padding:0 2px;vertical-align:top;}
+.csharp.source-csharp .li2 {font-weight: bold; vertical-align:top;}
+.csharp.source-csharp .kw1 {color: #0600FF;}
+.csharp.source-csharp .kw2 {color: #FF8000; font-weight: bold;}
+.csharp.source-csharp .kw3 {color: #008000;}
+.csharp.source-csharp .kw4 {color: #FF0000;}
+.csharp.source-csharp .kw5 {color: #000000;}
+.csharp.source-csharp .co1 {color: #008080; font-style: italic;}
+.csharp.source-csharp .co2 {color: #008080;}
+.csharp.source-csharp .co3 {color: #008080;}
+.csharp.source-csharp .coMULTI {color: #008080; font-style: italic;}
+.csharp.source-csharp .es0 {color: #008080; font-weight: bold;}
+.csharp.source-csharp .es_h {color: #008080; font-weight: bold;}
+.csharp.source-csharp .br0 {color: #000000;}
+.csharp.source-csharp .sy0 {color: #008000;}
+.csharp.source-csharp .st0 {color: #666666;}
+.csharp.source-csharp .st_h {color: #666666;}
+.csharp.source-csharp .nu0 {color: #FF0000;}
+.csharp.source-csharp .me1 {color: #0000FF;}
+.csharp.source-csharp .me2 {color: #0000FF;}
+.csharp.source-csharp .ln-xtra, .csharp.source-csharp li.ln-xtra, .csharp.source-csharp div.ln-xtra {background-color: #ffc;}
+.csharp.source-csharp span.xtra { display:block; }
+
+/*]]>*/
+</style>
+<style type="text/css">/*<![CDATA[*/
+@import "/w/index.php?title=MediaWiki:Geshi.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=2678400";
+/*]]>*/
+</style><style type="text/css">/*<![CDATA[*/
+.source-lua {line-height: normal;}
+.source-lua li, .source-lua pre {
+	line-height: normal; border: 0px none white;
+}
+/**
+ * GeSHi Dynamically Generated Stylesheet
+ * --------------------------------------
+ * Dynamically generated stylesheet for lua
+ * CSS class: source-lua, CSS id: 
+ * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann
+ * (http://qbnz.com/highlighter/ and http://geshi.org/)
+ * --------------------------------------
+ */
+.lua.source-lua .de1, .lua.source-lua .de2 {font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;}
+.lua.source-lua  {font-family:monospace;}
+.lua.source-lua .imp {font-weight: bold; color: red;}
+.lua.source-lua li, .lua.source-lua .li1 {font-weight: normal; vertical-align:top;}
+.lua.source-lua .ln {width:1px;text-align:right;margin:0;padding:0 2px;vertical-align:top;}
+.lua.source-lua .li2 {font-weight: bold; vertical-align:top;}
+.lua.source-lua .kw1 {color: #b1b100;}
+.lua.source-lua .co1 {color: #808080; font-style: italic;}
+.lua.source-lua .coMULTI {color: #808080; font-style: italic;}
+.lua.source-lua .es0 {color: #000099; font-weight: bold;}
+.lua.source-lua .br0 {color: #66cc66;}
+.lua.source-lua .sy0 {color: #66cc66;}
+.lua.source-lua .st0 {color: #ff0000;}
+.lua.source-lua .nu0 {color: #cc66cc;}
+.lua.source-lua .me0 {color: #b1b100;}
+.lua.source-lua .ln-xtra, .lua.source-lua li.ln-xtra, .lua.source-lua div.ln-xtra {background-color: #ffc;}
+.lua.source-lua span.xtra { display:block; }
+
+/*]]>*/
+</style>
+<style type="text/css">/*<![CDATA[*/
+@import "/w/index.php?title=MediaWiki:Geshi.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=2678400";
+/*]]>*/
+</style></head><body class="mediawiki ltr ns-0 ns-subject page-Quicksort
+ skin-vector">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<!-- content -->
+		<div id="content"><div style="visibility: hidden; display: none; 
+width: 602px; height: 402px; margin: 0px; padding: 0px; 
+background-color: white; position: absolute; right: 2em; top: 1em; 
+border: 1px solid gray; z-index: 13;"><iframe style="z-index: 14; 
+position: absolute; right: 1px; top: 1px; width: 600px; height: 400px; 
+margin: 0px; padding: 0px;" frameborder="0" scrolling="no"></iframe><img
+ style="z-index: 15; position: absolute; right: 11px; top: 9px; width: 
+18px; cursor: pointer;" src="Quicksort_arquivos/Button_hide.png" 
+title="fechar"></div>
+			<a id="top"></a>
+			<div id="mw-js-message" style="display: none;"></div>
+						<!-- sitenotice -->
+			<div id="siteNotice"><script type="text/javascript">if (wgNotice != '') document.writeln(wgNotice);</script><div
+ id="centralNotice" class="expanded anonnotice"><style type="text/css">
+/* Styles for Notices */
+/*COPIED FROM VECTORCHANGED */
+
+.notice-wrapper-vector_transition, .notice-collapsed-wrapper-vector_transition {
+ margin: 2px auto 0;
+ width: 100%;
+ padding: 0;
+ font-family: 'Arial','Helvetica','Tahoma',sans-serif;
+ color: #333;
+ background-color: #ddd;
+ font-size: 1em;
+ font-weight: 200;
+ vertical-align:middle;
+}
+
+.notice-wrapper-vector_transition {
+ border: 1px solid #bbb;
+ background-color: #fcfcfc;
+ text-align: left;
+ font-size: 1em;
+}
+
+.notice-wrapper-vector_transition a {
+ color: #006699;
+}
+
+#vector_post_release_message .toggle-box {
+ text-align: right;
+ font-size: 0.8em;
+ padding: 0;
+}
+
+#vector_post_release_message .trans-box {
+ text-align: right;
+ font-size: 0.8em;
+ padding: 0;
+ white-space: nowrap;
+}
+
+td#table-cell-1 {
+ margin: 0 auto;
+ padding: 1px 0 3px 5px;
+ width: 30px;
+}
+
+td#table-cell-2 {
+ margin: 0 auto;
+ padding: 0 5px 0 0;
+ font-size: 1.3em;
+}
+
+td#table-cell-lht {
+ font-size: 0.8em;
+ padding: 0 5px 0 0;
+ text-align: center;
+}
+
+#vector_post_release_message .line-ht-fix {
+ line-height: 1em;
+ align: center;
+}
+
+
+#centralNotice.collapsed .siteNoticeUser {
+ display:none;
+}
+
+div.notice-links-vector_transition {
+ text-align:right;
+}
+
+
+/* FROM VECTORNEWLOOK */
+
+
+#centralNotice.collapsed .central-notice-banner {
+ display: none;
+}
+#vector_transition_message .central-notice-banner {
+ position: relative;
+ margin-bottom: 1em !important;
+}
+#vector_transition_message .toggle-box {
+ position: absolute;
+ right: 8em;
+ /* right: 0.25em; */
+ /* top: 1.3em; */
+ font-size: 0.8em;
+}
+.vector-banner-base {
+ height: 3em;
+ background-color: white;
+ background-image: url(http://upload.wikimedia.org/centralnotice/enwiki/vector/base.png);
+ background-repeat: repeat-x;
+ background-position: center bottom;
+}
+.vector-banner-base-left {
+ height: 3em;
+ background-image: url(http://upload.wikimedia.org/centralnotice/enwiki/vector/left.png);
+ background-repeat: no-repeat;
+ background-position: left bottom;
+}
+.vector-banner-base-right {
+ height: 3em;
+ background-image: url(http://upload.wikimedia.org/centralnotice/enwiki/vector/right.png);
+ background-repeat: no-repeat;
+ background-position: right bottom;
+}
+.vector-banner-message {
+ text-align: center;
+ height: 3em;
+}
+.vector-banner-message a {
+ display: inline-block;
+ height: 2em;
+ padding: 0 1em !important;
+ padding-top: 1em !important;
+ cursor: pointer;
+ text-decoration: none;
+}
+.vector-banner-message a.vector-banner-message-left {
+ background-image: url(http://upload.wikimedia.org/centralnotice/enwiki/vector/break.png) !important;
+ background-repeat: no-repeat !important;
+ background-position: right bottom !important;
+ color: #333333;
+}
+.vector-banner-message a.vector-banner-message-right {
+ color: #0645AD;
+}
+.vector-banner-message a.vector-banner-message-right:hover {
+ text-decoration: underline;
+}
+</style>
+<div style="display: none;" class="central-notice-banner" 
+id="vector_transition_message">
+ <div class="toggle-box"><a href="#" onclick="toggleNotice();return 
+false">Esconder</a></div>
+ <div class="vector-banner-base">
+  <div class="vector-banner-base-left">
+   <div class="vector-banner-base-right">
+    <div class="vector-banner-message">
+     <a 
+href="http://meta.wikimedia.org/wiki/2010_Wikimedia_design_and_feature_change"
+ class="vector-banner-message-left">Wikipedia está a mudar de aparência.</a><a
+ 
+href="http://meta.wikimedia.org/wiki/2010_Wikimedia_design_and_feature_change"
+ class="vector-banner-message-right">Ajude-nos a encontrar problemas e a
+ completar as traduções da interface de utilizador.</a>
+    </div>
+   </div>
+  </div>
+ </div>
+</div>
+<table style="display: none;" class="siteNoticeUser 
+notice-wrapper-vector_transition" id="vector_post_release_message">
+ <tbody><tr>
+  <td id="table-cell-2" align="center">
+   <span>
+    Notou algo diferente? Fizemos algumas melhorias em Wikipedia. <a 
+href="http://pt.wikipedia.org/wiki/Special:UsabilityInitiativePrefSwitch">Saiba
+ mais.</a>
+   </span>
+  </td>
+  <td id="table-cell-lht" class="line-ht-fix">
+      <span class="toggle-box">
+   [<a href="#" onclick="toggleNotice();return false">Esconder</a>]
+ </span><br>
+  <span class="trans-box">
+  [<a 
+href="http://usability.wikimedia.org/wiki/Releases/Default_Switch#Phase_IV_Deployment">Ajuda-nos
+ com as traduções!</a>]
+  </span>
+  </td>
+ </tr>
+</tbody></table>
+
+<script type="text/javascript">
+// Control which will be displayed
+// This is the lowest form of JS that will work in all supported browsers, is not pretty but it works
+if( 
+ (typeof(wgDBname) == "undefined") ||
+ wgDBname  == 'enwiki' || 
+ wgDBname == 'dewiki' || 
+ wgDBname == 'frwiki'|| 
+ wgDBname == 'plwiki'|| 
+ wgDBname == 'itwiki'|| 
+ wgDBname == 'jawiki'|| 
+ wgDBname == 'eswiki'|| 
+ wgDBname == 'nlwiki'|| 
+ wgDBname == 'ptwiki'|| 
+ wgDBname == 'ruwiki'|| 
+ wgDBname == 'enwikinews'|| 
+ wgDBname == 'nostalgiawiki'|| 
+ wgDBname == 'strategywiki'|| 
+ wgDBname =='strategyappswiki'|| 
+ wgDBname =='usabilitywiki'|| 
+ wgDBname == 'fiwikimedia'|| 
+ wgDBname == 'trwikimedia'|| 
+ wgDBname == 'outreachwiki'|| 
+ wgDBname == 'srwikinews'|| 
+ wgDBname == 'liquidthreads_labswikimedia'|| 
+ wgDBname == 'flaggedrevs_labswikimedia'|| 
+ wgDBname == 'foundationwiki'|| 
+ wgDBname == 'officewiki'|| 
+ wgDBname == 'ukwikimedia'|| 
+ wgDBname == 'commonswiki' ||
+ wgDBname == "wikimania2010wiki" || 
+wgDBname == "wikimania2009wiki" || 
+wgDBname == "wikimania2008wiki" || 
+wgDBname == "wikimania2007wiki" || 
+wgDBname == "wikimania2006wiki" || 
+wgDBname == "wikimania2005wiki" ||
+wgDBname == "brwikimedia" || 
+wgDBname == "dkwikimedia" || 
+wgDBname == "vewikimedia" || 
+wgDBname == "ptwikimedia" || 
+wgDBname == "nowikimedia" || 
+wgDBname == "ruwikimedia" || 
+wgDBname == "sewikimedia" || 
+wgDBname == "rswikimedia" || 
+wgDBname == "cowikimedia" || 
+wgDBname == "plwikimedia" || 
+wgDBname == "chwikimedia" || 
+wgDBname == "ilwikimedia" || 
+wgDBname == "nlwikimedia" || 
+wgDBname == "nzwikimedia" || 
+wgDBname == "uawikimedia" || 
+wgDBname == "metawiki" || 
+wgDBname == "en_labswikimedia" || 
+wgDBname == "de_labswikimedia" || 
+wgDBname == "readerfeedback_labswikimedia"
+) {
+/* already changed */
+    document.getElementById('vector_transition_message').style.display='none';
+    document.getElementById('vector_post_release_message').style.display='none';
+}
+else if(
+wgDBname == "afwiki" || 
+wgDBname == "alswiki" || 
+wgDBname == "arwiki" || 
+wgDBname == "be_x_oldwiki" || 
+wgDBname == "bgwiki" || 
+wgDBname == "bnwiki" || 
+wgDBname == "brwiki" || 
+wgDBname == "bswiki" || 
+wgDBname == "cawiki" || 
+wgDBname == "cswiki" || 
+wgDBname == "cywiki" || 
+wgDBname == "dawiki" || 
+wgDBname == "diqwiki" || 
+wgDBname == "dsbwiki" || 
+wgDBname == "elwiki" || 
+wgDBname == "eowiki" || 
+wgDBname == "etwiki" || 
+wgDBname == "euwiki" || 
+wgDBname == "fawiki" || 
+wgDBname == "fiwiki" || 
+wgDBname == "frpwiki" || 
+wgDBname == "glwiki" || 
+wgDBname == "hewiki" || 
+wgDBname == "hsbwiki" || 
+wgDBname == "huwiki" || 
+wgDBname == "iawiki" || 
+wgDBname == "idwiki" || 
+wgDBname == "kawiki" || 
+wgDBname == "kowiki" || 
+wgDBname == "kshwiki" || 
+wgDBname == "lbwiki" || 
+wgDBname == "mkwiki" || 
+wgDBname == "mlwiki" || 
+wgDBname == "mswiki" || 
+wgDBname == "mtwiki" || 
+wgDBname == "nnwiki" || 
+wgDBname == "nowiki" || 
+wgDBname == "ocwiki" || 
+wgDBname == "pmswiki" || 
+wgDBname == "rowiki" || 
+wgDBname == "roa_tarawiki" || 
+wgDBname == "sahwiki" || 
+wgDBname == "skwiki" || 
+wgDBname == "slwiki" || 
+wgDBname == "sqwiki" || 
+wgDBname == "svwiki" || 
+wgDBname == "tewiki" || 
+wgDBname == "thwiki" || 
+wgDBname == "tlwiki" || 
+wgDBname == "trwiki" || 
+wgDBname == "viwiki" || 
+wgDBname == "yiwiki" || 
+wgDBname == "yowiki" || 
+wgDBname == "zhwiki" || 
+wgDBname == "zh_yuewiki" ||
+wgDBname == "incubatorwiki" || 
+wgDBname == "mediawikiwiki" 
+) {
+/* Phase IV projects, show post-release msg */
+    document.getElementById('vector_transition_message').style.display='none';
+}
+else{
+/* all others, just hide post-release */
+    document.getElementById('vector_post_release_message').style.display='none';
+   if(wgUserName == null){
+    document.getElementById('vector_transition_message').style.display='none';
+   }
+}
+
+
+</script></div>
+</div>
+			<!-- /sitenotice -->
+						<!-- firstHeading -->
+			<h1 id="firstHeading" class="firstHeading">Quicksort</h1>
+			<!-- /firstHeading -->
+			<!-- bodyContent -->
+			<div id="bodyContent">
+				<!-- tagline -->
+				<h3 id="siteSub">Origem: Wikipédia, a enciclopédia livre.</h3>
+				<!-- /tagline -->
+				<!-- subtitle -->
+				<div id="contentSub"></div>
+				<!-- /subtitle -->
+																<!-- jumpto -->
+				<div id="jump-to-nav">
+					Ir para: <a href="#mw-head">navegação</a>,
+					<a href="#p-search">pesquisa</a>
+				</div>
+				<!-- /jumpto -->
+								<!-- bodytext -->
+				<div class="thumb tright">
+<div class="thumbinner" style="width: 222px;"><a 
+href="http://pt.wikipedia.org/wiki/Ficheiro:Quicksort_example_small.png"
+ class="image"><img alt="" 
+src="Quicksort_arquivos/220px-Quicksort_example_small.png" 
+class="thumbimage" height="514" width="220"></a>
+<div class="thumbcaption">
+<div class="magnify"><a 
+href="http://pt.wikipedia.org/wiki/Ficheiro:Quicksort_example_small.png"
+ class="internal" title="Ampliar"><img 
+src="Quicksort_arquivos/magnify-clip.png" alt="" height="11" width="15"></a></div>
+Algumas etapas do algoritmo Quicksort.</div>
+</div>
+</div>
+<p>O <a href="http://pt.wikipedia.org/wiki/Algoritmo" title="Algoritmo">algoritmo</a>
+ <b>Quicksort</b> é um método de ordenação muito rápido e eficiente, 
+inventado por <a href="http://pt.wikipedia.org/wiki/C.A.R._Hoare" 
+title="C.A.R. Hoare" class="mw-redirect">C.A.R. Hoare</a> em 1960, 
+quando visitou a <a 
+href="http://pt.wikipedia.org/wiki/Universidade_de_Moscovo" 
+title="Universidade de Moscovo" class="mw-redirect">Universidade de 
+Moscovo</a> como estudante. Ele criou o '<i>Quicksort</i> ao tentar 
+traduzir um dicionário de inglês para russo, ordenando as palavras, 
+tendo como objetivo reduzir o problema original em subproblemas que 
+possam ser resolvidos mais facil e rapidamente. Foi publicado em 1962 
+após uma série de refinamentos.</p>
+<p>O Quicksort é um algoritmo de ordenação <a 
+href="http://pt.wikipedia.org/wiki/Ordena%C3%A7%C3%A3o_est%C3%A1vel" 
+title="Ordenação estável">não-estável</a>.</p>
+<table id="toc" class="toc">
+<tbody><tr>
+<td>
+<div id="toctitle">
+<h2>Índice</h2>
+ <span class="toctoggle">[<a href="#" class="internal" id="togglelink">esconder</a>]</span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#O_algoritmo"><span 
+class="tocnumber">1</span> <span class="toctext">O algoritmo</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Complexidade"><span 
+class="tocnumber">2</span> <span class="toctext">Complexidade</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Implementa.C3.A7.C3.B5es"><span
+ class="tocnumber">3</span> <span class="toctext">Implementações</span></a>
+<ul>
+<li class="toclevel-2 tocsection-4"><a href="#Pseudoc.C3.B3digo"><span 
+class="tocnumber">3.1</span> <span class="toctext">Pseudocódigo</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#PHP_5_-_OO"><span 
+class="tocnumber">3.2</span> <span class="toctext">PHP 5 - OO</span></a></li>
+<li class="toclevel-2 tocsection-6"><a 
+href="#Delphi_.28M.C3.A9todo_Recursivo.29"><span class="tocnumber">3.3</span>
+ <span class="toctext">Delphi (Método Recursivo)</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#Visual_Basic"><span 
+class="tocnumber">3.4</span> <span class="toctext">Visual Basic</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="#Python"><span 
+class="tocnumber">3.5</span> <span class="toctext">Python</span></a></li>
+<li class="toclevel-2 tocsection-9"><a href="#Assembly_x86-gas-Linux"><span
+ class="tocnumber">3.6</span> <span class="toctext">Assembly 
+x86-gas-Linux</span></a></li>
+<li class="toclevel-2 tocsection-10"><a href="#Haskell"><span 
+class="tocnumber">3.7</span> <span class="toctext">Haskell</span></a></li>
+<li class="toclevel-2 tocsection-11"><a href="#Lisp"><span 
+class="tocnumber">3.8</span> <span class="toctext">Lisp</span></a></li>
+<li class="toclevel-2 tocsection-12"><a href="#Perl"><span 
+class="tocnumber">3.9</span> <span class="toctext">Perl</span></a></li>
+<li class="toclevel-2 tocsection-13"><a href="#Ruby"><span 
+class="tocnumber">3.10</span> <span class="toctext">Ruby</span></a></li>
+<li class="toclevel-2 tocsection-14"><a href="#Groovy"><span 
+class="tocnumber">3.11</span> <span class="toctext">Groovy</span></a></li>
+<li class="toclevel-2 tocsection-15"><a href="#ML"><span 
+class="tocnumber">3.12</span> <span class="toctext">ML</span></a></li>
+<li class="toclevel-2 tocsection-16"><a href="#PHP"><span 
+class="tocnumber">3.13</span> <span class="toctext">PHP</span></a></li>
+<li class="toclevel-2 tocsection-17"><a href="#C.2B.2B"><span 
+class="tocnumber">3.14</span> <span class="toctext">C++</span></a></li>
+<li class="toclevel-2 tocsection-18"><a href="#C"><span 
+class="tocnumber">3.15</span> <span class="toctext">C</span></a></li>
+<li class="toclevel-2 tocsection-19"><a href="#Java"><span 
+class="tocnumber">3.16</span> <span class="toctext">Java</span></a></li>
+<li class="toclevel-2 tocsection-20"><a href="#C.23"><span 
+class="tocnumber">3.17</span> <span class="toctext">C#</span></a></li>
+<li class="toclevel-2 tocsection-21"><a href="#Assembly_x86"><span 
+class="tocnumber">3.18</span> <span class="toctext">Assembly x86</span></a></li>
+<li class="toclevel-2 tocsection-22"><a href="#Prolog"><span 
+class="tocnumber">3.19</span> <span class="toctext">Prolog</span></a></li>
+<li class="toclevel-2 tocsection-23"><a href="#Lua"><span 
+class="tocnumber">3.20</span> <span class="toctext">Lua</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-24"><a href="#Veja_tamb.C3.A9m"><span 
+class="tocnumber">4</span> <span class="toctext">Veja também</span></a></li>
+<li class="toclevel-1"><a href="#Refer.C3.AAncias"><span 
+class="tocnumber">5</span> <span class="toctext">Referências</span></a></li>
+<li class="toclevel-1 tocsection-25"><a 
+href="#Liga.C3.A7.C3.B5es_externas"><span class="tocnumber">6</span> <span
+ class="toctext">Ligações externas</span></a></li>
+</ul>
+</td>
+</tr>
+</tbody></table>
+<script type="text/javascript">
+//<![CDATA[
+if (window.showTocToggle) { var tocShowText = "mostrar"; var tocHideText = "esconder"; showTocToggle(); } 
+//]]>
+</script>
+<h2><span class="editsection">[<a 
+href="http://pt.wikipedia.org/w/index.php?title=Quicksort&amp;action=edit&amp;section=1"
+ title="Editar seção: O algoritmo">editar</a>]</span> <span 
+class="mw-headline" id="O_algoritmo">O algoritmo</span></h2>
+<div class="thumb tright">
+<div class="thumbinner" style="width: 222px;"><a 
+href="http://pt.wikipedia.org/wiki/Ficheiro:Sorting_quicksort_anim.gif" 
+class="image"><img alt="" 
+src="Quicksort_arquivos/220px-Sorting_quicksort_anim.gif" 
+class="thumbimage" height="168" width="220"></a>
+<div class="thumbcaption">
+<div class="magnify"><a 
+href="http://pt.wikipedia.org/wiki/Ficheiro:Sorting_quicksort_anim.gif" 
+class="internal" title="Ampliar"><img 
+src="Quicksort_arquivos/magnify-clip.png" alt="" height="11" width="15"></a></div>
+Animação do algoritmo rearranjando um conjunto de valores consecutivos 
+embaralhados.</div>
+</div>
+</div>
+<p>O Quicksort adota a estratégia de <a 
+href="http://pt.wikipedia.org/wiki/Divis%C3%A3o_e_conquista" 
+title="Divisão e conquista">divisão e conquista</a>. Os passos são:</p>
+<ol>
+<li>Escolha um elemento da lista, denominado <i>pivô</i>;</li>
+<li>Rearranje a lista de forma que todos os elementos anteriores ao pivô
+ sejam menores que ele, e todos os elementos posteriores ao pivô sejam 
+maiores que ele. Ao fim do processo o pivô estará em sua posição final e
+ haverá duas sublistas não ordenadas. Essa operação é denominada <i>partição</i>;</li>
+<li><a 
+href="http://pt.wikipedia.org/wiki/Recursividade_%28ci%C3%AAncia_da_computa%C3%A7%C3%A3o%29"
+ title="Recursividade (ciência da computação)">Recursivamente</a> ordene
+ a sublista dos elementos menores e a sublista dos elementos maiores;</li>
+</ol>
+<p>A base da recursão são as listas de tamanho zero ou um, que estão 
+sempre ordenadas. O processo é finito, pois a cada iteração pelo menos 
+um elemento é posto em sua posição final e não será mais manipulado na 
+iteração seguinte.</p>
+<h2><span class="editsection">[<a 
+href="http://pt.wikipedia.org/w/index.php?title=Quicksort&amp;action=edit&amp;section=2"
+ title="Editar seção: Complexidade">editar</a>]</span> <span 
+class="mw-headline" id="Complexidade">Complexidade</span></h2>
+<ul>
+<li><a 
+href="http://pt.wikipedia.org/wiki/Complexidade_%28inform%C3%A1tica%29" 
+title="Complexidade (informática)">Complexidade de tempo</a>: θ(n lg<sub>2</sub>
+ n) no <a href="http://pt.wikipedia.org/wiki/Complexidade_melhor_caso" 
+title="Complexidade melhor caso">melhor caso</a> e no <a 
+href="http://pt.wikipedia.org/wiki/Complexidade_caso_m%C3%A9dio" 
+title="Complexidade caso médio">caso médio</a> e θ(n<sup>2</sup>) no <a 
+href="http://pt.wikipedia.org/wiki/Complexidade_pior_caso" 
+title="Complexidade pior caso">pior caso</a>;</li>
+<li>Complexidade de espaço: θ(lg<sub>2</sub> n) no melhor caso e no caso
+ médio e θ(lg<sub>2</sub> n) no pior caso. R. Sedgewick desenvolveu uma 
+versão do Quicksort com partição recursão de cauda que tem complexidade 
+θ(lg<sub>2</sub> n) no pior caso.</li>
+</ul>
+<h2><span class="editsection">[<a 
+href="http://pt.wikipedia.org/w/index.php?title=Quicksort&amp;action=edit&amp;section=3"
+ title="Editar seção: Implementações">editar</a>]</span> <span 
+class="mw-headline" id="Implementa.C3.A7.C3.B5es">Implementações</span></h2>
+<h3><span class="editsection">[<a 
+href="http://pt.wikipedia.org/w/index.php?title=Quicksort&amp;action=edit&amp;section=4"
+ title="Editar seção: Pseudocódigo">editar</a>]</span> <span 
+class="mw-headline" id="Pseudoc.C3.B3digo"><a 
+href="http://pt.wikipedia.org/wiki/Pseudoc%C3%B3digo" 
+title="Pseudocódigo">Pseudocódigo</a></span></h3>
+<pre>procedimento QuickSort(X[], IniVet, FimVet)
+var
+   i, j, pivo, aux
+início
+   i &lt;- IniVet
+   j &lt;- FimVet
+   pivo &lt;- X[(IniVet + FimVet) div 2]
+   repita
+      enquanto (X[i] &lt; pivo) faça
+      início
+         i &lt;- i + 1
+      fim
+      enquanto (X[j] &gt; pivo) faça
+      início
+         j &lt;- j - 1
+      fim
+      se (i &lt;= j) então 
+      início
+         aux  &lt;- X[i]
+         X[i] &lt;- X[j]
+         X[j] &lt;- aux
+         i &lt;- i + 1
+         j &lt;- j - 1
+      fim
+   até_que (i &gt; j)      
+   se (j &gt; IniVet) então
+   início
+      QuickSort(X, IniVet, j)
+   fim
+   se (i &lt; FimVet) então
+   início
+      QuickSort(X, i, FimVet)
+   fim
+fim
+</pre>
+<h3><span class="editsection">[<a 
+href="http://pt.wikipedia.org/w/index.php?title=Quicksort&amp;action=edit&amp;section=5"
+ title="Editar seção: PHP 5 - OO">editar</a>]</span> <span 
+class="mw-headline" id="PHP_5_-_OO"><a 
+href="http://pt.wikipedia.org/w/index.php?title=PHP_5_-_OO&amp;action=edit&amp;redlink=1"
+ class="new" title="PHP 5 - OO (página não existe)">PHP 5 - OO</a></span></h3>
+<div dir="ltr" class="mw-geshi" style="text-align: left;">
+<div class="php source-php" style="font-family: monospace;">
+<pre class="de1"><span class="kw2">class</span> QuickSortUtil <span class="br0">{</span>
+ 
+   <span class="kw2">private</span> static <span class="kw2">function</span> partition<span class="br0">(</span><span class="sy0">&amp;</span><span class="re0">$array</span><span class="sy0">,</span> <span class="re0">$f</span><span class="sy0">,</span> <span class="re0">$l</span><span class="sy0">,</span> <span class="re0">$property</span><span class="br0">)</span> <span class="br0">{</span>
+     <span class="re0">$pivot</span> <span class="sy0">=</span> <span class="re0">$array</span><span class="br0">[</span><span class="re0">$f</span><span class="br0">]</span><span class="sy0">-&gt;</span><span class="re0">$property</span><span class="sy0">;</span>
+     <span class="kw1">while</span> <span class="br0">(</span><span class="re0">$f</span> <span class="sy0">&lt;</span> <span class="re0">$l</span><span class="br0">)</span> <span class="br0">{</span>
+        <span class="kw1">while</span> <span class="br0">(</span><span class="re0">$array</span><span class="br0">[</span><span class="re0">$f</span><span class="br0">]</span><span class="sy0">-&gt;</span><span class="re0">$property</span> <span class="sy0">&lt;</span> <span class="re0">$pivot</span><span class="br0">)</span> <span class="re0">$l</span><span class="sy0">++;</span>
+        <span class="kw1">while</span> <span class="br0">(</span><span class="re0">$array</span><span class="br0">[</span><span class="re0">$l</span><span class="br0">]</span><span class="sy0">-&gt;</span><span class="re0">$property</span> <span class="sy0">&gt;</span> <span class="re0">$pivot</span><span class="br0">)</span> <span class="re0">$f</span><span class="sy0">--;</span>
+        <span class="re0">$temp</span> <span class="sy0">=</span> <span class="re0">$array</span><span class="br0">[</span><span class="re0">$f</span><span class="br0">]</span><span class="sy0">;</span>
+        <span class="re0">$array</span><span class="br0">[</span><span class="re0">$f</span><span class="br0">]</span> <span class="sy0">=</span> <span class="re0">$array</span><span class="br0">[</span><span class="re0">$l</span><span class="br0">]</span><span class="sy0">;</span>
+        <span class="re0">$array</span><span class="br0">[</span><span class="re0">$l</span><span class="br0">]</span> <span class="sy0">=</span> <span class="re0">$temp</span><span class="sy0">;</span>
+     <span class="br0">}</span>
+     <span class="kw1">return</span> <span class="re0">$f</span><span class="sy0">;</span>
+   <span class="br0">}</span>
+ 
+   <span class="kw2">public</span> static <span class="kw2">function</span> <span class="kw3">sort</span><span class="br0">(</span><span class="sy0">&amp;</span><span class="re0">$array</span><span class="sy0">,</span> <span class="re0">$property</span><span class="sy0">,</span> <span class="re0">$f</span><span class="sy0">=</span><span class="kw4">null</span><span class="sy0">,</span> <span class="re0">$l</span><span class="sy0">=</span><span class="kw4">null</span><span class="br0">)</span> <span class="br0">{</span>
+	<span class="kw1">if</span><span class="br0">(</span><span class="kw3">is_null</span><span class="br0">(</span><span class="re0">$f</span><span class="br0">)</span><span class="br0">)</span> <span class="re0">$f</span> <span class="sy0">=</span> <span class="nu0">0</span><span class="sy0">;</span>
+	<span class="kw1">if</span><span class="br0">(</span><span class="kw3">is_null</span><span class="br0">(</span><span class="re0">$l</span><span class="br0">)</span><span class="br0">)</span> <span class="re0">$l</span> <span class="sy0">=</span> <span class="kw3">count</span><span class="br0">(</span><span class="re0">$array</span><span class="br0">)</span><span class="sy0">-</span><span class="nu0">1</span><span class="sy0">;</span>
+	<span class="kw1">if</span> <span class="br0">(</span><span class="re0">$f</span> <span class="sy0">&gt;=</span> <span class="re0">$l</span><span class="br0">)</span> <span class="kw1">return</span><span class="sy0">;</span>
+	<span class="re0">$pivot_index</span> <span class="sy0">=</span> <span class="kw2">self</span><span class="sy0">::</span><span class="me2">partition</span><span class="br0">(</span><span class="re0">$array</span><span class="sy0">,</span> <span class="re0">$f</span><span class="sy0">,</span> <span class="re0">$l</span><span class="sy0">,</span> <span class="re0">$property</span><span class="br0">)</span><span class="sy0">;</span>
+	<span class="kw2">self</span><span class="sy0">::</span><span class="kw3">sort</span><span class="br0">(</span><span class="re0">$array</span><span class="sy0">,</span> <span class="re0">$property</span><span class="sy0">,</span> <span class="re0">$f</span><span class="sy0">,</span> <span class="re0">$pivot_index</span><span class="br0">)</span><span class="sy0">;</span>
+	<span class="kw2">self</span><span class="sy0">::</span><span class="kw3">sort</span><span class="br0">(</span><span class="re0">$array</span><span class="sy0">,</span> <span class="re0">$property</span><span class="sy0">,</span> <span class="re0">$pivot_index</span><span class="sy0">+</span>1<span class="sy0">,</span> <span class="re0">$l</span><span class="br0">)</span><span class="sy0">;</span>
+   <span class="br0">}</span>	
+ 
+<span class="br0">}</span>
+</pre></div>
+</div>
+<h3><span class="editsection">[<a 
+href="http://pt.wikipedia.org/w/index.php?title=Quicksort&amp;action=edit&amp;section=6"
+ title="Editar seção: Delphi (Método Recursivo)">editar</a>]</span> <span
+ class="mw-headline" id="Delphi_.28M.C3.A9todo_Recursivo.29"><a 
+href="http://pt.wikipedia.org/wiki/Delphi" title="Delphi">Delphi</a> 
+(Método Recursivo)</span></h3>
+<div dir="ltr" class="mw-geshi" style="text-align: left;">
+<div class="delphi source-delphi" style="font-family: monospace;">
+<pre class="de1"><span class="kw1">procedure</span> QuickSort<span class="br0">(</span><span class="kw1">var</span> A<span class="sy1">:</span> <span class="kw1">array</span> <span class="kw1">of</span> <span class="kw4">Integer</span><span class="br0">)</span><span class="sy1">;</span>
+ 
+ <span class="kw1">procedure</span> QuickSort<span class="br0">(</span><span class="kw1">var</span> A<span class="sy1">:</span> <span class="kw1">array</span> <span class="kw1">of</span> <span class="kw4">Integer</span><span class="sy1">;</span> iLo<span class="sy1">,</span> iHi<span class="sy1">:</span> <span class="kw4">Integer</span><span class="br0">)</span><span class="sy1">;</span>
+ <span class="kw1">var</span>
+   <span class="kw3">Lo</span><span class="sy1">,</span> <span class="kw3">Hi</span><span class="sy1">,</span> Mid<span class="sy1">,</span> T<span class="sy1">:</span> <span class="kw4">Integer</span><span class="sy1">;</span>
+ <span class="kw1">begin</span>
+   <span class="kw3">Lo</span> <span class="sy1">:</span><span class="sy3">=</span> iLo<span class="sy1">;</span>
+   <span class="kw3">Hi</span> <span class="sy1">:</span><span class="sy3">=</span> iHi<span class="sy1">;</span>
+   Mid <span class="sy1">:</span><span class="sy3">=</span> A<span class="br0">[</span><span class="br0">(</span><span class="kw3">Lo</span> <span class="sy3">+</span> <span class="kw3">Hi</span><span class="br0">)</span> <span class="kw1">div</span> 2<span class="br0">]</span><span class="sy1">;</span>
+   <span class="kw1">repeat</span>
+     <span class="kw1">while</span> A<span class="br0">[</span><span class="kw3">Lo</span><span class="br0">]</span> &lt; Mid <span class="kw1">do</span> <span class="kw3">Inc</span><span class="br0">(</span><span class="kw3">Lo</span><span class="br0">)</span><span class="sy1">;</span>
+     <span class="kw1">while</span> A<span class="br0">[</span><span class="kw3">Hi</span><span class="br0">]</span> &gt; Mid <span class="kw1">do</span> <span class="kw3">Dec</span><span class="br0">(</span><span class="kw3">Hi</span><span class="br0">)</span><span class="sy1">;</span>
+     <span class="kw1">if</span> <span class="kw3">Lo</span> &lt;<span class="sy3">=</span> <span class="kw3">Hi</span> <span class="kw1">then</span>
+     <span class="kw1">begin</span>
+       T <span class="sy1">:</span><span class="sy3">=</span> A<span class="br0">[</span><span class="kw3">Lo</span><span class="br0">]</span><span class="sy1">;</span>
+       A<span class="br0">[</span><span class="kw3">Lo</span><span class="br0">]</span> <span class="sy1">:</span><span class="sy3">=</span> A<span class="br0">[</span><span class="kw3">Hi</span><span class="br0">]</span><span class="sy1">;</span>
+       A<span class="br0">[</span><span class="kw3">Hi</span><span class="br0">]</span> <span class="sy1">:</span><span class="sy3">=</span> T<span class="sy1">;</span>
+       <span class="kw3">Inc</span><span class="br0">(</span><span class="kw3">Lo</span><span class="br0">)</span><span class="sy1">;</span>
+       <span class="kw3">Dec</span><span class="br0">(</span><span class="kw3">Hi</span><span class="br0">)</span><span class="sy1">;</span>
+     <span class="kw1">end</span><span class="sy1">;</span>
+   <span class="kw1">until</span> <span class="kw3">Lo</span> &gt; <span class="kw3">Hi</span><span class="sy1">;</span>
+   <span class="kw1">if</span> <span class="kw3">Hi</span> &gt; iLo <span class="kw1">then</span> QuickSort<span class="br0">(</span>A<span class="sy1">,</span> iLo<span class="sy1">,</span> <span class="kw3">Hi</span><span class="br0">)</span><span class="sy1">;</span>
+   <span class="kw1">if</span> <span class="kw3">Lo</span> &lt; iHi <span class="kw1">then</span> QuickSort<span class="br0">(</span>A<span class="sy1">,</span> <span class="kw3">Lo</span><span class="sy1">,</span> iHi<span class="br0">)</span><span class="sy1">;</span>
+ <span class="kw1">end</span><span class="sy1">;</span>
+ 
+<span class="kw1">begin</span>
+ QuickSort<span class="br0">(</span>A<span class="sy1">,</span> <span class="kw3">Low</span><span class="br0">(</span>A<span class="br0">)</span><span class="sy1">,</span> <span class="kw3">High</span><span class="br0">(</span>A<span class="br0">)</span><span class="br0">)</span><span class="sy1">;</span>
+<span class="kw1">end</span><span class="sy1">;</span>
+ 
+<span class="coMULTI">{Chamando em um evento de onClick}</span>
+<span class="kw1">procedure</span> TForm1<span class="sy1">.</span><span class="me1">Button1Click</span><span class="br0">(</span>Sender<span class="sy1">:</span> <span class="kw4">TObject</span><span class="br0">)</span><span class="sy1">;</span>
+<span class="kw1">var</span>
+ arr<span class="sy1">:</span> <span class="kw1">array</span><span class="br0">[</span>0<span class="sy1">..</span>100<span class="br0">]</span> <span class="kw1">of</span> <span class="kw4">integer</span><span class="sy1">;</span>
+ I<span class="sy1">:</span> <span class="kw4">Integer</span><span class="sy1">;</span>
+<span class="kw1">begin</span>
+ <span class="kw1">for</span> I<span class="sy1">:</span><span class="sy3">=</span><span class="kw3">Low</span><span class="br0">(</span>arr<span class="br0">)</span> <span class="kw1">to</span> <span class="kw3">High</span><span class="br0">(</span>arr<span class="br0">)</span> <span class="kw1">do</span>
+   arr<span class="br0">[</span>I<span class="br0">]</span><span class="sy1">:</span><span class="sy3">=</span><span class="kw3">Random</span><span class="br0">(</span><span class="kw3">High</span><span class="br0">(</span><span class="kw4">Integer</span><span class="br0">)</span><span class="br0">)</span><span class="sy1">;</span>
+ 
+ Quick_Sort<span class="br0">(</span>arr<span class="br0">)</span><span class="sy1">;</span>
+<span class="kw1">end</span><span class="sy1">;</span>
+</pre></div>
+</div>
+<h3><span class="editsection">[<a 
+href="http://pt.wikipedia.org/w/index.php?title=Quicksort&amp;action=edit&amp;section=7"
+ title="Editar seção: Visual Basic">editar</a>]</span> <span 
+class="mw-headline" id="Visual_Basic"><a 
+href="http://pt.wikipedia.org/wiki/Visual_Basic" title="Visual Basic">Visual
+ Basic</a></span></h3>
+<div dir="ltr" class="mw-geshi" style="text-align: left;">
+<div class="vb source-vb" style="font-family: monospace;">
+<pre class="de1"><span class="kw1">Sub</span> QuickSort(<span class="kw1">ByRef</span> vetor() <span class="kw1">As</span> <span class="kw1">Integer</span>, <span class="kw1">ByVal</span> inicio <span class="kw1">As</span> <span class="kw1">Integer</span>, <span class="kw1">ByVal</span> final <span class="kw1">As</span> <span class="kw1">Integer</span>, <span class="kw1">ByRef</span> iteracoes <span class="kw1">As</span> <span class="kw1">Long</span>)
+    <span class="kw1">Dim</span> pivo <span class="kw1">As</span> <span class="kw1">Integer</span>
+    <span class="kw1">Dim</span> i <span class="kw1">As</span> <span class="kw1">Integer</span>
+    <span class="kw1">Dim</span> j <span class="kw1">As</span> <span class="kw1">Integer</span>
+    iteracoes = iteracoes + 1
+    <span class="kw1">If</span> final &gt; inicio <span class="kw1">Then</span>
+        i = inicio
+        j = final
+        pivo = vetor(Fix((inicio + final) / 2))
+        <span class="kw1">While</span> i &lt;= j
+            <span class="kw1">While</span> vetor(i) &lt; pivo
+                i = i + 1
+            Wend
+            <span class="kw1">While</span> pivo &lt; vetor(j)
+                j = j - 1
+            Wend
+            <span class="kw1">If</span> i &lt;= j <span class="kw1">Then</span>
+                <span class="kw1">Call</span> Troca(vetor(i), vetor(j))
+                i = i + 1
+                j = j - 1
+            <span class="kw1">End</span> <span class="kw1">If</span>
+        Wend
+        <span class="kw1">Call</span> QuickSort(vetor, inicio, j, iteracoes)
+        <span class="kw1">Call</span> QuickSort(vetor, i, final, iteracoes)
+    <span class="kw1">End</span> <span class="kw1">If</span>
+ 
+<span class="kw1">End</span> <span class="kw1">Sub</span>
+ 
+<span class="kw1">Sub</span> Troca(<span class="kw1">ByRef</span> val1 <span class="kw1">As</span> <span class="kw1">Integer</span>, <span class="kw1">ByRef</span> val2 <span class="kw1">As</span> <span class="kw1">Integer</span>)
+    <span class="kw1">Dim</span> aux <span class="kw1">As</span> <span class="kw1">Integer</span>
+    aux = val1
+    val1 = val2
+    val2 = aux
+<span class="kw1">End</span> <span class="kw1">Sub</span>
+</pre></div>
+</div>
+<h3><span class="editsection">[<a 
+href="http://pt.wikipedia.org/w/index.php?title=Quicksort&amp;action=edit&amp;section=8"
+ title="Editar seção: Python">editar</a>]</span> <span 
+class="mw-headline" id="Python"><a 
+href="http://pt.wikipedia.org/wiki/Python" title="Python">Python</a></span></h3>
+<div dir="ltr" class="mw-geshi" style="text-align: left;">
+<div class="python source-python" style="font-family: monospace;">
+<pre class="de1"><span class="kw1">def</span> pivot<span class="br0">(</span>v, left, right<span class="br0">)</span>:
+    i = left
+    <span class="kw1">for</span> j <span class="kw1">in</span> <span class="kw2">range</span><span class="br0">(</span>left + 1, right + 1<span class="br0">)</span>:
+        <span class="kw1">if</span> v<span class="br0">[</span>j<span class="br0">]</span> <span class="sy0">&lt;</span> v<span class="br0">[</span>left<span class="br0">]</span>: <span class="co1"># Se um elemento j for menor que o pivo</span>
+            i += <span class="nu0">1</span> <span class="co1"># .. incrementa-se i</span>
+            v<span class="br0">[</span>i<span class="br0">]</span>, v<span class="br0">[</span>j<span class="br0">]</span> = v<span class="br0">[</span>j<span class="br0">]</span>, v<span class="br0">[</span>i<span class="br0">]</span> <span class="co1"># .. e troca o elemento j de posicao o elemento i</span>
+    v<span class="br0">[</span>i<span class="br0">]</span>, v<span class="br0">[</span>left<span class="br0">]</span> = v<span class="br0">[</span>left<span class="br0">]</span>, v<span class="br0">[</span>i<span class="br0">]</span> <span class="co1"># O pivo e' colocado em sua posicao final</span>
+    <span class="kw1">return</span> i
+ 
+<span class="kw1">def</span> qsort<span class="br0">(</span>v, left, right<span class="br0">)</span>:
+    <span class="kw1">if</span> right <span class="sy0">&gt;</span> left:
+        r = pivot<span class="br0">(</span>v, left, right<span class="br0">)</span> <span class="co1"># Ordena um elemento</span>
+        qsort<span class="br0">(</span>v, left, r - <span class="nu0">1</span><span class="br0">)</span> <span class="co1"># .. entao ordena-se os dois sub-vetores</span>
+        qsort<span class="br0">(</span>v, r + <span class="nu0">1</span>, right<span class="br0">)</span>
+ 
+ 
+<span class="co1"># Exemplo</span>
+a = <span class="br0">[</span>4,2,4,6,3,2,5,1,3<span class="br0">]</span>
+qsort<span class="br0">(</span>a, 0, 8<span class="br0">)</span>
+<span class="kw1">print</span> a
+</pre></div>
+</div>
+<h3><span class="editsection">[<a 
+href="http://pt.wikipedia.org/w/index.php?title=Quicksort&amp;action=edit&amp;section=9"
+ title="Editar seção: Assembly x86-gas-Linux">editar</a>]</span> <span 
+class="mw-headline" id="Assembly_x86-gas-Linux"><a 
+href="http://pt.wikipedia.org/wiki/Assembly" title="Assembly">Assembly</a>
+ x86-gas-Linux</span></h3>
+<div dir="ltr" class="mw-geshi" style="text-align: left;">
+<div class="asm source-asm" style="font-family: monospace;">
+<pre class="de1"><span class="sy0">/*</span>void quicksort_as <span class="br0">(</span><span class="kw1">int</span> <span class="sy0">*</span>x<span class="sy0">,</span> <span class="kw1">int</span> n<span class="br0">)</span><span class="co1">;*/</span>
+<span class="sy0">.</span>globl quicksort_as
+quicksort_as<span class="sy0">:</span>
+	pushl <span class="sy0">%</span><span class="kw3">ebp</span>
+	movl <span class="sy0">%</span><span class="kw3">esp</span><span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">ebp</span>
+	<span class="sy0">/*</span> 8<span class="br0">(</span><span class="sy0">%</span><span class="kw3">ebp</span><span class="br0">)</span>= ponteiro do arranjo <span class="sy0">*/</span>
+	<span class="sy0">/*</span> 12<span class="br0">(</span><span class="sy0">%</span><span class="kw3">ebp</span><span class="br0">)</span>= num de elementos <span class="sy0">*/</span>
+	movl 12<span class="br0">(</span><span class="sy0">%</span><span class="kw3">ebp</span><span class="br0">)</span><span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">eax</span>
+	<span class="kw1">dec</span> <span class="sy0">%</span><span class="kw3">eax</span>
+	movl $4<span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">ebx</span>
+	<span class="kw1">mul</span> <span class="sy0">%</span><span class="kw3">ebx</span>
+	pushl <span class="sy0">%</span><span class="kw3">eax</span>
+	pushl $0
+	pushl 8<span class="br0">(</span><span class="sy0">%</span><span class="kw3">ebp</span><span class="br0">)</span>
+	<span class="kw1">call</span> quicksort_as_
+	<span class="kw1">leave</span>
+	<span class="kw1">ret</span>
+quicksort_as_<span class="sy0">:</span>
+	pushl <span class="sy0">%</span><span class="kw3">ebp</span>
+	movl <span class="sy0">%</span><span class="kw3">esp</span><span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">ebp</span>
+	<span class="sy0">/*</span> 8<span class="br0">(</span><span class="sy0">%</span><span class="kw3">ebp</span><span class="br0">)</span>= ponteiro do arranjo <span class="sy0">*/</span>
+	<span class="sy0">/*</span> 12<span class="br0">(</span><span class="sy0">%</span><span class="kw3">ebp</span><span class="br0">)</span>= esq <span class="sy0">*/</span>
+	<span class="sy0">/*</span> 16<span class="br0">(</span><span class="sy0">%</span><span class="kw3">ebp</span><span class="br0">)</span>= dir <span class="sy0">*/</span>
+	movl 12<span class="br0">(</span><span class="sy0">%</span><span class="kw3">ebp</span><span class="br0">)</span><span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">ecx</span>
+	movl <span class="sy0">%</span><span class="kw3">ecx</span><span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">edx</span>
+	movl 8<span class="br0">(</span><span class="sy0">%</span><span class="kw3">ebp</span><span class="br0">)</span><span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">eax</span>
+	addl <span class="sy0">%</span><span class="kw3">ecx</span><span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">eax</span>
+	movl 16<span class="br0">(</span><span class="sy0">%</span><span class="kw3">ebp</span><span class="br0">)</span><span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">ecx</span>
+	movl 8<span class="br0">(</span><span class="sy0">%</span><span class="kw3">ebp</span><span class="br0">)</span><span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">ebx</span>
+	addl <span class="sy0">%</span><span class="kw3">ecx</span><span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">ebx</span>
+	<span class="sy0">/*</span> agora <span class="sy0">%</span><span class="kw3">eax</span> aponta p<span class="sy0">/</span> x<span class="br0">[</span>esq<span class="br0">]</span> e <span class="sy0">%</span><span class="kw3">ebx</span> x<span class="br0">[</span>dir<span class="br0">]</span><span class="sy0">*/</span>
+	addl <span class="sy0">%</span><span class="kw3">edx</span><span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">ecx</span>         <span class="sy0">/*%</span><span class="kw3">ecx</span> eh esq <span class="sy0">+</span> dir<span class="sy0">*/</span>
+	pushl <span class="sy0">%</span><span class="kw3">eax</span>
+	movl <span class="sy0">%</span><span class="kw3">ecx</span><span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">eax</span>
+	movl $2<span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">ecx</span>
+	cltd
+	idivl <span class="sy0">%</span><span class="kw3">ecx</span>				<span class="sy0">/*</span> <span class="kw1">div</span> <span class="sy0">%</span><span class="kw3">eax</span> por 2=<span class="sy0">%</span><span class="kw3">ecx</span><span class="sy0">*/</span>
+	movl $4<span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">ecx</span>
+	cltd
+	idivl <span class="sy0">%</span><span class="kw3">ecx</span>
+	<span class="kw1">mul</span>  <span class="sy0">%</span><span class="kw3">ecx</span>
+	movl 8<span class="br0">(</span><span class="sy0">%</span><span class="kw3">ebp</span><span class="br0">)</span><span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">ecx</span>
+	addl <span class="sy0">%</span><span class="kw3">eax</span><span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">ecx</span>
+	movl <span class="br0">(</span><span class="sy0">%</span><span class="kw3">ecx</span><span class="br0">)</span><span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">ecx</span>
+	popl <span class="sy0">%</span><span class="kw3">eax</span>
+	<span class="sy0">/*%</span><span class="kw3">ecx</span> = compare<span class="br0">(</span><span class="kw1">cmp</span><span class="br0">)</span><span class="sy0">*/</span>	
+quicksort_imj<span class="sy0">:</span>
+	<span class="kw1">cmp</span> <span class="sy0">%</span><span class="kw3">eax</span><span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">ebx</span>
+	<span class="kw1">jle</span> quicksort_fim
+quicksort_inci<span class="sy0">:</span>
+	<span class="kw1">cmp</span> <span class="br0">(</span><span class="sy0">%</span><span class="kw3">eax</span><span class="br0">)</span><span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">ecx</span>
+	<span class="kw1">jle</span> quicksort_incj
+	addl $4<span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">eax</span>
+	<span class="kw1">jmp</span> quicksort_inci
+quicksort_incj<span class="sy0">:</span>
+	<span class="kw1">cmp</span> <span class="br0">(</span><span class="sy0">%</span><span class="kw3">ebx</span><span class="br0">)</span><span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">ecx</span>
+	<span class="kw1">jge</span> quicksort_troca
+	subl $4<span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">ebx</span>
+	<span class="kw1">jmp</span> quicksort_incj
+quicksort_troca<span class="sy0">:</span>
+	<span class="kw1">cmp</span> <span class="sy0">%</span><span class="kw3">eax</span><span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">ebx</span>
+	<span class="kw1">jl</span> quicksort_fim
+	movl <span class="br0">(</span><span class="sy0">%</span><span class="kw3">ebx</span><span class="br0">)</span><span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">edx</span>
+	pushl <span class="br0">(</span><span class="sy0">%</span><span class="kw3">eax</span><span class="br0">)</span>
+	movl <span class="sy0">%</span><span class="kw3">edx</span><span class="sy0">,</span> <span class="br0">(</span><span class="sy0">%</span><span class="kw3">eax</span><span class="br0">)</span>
+	popl <span class="br0">(</span><span class="sy0">%</span><span class="kw3">ebx</span><span class="br0">)</span>
+	addl $4<span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">eax</span>
+	subl $4<span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">ebx</span>
+	<span class="kw1">jmp</span> quicksort_imj
+quicksort_fim<span class="sy0">:</span>
+	<span class="sy0">/*</span>salvando registradores na pilha p<span class="sy0">/</span> fazer chamada de função<span class="sy0">*/</span>
+	pushl <span class="sy0">%</span><span class="kw3">eax</span>
+	pushl <span class="sy0">%</span><span class="kw3">ebx</span>
+	<span class="sy0">/*</span>passando parametros p<span class="sy0">/</span> chamada recursiva<span class="sy0">*/</span>
+	subl 8<span class="br0">(</span><span class="sy0">%</span><span class="kw3">ebp</span><span class="br0">)</span><span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">eax</span>
+	<span class="kw1">cmp</span> <span class="sy0">%</span><span class="kw3">eax</span><span class="sy0">,</span> 16<span class="br0">(</span><span class="sy0">%</span><span class="kw3">ebp</span><span class="br0">)</span>
+	<span class="kw1">jle</span> quicksort_2a_rec
+	pushl 16<span class="br0">(</span><span class="sy0">%</span><span class="kw3">ebp</span><span class="br0">)</span>
+	pushl <span class="sy0">%</span><span class="kw3">eax</span>
+	pushl 8<span class="br0">(</span><span class="sy0">%</span><span class="kw3">ebp</span><span class="br0">)</span>
+	<span class="kw1">call</span> quicksort_as_
+	addl $12<span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">esp</span>
+quicksort_2a_rec<span class="sy0">:</span>
+	<span class="sy0">/*</span>recuperando registradores apos chamada de funcao<span class="sy0">*/</span>
+	popl <span class="sy0">%</span><span class="kw3">ebx</span>
+	popl <span class="sy0">%</span><span class="kw3">eax</span>
+	subl 8<span class="br0">(</span><span class="sy0">%</span><span class="kw3">ebp</span><span class="br0">)</span><span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">ebx</span>
+	<span class="kw1">cmp</span> <span class="sy0">%</span><span class="kw3">ebx</span><span class="sy0">,</span> 12<span class="br0">(</span><span class="sy0">%</span><span class="kw3">ebp</span><span class="br0">)</span>
+	<span class="kw1">jge</span> quicksort_final
+	<span class="sy0">/*</span>passando parametros p<span class="sy0">/</span> chamada recursiva<span class="sy0">*/</span>
+	pushl <span class="sy0">%</span><span class="kw3">ebx</span>
+	pushl 12<span class="br0">(</span><span class="sy0">%</span><span class="kw3">ebp</span><span class="br0">)</span>
+	pushl 8<span class="br0">(</span><span class="sy0">%</span><span class="kw3">ebp</span><span class="br0">)</span>
+	<span class="kw1">call</span> quicksort_as_
+quicksort_final<span class="sy0">:</span>
+	<span class="kw1">leave</span>
+	<span class="kw1">ret</span>
+</pre></div>
+</div>
+<h3><span class="editsection">[<a 
+href="http://pt.wikipedia.org/w/index.php?title=Quicksort&amp;action=edit&amp;section=10"
+ title="Editar seção: Haskell">editar</a>]</span> <span 
+class="mw-headline" id="Haskell"><a 
+href="http://pt.wikipedia.org/wiki/Haskell" title="Haskell">Haskell</a></span></h3>
+<pre>  sort :: (Ord a)   =&gt; [a] -&gt; [a]
+  sort []           = []
+  sort (pivot:rest) = (sort [y | y &lt;- rest, y &lt; pivot])
+                       ++ [pivot] ++ 
+                      (sort [y | y &lt;- rest, y &gt;=pivot])
+</pre>
+<h3><span class="editsection">[<a 
+href="http://pt.wikipedia.org/w/index.php?title=Quicksort&amp;action=edit&amp;section=11"
+ title="Editar seção: Lisp">editar</a>]</span> <span class="mw-headline"
+ id="Lisp"><a href="http://pt.wikipedia.org/wiki/Lisp" title="Lisp">Lisp</a></span></h3>
+<pre>(defun partition (fun array)
+  (list (remove-if-not fun array) (remove-if fun array)))
+ 
+(defun sort (array)
+  (if (null array) nil
+    (let ((part (partition (lambda (x) (&lt; x (car array))) (cdr array))))
+      (append (sort (car part)) (cons (car array) (sort (cadr part)))))))
+</pre>
+<h3><span class="editsection">[<a 
+href="http://pt.wikipedia.org/w/index.php?title=Quicksort&amp;action=edit&amp;section=12"
+ title="Editar seção: Perl">editar</a>]</span> <span class="mw-headline"
+ id="Perl"><a href="http://pt.wikipedia.org/wiki/Perl" title="Perl">Perl</a></span></h3>
+<p>Versões anteriores ao Perl 5.6 utilizavam o algoritmo quicksort para 
+implementar a função <a 
+href="http://perldoc.perl.org/functions/sort.html" class="external text"
+ rel="nofollow">sort</a><sup id="cite_ref-0" class="reference"><a 
+href="#cite_note-0">[1]</a></sup>, então o código em Perl pode 
+resumir-se a:</p>
+<div dir="ltr" class="mw-geshi" style="text-align: left;">
+<div class="perl source-perl" style="font-family: monospace;">
+<pre class="de1"><span class="kw1">my</span> <span class="re0">@ordenada</span> <span class="sy0">=</span> <span class="kw3">sort</span> <span class="re0">@lista</span><span class="sy0">;</span>
+</pre></div>
+</div>
+<p>Como a implementação do quicksort pode assumir tempos quadráticos 
+para algumas entradas, o algoritmo foi substituído na versão 5.8 pelo <a
+ href="http://pt.wikipedia.org/wiki/Ordena%C3%A7%C3%A3o_est%C3%A1vel" 
+title="Ordenação estável">mais estável</a> <a 
+href="http://pt.wikipedia.org/wiki/Mergesort" title="Mergesort" 
+class="mw-redirect">mergesort</a>, cujo pior caso é θ(n lg<sub>2</sub> 
+n). Ainda assim, é possível forçar o uso do quicksort através do <a 
+href="http://perldoc.perl.org/sort.html" class="external text" 
+rel="nofollow">pragma 'sort'</a>:</p>
+<div dir="ltr" class="mw-geshi" style="text-align: left;">
+<div class="perl source-perl" style="font-family: monospace;">
+<pre class="de1"><span class="kw2">use</span> <span class="kw3">sort</span> <span class="st_h">'_quicksort'</span><span class="sy0">;</span>
+<span class="kw1">my</span> <span class="re0">@ordenada</span> <span class="sy0">=</span> <span class="kw3">sort</span> <span class="re0">@lista</span><span class="sy0">;</span>
+</pre></div>
+</div>
+<p>Uma implementação em Perl puro (mais lenta que o 'sort' embutido) 
+pode ser:</p>
+<div dir="ltr" class="mw-geshi" style="text-align: left;">
+<div class="perl source-perl" style="font-family: monospace;">
+<pre class="de1"><span class="kw2">sub</span> quicksort <span class="br0">{</span>
+    <span class="kw1">my</span> <span class="re0">@lista</span> <span class="sy0">=</span> <span class="co5">@_</span><span class="sy0">;</span>
+    <span class="kw1">my</span> <span class="br0">(</span><span class="re0">@menores</span><span class="sy0">,</span> <span class="re0">@iguais</span><span class="sy0">,</span> <span class="re0">@maiores</span><span class="br0">)</span><span class="sy0">;</span>
+ 
+    <span class="kw3">return</span> <span class="re0">@lista</span> <span class="kw1">if</span> <span class="re0">@lista</span> <span class="sy0">&lt;</span> <span class="nu0">2</span><span class="sy0">;</span>
+    <span class="kw1">foreach</span> <span class="br0">(</span><span class="re0">@lista</span><span class="br0">)</span> <span class="br0">{</span>
+        <span class="kw1">if</span> <span class="br0">(</span><span class="co5">$_</span> <span class="sy0">&lt;</span> <span class="re0">$lista</span><span class="br0">[</span>0<span class="br0">]</span><span class="br0">)</span> <span class="br0">{</span>
+            <span class="kw3">push</span> <span class="re0">@menores</span><span class="sy0">,</span> <span class="co5">$_</span><span class="sy0">;</span>
+        <span class="br0">}</span>
+        <span class="kw1">elsif</span> <span class="br0">(</span><span class="co5">$_</span> <span class="sy0">=</span> <span class="re0">$lista</span><span class="br0">[</span>0<span class="br0">]</span><span class="br0">)</span> <span class="br0">{</span>
+            <span class="kw3">push</span> <span class="re0">@iguais</span><span class="sy0">,</span> <span class="co5">$_</span><span class="sy0">;</span>
+        <span class="br0">}</span>
+        <span class="kw1">else</span> <span class="br0">{</span>
+            <span class="kw3">push</span> <span class="re0">@maiores</span><span class="sy0">,</span> <span class="co5">$_</span><span class="sy0">;</span>
+        <span class="br0">}</span>
+    <span class="br0">}</span>
+    <span class="kw3">return</span> quicksort<span class="br0">(</span><span class="re0">@menores</span><span class="br0">)</span><span class="sy0">,</span> <span class="re0">@iguais</span><span class="sy0">,</span> quicksort<span class="br0">(</span><span class="re0">@maiores</span><span class="br0">)</span><span class="sy0">;</span>
+<span class="br0">}</span>
+</pre></div>
+</div>
+<p>Já uma versão menor (e certamente menos legível) poderia ser:</p>
+<div dir="ltr" class="mw-geshi" style="text-align: left;">
+<div class="perl source-perl" style="font-family: monospace;">
+<pre class="de1"><span class="kw2">sub</span> quicksort <span class="br0">{</span>
+    <span class="kw3">return</span> <span class="co5">@_</span> <span class="kw1">if</span> <span class="co5">@_</span> <span class="sy0">&lt;</span> <span class="nu0">2</span><span class="sy0">;</span>
+    <span class="kw1">my</span> <span class="br0">(</span><span class="re0">@iguais</span><span class="sy0">,</span> <span class="re0">@maiores</span><span class="sy0">,</span> <span class="re0">@menores</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="kw3">push</span> <span class="sy0">@</span><span class="br0">{</span> <span class="br0">(</span><span class="re0">\@iguais</span><span class="sy0">,</span> <span class="re0">\@menores</span><span class="sy0">,</span> <span class="re0">\@maiores</span><span class="br0">)</span><span class="br0">[</span> <span class="co5">$_</span><span class="br0">[</span><span class="nu0">0</span><span class="br0">]</span> <span class="sy0">&lt;=&gt;</span> <span class="co5">$_</span> <span class="br0">]</span><span class="br0">}</span><span class="sy0">,</span> <span class="co5">$_</span> <span class="kw1">for</span> <span class="co5">@_</span><span class="sy0">;</span>
+    quicksort<span class="br0">(</span><span class="re0">@menores</span><span class="br0">)</span><span class="sy0">,</span> <span class="re0">@iguais</span><span class="sy0">,</span> quicksort<span class="br0">(</span><span class="re0">@maiores</span><span class="br0">)</span><span class="sy0">;</span>
+<span class="br0">}</span>
+</pre></div>
+</div>
+<h3><span class="editsection">[<a 
+href="http://pt.wikipedia.org/w/index.php?title=Quicksort&amp;action=edit&amp;section=13"
+ title="Editar seção: Ruby">editar</a>]</span> <span class="mw-headline"
+ id="Ruby"><a 
+href="http://pt.wikipedia.org/wiki/Ruby_%28linguagem_de_programa%C3%A7%C3%A3o%29"
+ title="Ruby (linguagem de programação)">Ruby</a></span></h3>
+<div dir="ltr" class="mw-geshi" style="text-align: left;">
+<div class="ruby source-ruby" style="font-family: monospace;">
+<pre class="de1"><span class="kw1">def</span> sort<span class="br0">(</span> <span class="kw3">array</span> <span class="br0">)</span>
+   <span class="kw2">return</span> <span class="kw3">array</span> <span class="kw1">if</span> <span class="kw3">array</span>.<span class="me1">size</span> <span class="sy0">&lt;</span>= 1
+   pivot = <span class="kw3">array</span><span class="br0">[</span>0<span class="br0">]</span>
+   <span class="kw2">return</span> sort<span class="br0">(</span> <span class="kw3">array</span>.<span class="kw3">select</span> <span class="br0">{</span> <span class="sy0">|</span>y<span class="sy0">|</span> y <span class="sy0">&lt;</span> pivot <span class="br0">}</span> <span class="br0">)</span>
+          <span class="sy0">+</span> <span class="kw3">array</span>.<span class="kw3">select</span> <span class="br0">{</span> <span class="sy0">|</span>y<span class="sy0">|</span> y == pivot <span class="br0">}</span> <span class="sy0">+</span> 
+          sort<span class="br0">(</span> <span class="kw3">array</span>.<span class="kw3">select</span> <span class="br0">{</span> <span class="sy0">|</span>y<span class="sy0">|</span> y <span class="sy0">&gt;</span> pivot <span class="br0">}</span> <span class="br0">)</span>
+<span class="kw1">end</span>
+</pre></div>
+</div>
+<h3><span class="editsection">[<a 
+href="http://pt.wikipedia.org/w/index.php?title=Quicksort&amp;action=edit&amp;section=14"
+ title="Editar seção: Groovy">editar</a>]</span> <span 
+class="mw-headline" id="Groovy"><a 
+href="http://pt.wikipedia.org/wiki/Groovy" title="Groovy">Groovy</a></span></h3>
+<pre>def sort(list) {
+    if (list.isEmpty()) return list
+    anItem = list[0]
+    def smallerItems = list.findAll{it &lt; anItem}
+    def equalItems = list.findAll{it = anItem}
+    def largerItems = list.findAll{it &gt; anItem}
+    sort(smallerItems) + equalItems + sort(largerItems)
+}
+</pre>
+<h3><span class="editsection">[<a 
+href="http://pt.wikipedia.org/w/index.php?title=Quicksort&amp;action=edit&amp;section=15"
+ title="Editar seção: ML">editar</a>]</span> <span class="mw-headline" 
+id="ML"><a href="http://pt.wikipedia.org/wiki/ML" title="ML">ML</a></span></h3>
+<pre>fun filter nil elem cmp = nil
+  | filter (x::xl) elem cmp  =
+      if (cmp(x, elem))
+        then x :: filter xl elem cmp
+        else filter xl elem cmp;
+
+fun quicksort nil = nil
+  | quicksort (pivot::xl) =
+      let
+        val small = filter xl pivot (op &lt;);
+        val medium = pivot :: filter xl pivot (op =);
+        val large = filter xl pivot (op &gt;);
+      in
+        (quicksort small) @ medium @ (quicksort large)
+      end;
+</pre>
+<h3><span class="editsection">[<a 
+href="http://pt.wikipedia.org/w/index.php?title=Quicksort&amp;action=edit&amp;section=16"
+ title="Editar seção: PHP">editar</a>]</span> <span class="mw-headline" 
+id="PHP"><a href="http://pt.wikipedia.org/wiki/PHP" title="PHP">PHP</a></span></h3>
+<div dir="ltr" class="mw-geshi" style="text-align: left;">
+<div class="php source-php" style="font-family: monospace;">
+<pre class="de1"><span class="kw2">&lt;?php</span>
+<span class="coMULTI">/*********************************************************************
+*Obs.: a implementação usa parâmetros por referência, isto é, o vetor *passado será modificado.
+*********************************************************************/</span>
+ 
+<span class="kw2">function</span> troca<span class="br0">(</span><span class="sy0">&amp;</span><span class="re0">$v1</span><span class="sy0">,</span> <span class="sy0">&amp;</span><span class="re0">$v2</span><span class="br0">)</span><span class="br0">{</span>
+    <span class="re0">$vaux</span> <span class="sy0">=</span> <span class="re0">$v1</span><span class="sy0">;</span>
+    <span class="re0">$v1</span> <span class="sy0">=</span> <span class="re0">$v2</span><span class="sy0">;</span>
+    <span class="re0">$v2</span> <span class="sy0">=</span> <span class="re0">$vaux</span><span class="sy0">;</span>
+<span class="br0">}</span> 
+ 
+<span class="co1">//divide o array em dois</span>
+<span class="kw2">function</span> divide<span class="br0">(</span><span class="sy0">&amp;</span><span class="re0">$vet</span><span class="sy0">,</span> <span class="re0">$ini</span><span class="sy0">,</span> <span class="re0">$fim</span><span class="br0">)</span><span class="br0">{</span>
+    <span class="re0">$i</span> <span class="sy0">=</span> <span class="re0">$ini</span><span class="sy0">;</span>
+    <span class="re0">$j</span> <span class="sy0">=</span> <span class="re0">$fim</span><span class="sy0">;</span>
+    <span class="re0">$dir</span> <span class="sy0">=</span> <span class="nu0">1</span><span class="sy0">;</span> 
+    <span class="kw1">while</span> <span class="br0">(</span><span class="re0">$i</span> <span class="sy0">&gt;</span> <span class="re0">$j</span><span class="br0">)</span><span class="br0">{</span>
+        <span class="kw1">if</span> <span class="br0">(</span><span class="re0">$vet</span><span class="br0">[</span><span class="re0">$i</span><span class="br0">]</span> <span class="sy0">&lt;</span> <span class="re0">$vet</span><span class="br0">[</span><span class="re0">$j</span><span class="br0">]</span><span class="br0">)</span><span class="br0">{</span>
+            troca<span class="br0">(</span><span class="re0">$vet</span><span class="br0">[</span><span class="re0">$i</span><span class="br0">]</span><span class="sy0">,</span> <span class="re0">$vet</span><span class="br0">[</span><span class="re0">$j</span><span class="br0">]</span><span class="br0">)</span><span class="sy0">;</span>
+            <span class="re0">$dir</span> <span class="sy0">=</span> <span class="sy0">-</span> <span class="re0">$dir</span><span class="sy0">;</span>
+        <span class="br0">}</span>
+        <span class="kw1">if</span> <span class="br0">(</span><span class="re0">$dir</span> <span class="sy0">=</span> 1<span class="br0">)</span> <span class="br0">{</span>
+            <span class="re0">$j</span><span class="sy0">--;</span> 
+        <span class="br0">}</span><span class="kw1">else</span><span class="br0">{</span>
+            <span class="re0">$i</span><span class="sy0">++;</span>
+        <span class="br0">}</span>   
+    <span class="br0">}</span>
+    <span class="kw1">return</span> <span class="re0">$i</span><span class="sy0">;</span>
+<span class="br0">}</span>
+<span class="co1">//ordena</span>
+<span class="kw2">function</span> quicksort<span class="br0">(</span><span class="sy0">&amp;</span><span class="re0">$vet</span><span class="sy0">,</span> <span class="re0">$ini</span><span class="sy0">,</span> <span class="re0">$fim</span><span class="br0">)</span><span class="br0">{</span>
+    <span class="kw1">if</span> <span class="br0">(</span><span class="re0">$ini</span> <span class="sy0">&lt;</span> <span class="re0">$fim</span><span class="br0">)</span><span class="br0">{</span>
+        <span class="re0">$k</span> <span class="sy0">=</span> divide<span class="br0">(</span><span class="re0">$vet</span><span class="sy0">,</span> <span class="re0">$ini</span><span class="sy0">,</span> <span class="re0">$fim</span><span class="br0">)</span><span class="sy0">;</span>
+        quicksort<span class="br0">(</span><span class="re0">$vet</span><span class="sy0">,</span> <span class="re0">$ini</span><span class="sy0">,</span> <span class="re0">$k</span><span class="sy0">-</span>1<span class="br0">)</span><span class="sy0">;</span>
+        quicksort<span class="br0">(</span><span class="re0">$vet</span><span class="sy0">,</span> <span class="re0">$k</span><span class="sy0">+</span>1<span class="sy0">,</span> <span class="re0">$fim</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="br0">}</span>
+<span class="br0">}</span>
+quicksort<span class="br0">(</span><span class="re0">$vet</span><span class="sy0">,</span>0<span class="sy0">,</span><span class="kw3">count</span><span class="br0">(</span><span class="re0">$vet</span><span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+<span class="sy1">?&gt;</span>
+</pre></div>
+</div>
+<h3><span class="editsection">[<a 
+href="http://pt.wikipedia.org/w/index.php?title=Quicksort&amp;action=edit&amp;section=17"
+ title="Editar seção: C++">editar</a>]</span> <span class="mw-headline" 
+id="C.2B.2B"><a href="http://pt.wikipedia.org/wiki/C%2B%2B" title="C++">C++</a></span></h3>
+<div dir="ltr" class="mw-geshi" style="text-align: left;">
+<div class="cpp source-cpp" style="font-family: monospace;">
+<pre class="de1"><span class="co2">#include &lt;algorithm&gt;</span>
+<span class="co2">#include &lt;iterator&gt;</span>
+<span class="co2">#include &lt;functional&gt;</span>
+<span class="kw2">using</span> <span class="kw2">namespace</span> std<span class="sy4">;</span>
+ 
+<span class="kw2">template</span> <span class="sy1">&lt;</span><span class="kw2">typename</span> T<span class="sy1">&gt;</span>
+<span class="kw4">void</span> sort<span class="br0">(</span>T begin, T end<span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw1">if</span> <span class="br0">(</span>begin <span class="sy3">!</span><span class="sy1">=</span> end<span class="br0">)</span> <span class="br0">{</span>
+        T middle <span class="sy1">=</span> partition <span class="br0">(</span>begin, end, bind2nd<span class="br0">(</span>less<span class="sy1">&lt;</span>iterator_traits<span class="sy1">&lt;</span>T<span class="sy1">&gt;</span><span class="sy4">::</span><span class="me2">value_type</span><span class="sy1">&gt;</span><span class="br0">(</span><span class="br0">)</span>, <span class="sy2">*</span>begin<span class="br0">)</span><span class="br0">)</span><span class="sy4">;</span>
+        sort <span class="br0">(</span>begin, middle<span class="br0">)</span><span class="sy4">;</span>
+        sort <span class="br0">(</span>max<span class="br0">(</span>begin <span class="sy2">+</span> 1, middle<span class="br0">)</span>, end<span class="br0">)</span><span class="sy4">;</span>
+    <span class="br0">}</span>
+<span class="br0">}</span>
+</pre></div>
+</div>
+<h3><span class="editsection">[<a 
+href="http://pt.wikipedia.org/w/index.php?title=Quicksort&amp;action=edit&amp;section=18"
+ title="Editar seção: C">editar</a>]</span> <span class="mw-headline" 
+id="C"><a 
+href="http://pt.wikipedia.org/wiki/Linguagem_de_programa%C3%A7%C3%A3o_C"
+ title="Linguagem de programação C" class="mw-redirect">C</a></span></h3>
+<div dir="ltr" class="mw-geshi" style="text-align: left;">
+<div class="c source-c" style="font-family: monospace;">
+<pre class="de1"><span class="kw4">void</span> swap<span class="br0">(</span><span class="kw4">int</span><span class="sy0">*</span> a<span class="sy0">,</span> <span class="kw4">int</span><span class="sy0">*</span> b<span class="br0">)</span> <span class="br0">{</span>
+  <span class="kw4">int</span> tmp<span class="sy0">;</span>
+  tmp <span class="sy0">=</span> <span class="sy0">*</span>a<span class="sy0">;</span>
+  <span class="sy0">*</span>a <span class="sy0">=</span> <span class="sy0">*</span>b<span class="sy0">;</span>
+  <span class="sy0">*</span>b <span class="sy0">=</span> tmp<span class="sy0">;</span>
+<span class="br0">}</span>
+ 
+<span class="kw4">int</span> partition<span class="br0">(</span><span class="kw4">int</span> vec<span class="br0">[</span><span class="br0">]</span><span class="sy0">,</span> <span class="kw4">int</span> left<span class="sy0">,</span> <span class="kw4">int</span> right<span class="br0">)</span> <span class="br0">{</span>
+  <span class="kw4">int</span> i<span class="sy0">,</span> j<span class="sy0">;</span>
+ 
+  i <span class="sy0">=</span> left<span class="sy0">;</span>
+  <span class="kw1">for</span> <span class="br0">(</span>j <span class="sy0">=</span> left <span class="sy0">+</span> <span class="nu0">1</span><span class="sy0">;</span> j <span class="sy0">&lt;=</span> right<span class="sy0">;</span> <span class="sy0">++</span>j<span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw1">if</span> <span class="br0">(</span>vec<span class="br0">[</span>j<span class="br0">]</span> <span class="sy0">&lt;</span> vec<span class="br0">[</span>left<span class="br0">]</span><span class="br0">)</span> <span class="br0">{</span>
+      <span class="sy0">++</span>i<span class="sy0">;</span>
+      swap<span class="br0">(</span><span class="sy0">&amp;</span>vec<span class="br0">[</span>i<span class="br0">]</span><span class="sy0">,</span> <span class="sy0">&amp;</span>vec<span class="br0">[</span>j<span class="br0">]</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="br0">}</span>
+  <span class="br0">}</span>
+  swap<span class="br0">(</span><span class="sy0">&amp;</span>vec<span class="br0">[</span>left<span class="br0">]</span><span class="sy0">,</span> <span class="sy0">&amp;</span>vec<span class="br0">[</span>i<span class="br0">]</span><span class="br0">)</span><span class="sy0">;</span>
+ 
+  <span class="kw1">return</span> i<span class="sy0">;</span>
+<span class="br0">}</span>
+ 
+<span class="kw4">void</span> quickSort<span class="br0">(</span><span class="kw4">int</span> vec<span class="br0">[</span><span class="br0">]</span><span class="sy0">,</span> <span class="kw4">int</span> left<span class="sy0">,</span> <span class="kw4">int</span> right<span class="br0">)</span> <span class="br0">{</span>
+  <span class="kw4">int</span> r<span class="sy0">;</span>
+ 
+  <span class="kw1">if</span> <span class="br0">(</span>right <span class="sy0">&gt;</span> left<span class="br0">)</span> <span class="br0">{</span>
+    r <span class="sy0">=</span> partition<span class="br0">(</span>vec<span class="sy0">,</span> left<span class="sy0">,</span> right<span class="br0">)</span><span class="sy0">;</span>
+    quickSort<span class="br0">(</span>vec<span class="sy0">,</span> left<span class="sy0">,</span> r <span class="sy0">-</span> 1<span class="br0">)</span><span class="sy0">;</span>
+    quickSort<span class="br0">(</span>vec<span class="sy0">,</span> r <span class="sy0">+</span> 1<span class="sy0">,</span> right<span class="br0">)</span><span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span>
+</pre></div>
+</div>
+<p>Implementaçao usando 'fat pivot':</p>
+<div dir="ltr" class="mw-geshi" style="text-align: left;">
+<div class="c source-c" style="font-family: monospace;">
+<pre class="de1"><span class="kw4">void</span> sort<span class="br0">(</span><span class="kw4">int</span> array<span class="br0">[</span><span class="br0">]</span><span class="sy0">,</span> <span class="kw4">int</span> begin<span class="sy0">,</span> <span class="kw4">int</span> end<span class="br0">)</span> <span class="br0">{</span>
+   <span class="kw4">int</span> pivot <span class="sy0">=</span> array<span class="br0">[</span>begin<span class="br0">]</span><span class="sy0">;</span>
+   <span class="kw4">int</span> i <span class="sy0">=</span> begin <span class="sy0">+</span> 1<span class="sy0">,</span> j <span class="sy0">=</span> end<span class="sy0">,</span> k <span class="sy0">=</span> end<span class="sy0">;</span>
+   <span class="kw4">int</span> t<span class="sy0">;</span>
+ 
+   <span class="kw1">while</span> <span class="br0">(</span>i <span class="sy0">&lt;</span> j<span class="br0">)</span> <span class="br0">{</span>
+      <span class="kw1">if</span> <span class="br0">(</span>array<span class="br0">[</span>i<span class="br0">]</span> <span class="sy0">&lt;</span> pivot<span class="br0">)</span> i<span class="sy0">++;</span>
+      <span class="kw1">else</span> <span class="kw1">if</span> <span class="br0">(</span>array<span class="br0">[</span>i<span class="br0">]</span> <span class="sy0">&gt;</span> pivot<span class="br0">)</span> <span class="br0">{</span>
+         j<span class="sy0">--;</span> k<span class="sy0">--;</span>
+         t <span class="sy0">=</span> array<span class="br0">[</span>i<span class="br0">]</span><span class="sy0">;</span>
+         array<span class="br0">[</span>i<span class="br0">]</span> <span class="sy0">=</span> array<span class="br0">[</span>j<span class="br0">]</span><span class="sy0">;</span>
+         array<span class="br0">[</span>j<span class="br0">]</span> <span class="sy0">=</span> array<span class="br0">[</span>k<span class="br0">]</span><span class="sy0">;</span>
+         array<span class="br0">[</span>k<span class="br0">]</span> <span class="sy0">=</span> t<span class="sy0">;</span> <span class="br0">}</span>
+      <span class="kw1">else</span> <span class="br0">{</span>
+         j<span class="sy0">--;</span>
+         swap<span class="br0">(</span>array<span class="br0">[</span>i<span class="br0">]</span><span class="sy0">,</span> array<span class="br0">[</span>j<span class="br0">]</span><span class="br0">)</span><span class="sy0">;</span>
+   <span class="br0">}</span>  <span class="br0">}</span>
+   i<span class="sy0">--;</span>
+   swap<span class="br0">(</span>array<span class="br0">[</span>begin<span class="br0">]</span><span class="sy0">,</span> array<span class="br0">[</span>i<span class="br0">]</span><span class="br0">)</span><span class="sy0">;</span>	
+   <span class="kw1">if</span> <span class="br0">(</span>i <span class="sy0">-</span> begin <span class="sy0">&gt;</span> 1<span class="br0">)</span>
+      sort<span class="br0">(</span>array<span class="sy0">,</span> begin<span class="sy0">,</span> i<span class="br0">)</span><span class="sy0">;</span>
+   <span class="kw1">if</span> <span class="br0">(</span>end <span class="sy0">-</span> k   <span class="sy0">&gt;</span> 1<span class="br0">)</span>
+      sort<span class="br0">(</span>array<span class="sy0">,</span> k<span class="sy0">,</span> end<span class="br0">)</span><span class="sy0">;</span>			
+<span class="br0">}</span>
+</pre></div>
+</div>
+<p>Lembrando que quando você for chamar a função recursiva terá que 
+chamar a mesma da seguinte forma ordenar_quicksort_nome(0,n-1). O 
+0(zero) serve para o início receber a posição zero do vetor e o fim será
+ o tamanho do vetor -1.</p>
+<div dir="ltr" class="mw-geshi" style="text-align: left;">
+<div class="c source-c" style="font-family: monospace;">
+<pre class="de1"><span class="kw4">void</span> ordenar_quicksort_nome<span class="br0">(</span><span class="kw4">int</span> ini<span class="sy0">,</span> <span class="kw4">int</span> fim<span class="br0">)</span>
+<span class="br0">{</span>
+ <span class="kw4">int</span> i <span class="sy0">=</span> ini<span class="sy0">,</span> f <span class="sy0">=</span> fim<span class="sy0">;</span>
+ <span class="kw4">char</span> pivo<span class="br0">[</span>50<span class="br0">]</span><span class="sy0">;</span>
+ strcpy<span class="br0">(</span>pivo<span class="sy0">,</span>vetor<span class="br0">[</span><span class="br0">(</span>ini<span class="sy0">+</span>fim<span class="br0">)</span><span class="sy0">/</span>2<span class="br0">]</span><span class="br0">)</span><span class="sy0">;</span>
+ <span class="kw1">if</span> <span class="br0">(</span>i<span class="sy0">&lt;=</span>f<span class="br0">)</span>
+  <span class="br0">{</span>
+   <span class="kw1">while</span> <span class="br0">(</span>strcmpi<span class="br0">(</span>vetor<span class="br0">[</span>i<span class="br0">]</span><span class="sy0">,</span>pivo<span class="br0">)</span><span class="sy0">&lt;</span>0<span class="br0">)</span> i<span class="sy0">++;</span>
+   <span class="kw1">while</span> <span class="br0">(</span>strcmpi<span class="br0">(</span>vetor<span class="br0">[</span>f<span class="br0">]</span><span class="sy0">,</span>pivo<span class="br0">)</span><span class="sy0">&gt;</span>0<span class="br0">)</span> f<span class="sy0">--;</span>
+   <span class="kw1">if</span> <span class="br0">(</span>i<span class="sy0">&lt;=</span>f<span class="br0">)</span>
+    <span class="br0">{</span>
+     strcpy <span class="br0">(</span>aux_char<span class="sy0">,</span>vetor<span class="br0">[</span>i<span class="br0">]</span><span class="br0">)</span><span class="sy0">;</span>
+     strcpy <span class="br0">(</span>vetor<span class="br0">[</span>i<span class="br0">]</span><span class="sy0">,</span>vetor<span class="br0">[</span>f<span class="br0">]</span><span class="br0">)</span><span class="sy0">;</span>
+     strcpy <span class="br0">(</span>vetor<span class="br0">[</span>f<span class="br0">]</span><span class="sy0">,</span>aux_char<span class="br0">)</span><span class="sy0">;</span>
+     i<span class="sy0">++;</span> f<span class="sy0">--;</span>
+    <span class="br0">}</span>
+  <span class="br0">}</span>
+  <span class="kw1">if</span> <span class="br0">(</span>f<span class="sy0">&gt;</span>ini<span class="br0">)</span> ordenar_quicksort_nome<span class="br0">(</span>ini<span class="sy0">,</span>f<span class="br0">)</span><span class="sy0">;</span>
+  <span class="kw1">if</span> <span class="br0">(</span>i<span class="sy0">&lt;</span>fim<span class="br0">)</span> ordenar_quicksort_nome<span class="br0">(</span>i<span class="sy0">,</span>fim<span class="br0">)</span><span class="sy0">;</span>
+<span class="br0">}</span>
+</pre></div>
+</div>
+<h3><span class="editsection">[<a 
+href="http://pt.wikipedia.org/w/index.php?title=Quicksort&amp;action=edit&amp;section=19"
+ title="Editar seção: Java">editar</a>]</span> <span class="mw-headline"
+ id="Java"><a href="http://pt.wikipedia.org/wiki/Java" title="Java">Java</a></span></h3>
+<p>Exemplo em <a href="http://pt.wikipedia.org/wiki/J2SE" title="J2SE" 
+class="mw-redirect">J2SE</a> 5.0 com método para teste.</p>
+<div dir="ltr" class="mw-geshi" style="text-align: left;">
+<div class="java source-java" style="font-family: monospace;">
+<pre class="de1"><span class="kw1">import</span> <span class="co2">java.util.Arrays</span><span class="sy0">;</span>
+<span class="kw1">import</span> <span class="co2">java.util.Random</span><span class="sy0">;</span>
+ 
+<span class="kw1">public</span> <span class="kw1">class</span> QuickSort <span class="br0">{</span>
+    <span class="kw1">public</span> <span class="kw1">static</span> <span class="kw1">final</span> <span class="kw3">Random</span> RND <span class="sy0">=</span> <span class="kw1">new</span> <span class="kw3">Random</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+ 
+    <span class="kw1">private</span> <span class="kw1">static</span> <span class="kw4">void</span> swap<span class="br0">(</span><span class="kw3">Object</span><span class="br0">[</span><span class="br0">]</span> array, <span class="kw4">int</span> i, <span class="kw4">int</span> j<span class="br0">)</span> <span class="br0">{</span>
+        <span class="kw3">Object</span> tmp <span class="sy0">=</span> array<span class="br0">[</span>i<span class="br0">]</span><span class="sy0">;</span>
+        array<span class="br0">[</span>i<span class="br0">]</span> <span class="sy0">=</span> array<span class="br0">[</span>j<span class="br0">]</span><span class="sy0">;</span>
+        array<span class="br0">[</span>j<span class="br0">]</span> <span class="sy0">=</span> tmp<span class="sy0">;</span>
+    <span class="br0">}</span>
+ 
+    <span class="kw1">private</span> <span class="kw1">static</span> <span class="sy0">&lt;</span>E <span class="kw1">extends</span> Comparable<span class="sy0">&lt;?</span> <span class="kw1">super</span> E<span class="sy0">&gt;&gt;</span> <span class="kw4">int</span> partition<span class="br0">(</span>E<span class="br0">[</span><span class="br0">]</span> array, <span class="kw4">int</span> begin, <span class="kw4">int</span> end<span class="br0">)</span> <span class="br0">{</span>
+        <span class="kw4">int</span> index <span class="sy0">=</span> begin <span class="sy0">+</span> RND.<span class="me1">nextInt</span><span class="br0">(</span>end <span class="sy0">-</span> begin <span class="sy0">+</span> 1<span class="br0">)</span><span class="sy0">;</span>
+        E pivot <span class="sy0">=</span> array<span class="br0">[</span>index<span class="br0">]</span><span class="sy0">;</span>
+        swap<span class="br0">(</span>array, index, end<span class="br0">)</span><span class="sy0">;</span>
+        <span class="kw1">for</span> <span class="br0">(</span><span class="kw4">int</span> i <span class="sy0">=</span> index <span class="sy0">=</span> begin<span class="sy0">;</span> i <span class="sy0">&lt;</span> end<span class="sy0">;</span> <span class="sy0">++</span>i<span class="br0">)</span> <span class="br0">{</span>
+            <span class="kw1">if</span> <span class="br0">(</span>array<span class="br0">[</span>i<span class="br0">]</span>.<span class="me1">compareTo</span><span class="br0">(</span>pivot<span class="br0">)</span> <span class="sy0">&lt;=</span> 0<span class="br0">)</span> <span class="br0">{</span>
+                swap<span class="br0">(</span>array, index<span class="sy0">++</span>, i<span class="br0">)</span><span class="sy0">;</span>
+            <span class="br0">}</span>
+        <span class="br0">}</span>
+        swap<span class="br0">(</span>array, index, end<span class="br0">)</span><span class="sy0">;</span>
+        <span class="kw1">return</span> <span class="br0">(</span>index<span class="br0">)</span><span class="sy0">;</span>
+    <span class="br0">}</span>
+ 
+    <span class="kw1">private</span> <span class="kw1">static</span> <span class="sy0">&lt;</span>E <span class="kw1">extends</span> Comparable<span class="sy0">&lt;?</span> <span class="kw1">super</span> E<span class="sy0">&gt;&gt;</span> <span class="kw4">void</span> qsort<span class="br0">(</span>E<span class="br0">[</span><span class="br0">]</span> array, <span class="kw4">int</span> begin, <span class="kw4">int</span> end<span class="br0">)</span> <span class="br0">{</span>
+        <span class="kw1">if</span> <span class="br0">(</span>end <span class="sy0">&gt;</span> begin<span class="br0">)</span> <span class="br0">{</span>
+            <span class="kw4">int</span> index <span class="sy0">=</span> partition<span class="br0">(</span>array, begin, end<span class="br0">)</span><span class="sy0">;</span>
+            qsort<span class="br0">(</span>array, begin, index <span class="sy0">-</span> 1<span class="br0">)</span><span class="sy0">;</span>
+            qsort<span class="br0">(</span>array, index <span class="sy0">+</span> 1, end<span class="br0">)</span><span class="sy0">;</span>
+        <span class="br0">}</span>
+    <span class="br0">}</span>
+ 
+    <span class="kw1">public</span> <span class="kw1">static</span> <span class="sy0">&lt;</span>E <span class="kw1">extends</span> Comparable<span class="sy0">&lt;?</span> <span class="kw1">super</span> E<span class="sy0">&gt;&gt;</span> <span class="kw4">void</span> sort<span class="br0">(</span>E<span class="br0">[</span><span class="br0">]</span> array<span class="br0">)</span> <span class="br0">{</span>
+        qsort<span class="br0">(</span>array, 0, array.<span class="me1">length</span> <span class="sy0">-</span> 1<span class="br0">)</span><span class="sy0">;</span>
+    <span class="br0">}</span>
+ 
+    <span class="co1">// Exemplo de uso</span>
+    <span class="kw1">public</span> <span class="kw1">static</span> <span class="kw4">void</span> main<span class="br0">(</span><span class="kw3">String</span><span class="br0">[</span><span class="br0">]</span> args<span class="br0">)</span> <span class="br0">{</span>
+ 
+        <span class="co1">// Ordenando Inteiros</span>
+        <span class="kw3">Integer</span><span class="br0">[</span><span class="br0">]</span> l1 <span class="sy0">=</span> <span class="br0">{</span> 5, 1024, 1, 88, 0, 1024 <span class="br0">}</span><span class="sy0">;</span>
+        <span class="kw3">System</span>.<span class="me1">out</span>.<span class="me1">println</span><span class="br0">(</span><span class="st0">"l1  start:"</span> <span class="sy0">+</span> <span class="kw3">Arrays</span>.<span class="me1">toString</span><span class="br0">(</span>l1<span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+        QuickSort.<span class="me1">sort</span><span class="br0">(</span>l1<span class="br0">)</span><span class="sy0">;</span>
+        <span class="kw3">System</span>.<span class="me1">out</span>.<span class="me1">println</span><span class="br0">(</span><span class="st0">"l1 sorted:"</span> <span class="sy0">+</span> <span class="kw3">Arrays</span>.<span class="me1">toString</span><span class="br0">(</span>l1<span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+ 
+        <span class="co1">// Ordenando Strings</span>
+        <span class="kw3">String</span><span class="br0">[</span><span class="br0">]</span> l2 <span class="sy0">=</span> <span class="br0">{</span> <span class="st0">"gamma"</span>, <span class="st0">"beta"</span>, <span class="st0">"alpha"</span>, <span class="st0">"zoolander"</span> <span class="br0">}</span><span class="sy0">;</span>
+        <span class="kw3">System</span>.<span class="me1">out</span>.<span class="me1">println</span><span class="br0">(</span><span class="st0">"l2  start:"</span> <span class="sy0">+</span> <span class="kw3">Arrays</span>.<span class="me1">toString</span><span class="br0">(</span>l2<span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+        QuickSort.<span class="me1">sort</span><span class="br0">(</span>l2<span class="br0">)</span><span class="sy0">;</span>
+        <span class="kw3">System</span>.<span class="me1">out</span>.<span class="me1">println</span><span class="br0">(</span><span class="st0">"l2 sorted:"</span> <span class="sy0">+</span> <span class="kw3">Arrays</span>.<span class="me1">toString</span><span class="br0">(</span>l2<span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="br0">}</span>
+<span class="br0">}</span>
+</pre></div>
+</div>
+<p>Fonte: <a 
+href="http://en.wikibooks.org/wiki/Algorithm_implementation/Sorting/Quicksort"
+ class="external text" rel="nofollow">Wikibooks QuickSort</a></p>
+<h3><span class="editsection">[<a 
+href="http://pt.wikipedia.org/w/index.php?title=Quicksort&amp;action=edit&amp;section=20"
+ title="Editar seção: C#">editar</a>]</span> <span class="mw-headline" 
+id="C.23"><a href="http://pt.wikipedia.org/wiki/C_sharp" title="C sharp"
+ class="mw-redirect">C#</a></span></h3>
+<div dir="ltr" class="mw-geshi" style="text-align: left;">
+<div class="csharp source-csharp" style="font-family: monospace;">
+<pre class="de1"><span class="kw1">static</span> <span class="kw4">class</span> QuickSort 
+<span class="br0">{</span>
+   <span class="kw1">public</span> <span class="kw1">static</span> <span class="kw1">void</span> Ordenar<span class="br0">(</span><span class="kw4">int</span><span class="br0">[</span><span class="br0">]</span> vetor<span class="br0">)</span> <span class="br0">{</span>
+      Ordenar<span class="br0">(</span>vetor, 0, vetor.<span class="me1">Length</span> <span class="sy0">-</span> 1<span class="br0">)</span><span class="sy0">;</span>
+   <span class="br0">}</span>
+ 
+   <span class="kw1">private</span> <span class="kw1">static</span> <span class="kw1">void</span> Ordenar<span class="br0">(</span><span class="kw4">int</span><span class="br0">[</span><span class="br0">]</span> vetor, <span class="kw4">int</span> inicio, <span class="kw4">int</span> fim<span class="br0">)</span> <span class="br0">{</span>
+      <span class="kw1">if</span> <span class="br0">(</span>inicio <span class="sy0">&lt;</span> fim<span class="br0">)</span> <span class="br0">{</span>
+         <span class="kw4">int</span> posicaoPivo <span class="sy0">=</span> Separar<span class="br0">(</span>vetor, inicio, fim<span class="br0">)</span><span class="sy0">;</span>
+         Ordenar<span class="br0">(</span>vetor, inicio, posicaoPivo <span class="sy0">-</span> 1<span class="br0">)</span><span class="sy0">;</span>
+         Ordenar<span class="br0">(</span>vetor, posicaoPivo <span class="sy0">+</span> 1, fim<span class="br0">)</span><span class="sy0">;</span> 
+      <span class="br0">}</span>
+   <span class="br0">}</span>
+ 
+   <span class="kw1">private</span> <span class="kw1">static</span> <span class="kw4">int</span> Separar<span class="br0">(</span><span class="kw4">int</span><span class="br0">[</span><span class="br0">]</span> vetor, <span class="kw4">int</span> inicio, <span class="kw4">int</span> fim<span class="br0">)</span> <span class="br0">{</span>
+      <span class="kw4">int</span> pivo <span class="sy0">=</span> vetor<span class="br0">[</span>inicio<span class="br0">]</span><span class="sy0">;</span>
+      <span class="kw4">int</span> i <span class="sy0">=</span> inicio <span class="sy0">+</span> 1, f <span class="sy0">=</span> fim<span class="sy0">;</span>
+      <span class="kw1">while</span> <span class="br0">(</span>i <span class="sy0">&lt;=</span> f<span class="br0">)</span> <span class="br0">{</span>
+         <span class="kw1">if</span> <span class="br0">(</span>vetor<span class="br0">[</span>i<span class="br0">]</span> <span class="sy0">&lt;=</span> pivo<span class="br0">)</span> 
+            i<span class="sy0">++;</span>
+         <span class="kw1">else</span> <span class="kw1">if</span> <span class="br0">(</span>pivo <span class="sy0">&lt;</span> vetor<span class="br0">[</span>f<span class="br0">]</span><span class="br0">)</span>
+            f<span class="sy0">--;</span>
+         <span class="kw1">else</span> <span class="br0">{</span>
+            <span class="kw4">int</span> troca <span class="sy0">=</span> vetor<span class="br0">[</span>i<span class="br0">]</span><span class="sy0">;</span>
+            vetor<span class="br0">[</span>i<span class="br0">]</span> <span class="sy0">=</span> vetor<span class="br0">[</span>f<span class="br0">]</span><span class="sy0">;</span>
+            vetor<span class="br0">[</span>f<span class="br0">]</span> <span class="sy0">=</span> troca<span class="sy0">;</span>
+            i<span class="sy0">++;</span>
+            f<span class="sy0">--;</span>
+         <span class="br0">}</span>
+      <span class="br0">}</span>
+      vetor<span class="br0">[</span>inicio<span class="br0">]</span> <span class="sy0">=</span> vetor<span class="br0">[</span>f<span class="br0">]</span><span class="sy0">;</span>
+      vetor<span class="br0">[</span>f<span class="br0">]</span> <span class="sy0">=</span> pivo<span class="sy0">;</span>
+      <span class="kw1">return</span> f<span class="sy0">;</span>
+   <span class="br0">}</span>
+<span class="br0">}</span>
+</pre></div>
+</div>
+<h3><span class="editsection">[<a 
+href="http://pt.wikipedia.org/w/index.php?title=Quicksort&amp;action=edit&amp;section=21"
+ title="Editar seção: Assembly x86">editar</a>]</span> <span 
+class="mw-headline" id="Assembly_x86">Assembly x86</span></h3>
+<div dir="ltr" class="mw-geshi" style="text-align: left;">
+<div class="asm source-asm" style="font-family: monospace;">
+<pre class="de1">  qsort<span class="sy0">:</span>  @ Takes three parameters<span class="sy0">:</span>
+        @   a<span class="sy0">:</span>     Pointer to base of array a to be sorted <span class="br0">(</span>arrives <span class="kw1">in</span> r0<span class="br0">)</span>
+        @   left<span class="sy0">:</span>  First of the range of indexes to sort <span class="br0">(</span>arrives <span class="kw1">in</span> r1<span class="br0">)</span>
+        @   right<span class="sy0">:</span> One past last of range of indexes to sort <span class="br0">(</span>arrives <span class="kw1">in</span> r2<span class="br0">)</span>
+        @ <span class="kw4">This</span> function destroys<span class="sy0">:</span> r1<span class="sy0">,</span> r2<span class="sy0">,</span> r3<span class="sy0">,</span> r4<span class="sy0">,</span> r5<span class="sy0">,</span> r7
+        stmfd   <span class="kw3">sp</span>!<span class="sy0">,</span> <span class="br0">{</span>r4<span class="sy0">,</span> r6<span class="sy0">,</span> lr<span class="br0">}</span>     @ Save r4 <span class="kw1">and</span> r6 <span class="kw4">for</span> caller
+        <span class="kw1">mov</span>     r6<span class="sy0">,</span> r2                @ r6 &lt;<span class="sy0">-</span> right
+  qsort_tailcall_entry<span class="sy0">:</span>
+        <span class="kw1">sub</span>     r7<span class="sy0">,</span> r6<span class="sy0">,</span> r1            @ <span class="kw4">If</span> right <span class="sy0">-</span> left &lt;= 1 <span class="br0">(</span>already sorted<span class="br0">)</span><span class="sy0">,</span>
+        <span class="kw1">cmp</span>     r7<span class="sy0">,</span> #1
+        ldmlefd <span class="kw3">sp</span>!<span class="sy0">,</span> <span class="br0">{</span>r1<span class="sy0">,</span> r6<span class="sy0">,</span> pc<span class="br0">}</span>     @ Return<span class="sy0">,</span> moving r4<span class="sy0">-</span>&gt;r1<span class="sy0">,</span> restoring r6
+        ldr     r7<span class="sy0">,</span> <span class="br0">[</span>r0<span class="sy0">,</span> r1<span class="sy0">,</span> asl #2<span class="br0">]</span>  @ r7 &lt;<span class="sy0">-</span> a<span class="br0">[</span>left<span class="br0">]</span><span class="sy0">,</span> gets pivot element
+        <span class="kw1">add</span>     r2<span class="sy0">,</span> r1<span class="sy0">,</span> #1            @ l &lt;<span class="sy0">-</span> left <span class="sy0">+</span> 1
+        <span class="kw1">mov</span>     r4<span class="sy0">,</span> r6                @ r &lt;<span class="sy0">-</span> right
+  partition_loop<span class="sy0">:</span>
+        ldr     r3<span class="sy0">,</span> <span class="br0">[</span>r0<span class="sy0">,</span> r2<span class="sy0">,</span> asl #2<span class="br0">]</span>  @ r3 &lt;<span class="sy0">-</span> a<span class="br0">[</span>l<span class="br0">]</span>
+        <span class="kw1">cmp</span>     r3<span class="sy0">,</span> r7                @ <span class="kw4">If</span> a<span class="br0">[</span>l<span class="br0">]</span> &lt;= pivot_element<span class="sy0">,</span>
+        addle   r2<span class="sy0">,</span> r2<span class="sy0">,</span> #1            @ <span class="sy0">...</span> increment l<span class="sy0">,</span> <span class="kw1">and</span>
+        ble     partition_test        @ <span class="sy0">...</span> <span class="kw4">continue</span> to next iteration<span class="sy0">.</span>
+        <span class="kw1">sub</span>     r4<span class="sy0">,</span> r4<span class="sy0">,</span> #1            @ Otherwise<span class="sy0">,</span> decrement r<span class="sy0">,</span>
+        ldr     r5<span class="sy0">,</span> <span class="br0">[</span>r0<span class="sy0">,</span> r4<span class="sy0">,</span> asl #2<span class="br0">]</span>  @ <span class="sy0">...</span> <span class="kw1">and</span> swap a<span class="br0">[</span>l<span class="br0">]</span> <span class="kw1">and</span> a<span class="br0">[</span>r<span class="br0">]</span><span class="sy0">.</span>
+        <span class="kw1">str</span>     r5<span class="sy0">,</span> <span class="br0">[</span>r0<span class="sy0">,</span> r2<span class="sy0">,</span> asl #2<span class="br0">]</span>
+        <span class="kw1">str</span>     r3<span class="sy0">,</span> <span class="br0">[</span>r0<span class="sy0">,</span> r4<span class="sy0">,</span> asl #2<span class="br0">]</span>
+  partition_test<span class="sy0">:</span>
+        <span class="kw1">cmp</span>     r2<span class="sy0">,</span> r4                @ <span class="kw4">If</span> l &lt; r<span class="sy0">,</span>
+        blt     partition_loop        @ <span class="sy0">...</span> <span class="kw4">continue</span> iterating<span class="sy0">.</span>
+  partition_finish<span class="sy0">:</span>
+        <span class="kw1">sub</span>     r2<span class="sy0">,</span> r2<span class="sy0">,</span> #1            @ Decrement l
+        ldr     r3<span class="sy0">,</span> <span class="br0">[</span>r0<span class="sy0">,</span> r2<span class="sy0">,</span> asl #2<span class="br0">]</span>  @ Swap a<span class="br0">[</span>l<span class="br0">]</span> <span class="kw1">and</span> pivot
+        <span class="kw1">str</span>     r3<span class="sy0">,</span> <span class="br0">[</span>r0<span class="sy0">,</span> r1<span class="sy0">,</span> asl #2<span class="br0">]</span>
+        <span class="kw1">str</span>     r7<span class="sy0">,</span> <span class="br0">[</span>r0<span class="sy0">,</span> r2<span class="sy0">,</span> asl #2<span class="br0">]</span>
+        <span class="kw3">bl</span>      qsort                 @ <span class="kw1">Call</span> self recursively on left part<span class="sy0">,</span>
+                                      @  with args a <span class="br0">(</span>r0<span class="br0">)</span><span class="sy0">,</span> left <span class="br0">(</span>r1<span class="br0">)</span><span class="sy0">,</span> r <span class="br0">(</span>r2<span class="br0">)</span><span class="sy0">,</span>
+                                      @  also preserves r6 <span class="kw1">and</span>
+                                      @  moves r4 <span class="br0">(</span>l<span class="br0">)</span> to 2nd arg register <span class="br0">(</span>r1<span class="br0">)</span>
+        b       qsort_tailcall_entry  @ Tail<span class="sy0">-</span><span class="kw1">call</span> self on right part<span class="sy0">,</span>
+                                      @  with args a <span class="br0">(</span>r0<span class="br0">)</span><span class="sy0">,</span> l <span class="br0">(</span>r1<span class="br0">)</span><span class="sy0">,</span> right <span class="br0">(</span>r6<span class="br0">)</span>
+</pre></div>
+</div>
+<h3><span class="editsection">[<a 
+href="http://pt.wikipedia.org/w/index.php?title=Quicksort&amp;action=edit&amp;section=22"
+ title="Editar seção: Prolog">editar</a>]</span> <span 
+class="mw-headline" id="Prolog"><a 
+href="http://pt.wikipedia.org/wiki/Prolog" title="Prolog">Prolog</a></span></h3>
+<pre>partition([], _, [], []).
+partition([X|Xs], Pivot, Smalls, Bigs) :-
+    (   X @&lt; Pivot -&gt;
+        Smalls = [X|Rest],
+        partition(Xs, Pivot, Rest, Bigs)
+    ;   Bigs = [X|Rest],
+        partition(Xs, Pivot, Smalls, Rest)
+    ).
+
+quicksort([])     --&gt; [].
+quicksort([X|Xs]) --&gt; 
+    { partition(Xs, X, Smaller, Bigger) },
+    quicksort(Smaller), [X], quicksort(Bigger).
+</pre>
+<h3><span class="editsection">[<a 
+href="http://pt.wikipedia.org/w/index.php?title=Quicksort&amp;action=edit&amp;section=23"
+ title="Editar seção: Lua">editar</a>]</span> <span class="mw-headline" 
+id="Lua"><a href="http://pt.wikipedia.org/wiki/Lua" title="Lua">Lua</a></span></h3>
+<div dir="ltr" class="mw-geshi" style="text-align: left;">
+<div class="lua source-lua" style="font-family: monospace;">
+<pre class="de1"><span class="kw1">function</span> quickSort<span class="br0">(</span>v, ini, fim<span class="br0">)</span>
+	i<span class="sy0">=</span>ini
+	j<span class="sy0">=</span>fim
+	pivo<span class="sy0">=</span> v<span class="br0">[</span> <span class="kw1">math.floor</span><span class="br0">(</span><span class="br0">(</span>ini + fim<span class="br0">)</span><span class="sy0">/</span><span class="nu0">2</span><span class="br0">)</span> <span class="br0">]</span> <span class="co1">--Math.floor trunca o número</span>
+ 
+	<span class="kw1">while</span><span class="br0">(</span>i<span class="sy0">&lt;=</span>j<span class="br0">)</span>
+	<span class="kw1">do</span>
+		<span class="kw1">while</span> <span class="br0">(</span>v<span class="br0">[</span>i<span class="br0">]</span> <span class="sy0">&lt;</span> pivo<span class="br0">)</span>
+		<span class="kw1">do</span>
+			i<span class="sy0">=</span>i+1
+		<span class="kw1">end</span>
+ 
+		<span class="kw1">while</span> <span class="br0">(</span>v<span class="br0">[</span>j<span class="br0">]</span> <span class="sy0">&gt;</span> pivo<span class="br0">)</span>
+		<span class="kw1">do</span>
+			j<span class="sy0">=</span>j-1
+		<span class="kw1">end</span>
+ 
+		<span class="kw1">if</span><span class="br0">(</span>i<span class="sy0">&lt;=</span>j<span class="br0">)</span>
+		<span class="kw1">then</span>
+			v<span class="br0">[</span>i<span class="br0">]</span>,v<span class="br0">[</span>j<span class="br0">]</span><span class="sy0">=</span>v<span class="br0">[</span>j<span class="br0">]</span>,v<span class="br0">[</span>i<span class="br0">]</span> <span class="co1">--Troca de valores</span>
+			i<span class="sy0">=</span>i+1
+			j<span class="sy0">=</span>j-1
+		<span class="kw1">end</span>
+	<span class="kw1">end</span>
+ 
+	<span class="kw1">if</span><span class="br0">(</span>j<span class="sy0">&gt;</span>ini<span class="br0">)</span>
+	<span class="kw1">then</span>
+		quickSort<span class="br0">(</span>v, ini, j<span class="br0">)</span>
+	<span class="kw1">end</span>
+ 
+	<span class="kw1">if</span><span class="br0">(</span>i<span class="sy0">&lt;</span>fim<span class="br0">)</span>
+	<span class="kw1">then</span>
+		quickSort<span class="br0">(</span>v, i, fim<span class="br0">)</span>
+	<span class="kw1">end</span>
+<span class="kw1">end</span>
+</pre></div>
+</div>
+<h2><span class="editsection">[<a 
+href="http://pt.wikipedia.org/w/index.php?title=Quicksort&amp;action=edit&amp;section=24"
+ title="Editar seção: Veja também">editar</a>]</span> <span 
+class="mw-headline" id="Veja_tamb.C3.A9m">Veja também</span></h2>
+<ul>
+<li><a href="http://pt.wikipedia.org/wiki/Ordena%C3%A7%C3%A3o_de_vetor" 
+title="Ordenação de vetor" class="mw-redirect">Ordenação de vetor</a></li>
+<li><a href="http://pt.wikipedia.org/wiki/Merge_sort" title="Merge sort">Merge
+ sort</a></li>
+<li><a href="http://pt.wikipedia.org/wiki/Heapsort" title="Heapsort">Heapsort</a></li>
+<li><a href="http://pt.wikipedia.org/wiki/Selection_sort" 
+title="Selection sort">Selection sort</a></li>
+<li><a href="http://pt.wikipedia.org/wiki/Bubble_sort" title="Bubble 
+sort">Bubble sort</a></li>
+<li><a href="http://pt.wikipedia.org/wiki/Busca_linear" title="Busca 
+linear">Busca linear</a></li>
+</ul>
+<h2 style="cursor: help;" title="Esta seção não é editável por razões 
+técnicas. Edite a página toda em vez disso."><span class="mw-headline" 
+id="Refer.C3.AAncias">Referências</span></h2>
+<div class="references-small" style="">
+<ol class="references">
+<li id="cite_note-0"><a href="#cite_ref-0">↑</a> <i><a 
+href="http://perldoc.perl.org/functions/sort.html" class="external text"
+ rel="nofollow">Documentação oficial da função 'sort' em Perl</a></i>. <a
+ 
+href="http://pt.wikipedia.org/w/index.php?title=Perl.org&amp;action=edit&amp;redlink=1"
+ class="new" title="Perl.org (página não existe)">perl.org</a>. Página 
+visitada em 2008-10-20.</li>
+</ol>
+</div>
+<h2><span class="editsection">[<a 
+href="http://pt.wikipedia.org/w/index.php?title=Quicksort&amp;action=edit&amp;section=25"
+ title="Editar seção: Ligações externas">editar</a>]</span> <span 
+class="mw-headline" id="Liga.C3.A7.C3.B5es_externas">Ligações externas</span></h2>
+<ul>
+<li><a href="http://www.ime.usp.br/%7Epf/algoritmos/aulas/quick.html" 
+class="external text" rel="nofollow">Rápida aula de Quicksort</a></li>
+<li><a 
+href="http://www.cs.ubc.ca/spider/harrison/Java/sorting-demo.html" 
+class="external text" rel="nofollow">Animação do processo de ordenação 
+pelo Quicksort</a></li>
+<li><a 
+href="http://www.datastructures.info/what-is-quicksort-and-how-does-it-work-quick-sort-algorithm/"
+ class="external text" rel="nofollow">Explanação video de Quicksort 
+usando cartões e de código em C++</a></li>
+<li><a href="http://www.algorithm-code.com/wiki/Quick_Sort" 
+class="external text" rel="nofollow">QuickSort Code</a></li>
+</ul>
+
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 545/1000000
+Post-expand include size: 1049/2048000 bytes
+Template argument size: 358/2048000 bytes
+Expensive parser function count: 0/500
+-->
+
+<!-- Saved in parser cache with key ptwiki:pcache:idhash:9762-0!1!0!!pt!4 and timestamp 20100701074805 -->
+<div class="printfooter">
+Obtida de "<a href="http://pt.wikipedia.org/wiki/Quicksort">http://pt.wikipedia.org/wiki/Quicksort</a>"</div>
+				<!-- /bodytext -->
+								<!-- catlinks -->
+				<div id="catlinks" class="catlinks"><div id="mw-normal-catlinks"><a 
+href="http://pt.wikipedia.org/wiki/Especial:Categorias" 
+title="Especial:Categorias">Categoria</a>: <span dir="ltr"><a 
+href="http://pt.wikipedia.org/wiki/Categoria:Algoritmos_de_ordena%C3%A7%C3%A3o"
+ title="Categoria:Algoritmos de ordenação">Algoritmos de ordenação</a></span></div></div>
+				<!-- /catlinks -->
+												<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="mw-head" class="noprint">
+			
+<!-- 0 -->
+<div id="p-personal" class="">
+	<h5>Ferramentas pessoais</h5>
+	<ul>
+					<li id="pt-prefswitch-link-anon"><a 
+href="http://pt.wikipedia.org/w/index.php?title=Especial:UsabilityInitiativePrefSwitch&amp;from=Quicksort"
+ title="Descubra as funcionalidades novas" class="no-text-transform">Funcionalidades
+ novas</a></li>
+					<li id="pt-login"><a 
+href="http://pt.wikipedia.org/w/index.php?title=Especial:Entrar&amp;returnto=Quicksort"
+ title="Aconselhamos-lhe a criar uma conta na Wikipédia, embora tal não 
+seja obrigatório. [alt-shift-o]" accesskey="o">Entrar / criar conta</a></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+			<div id="left-navigation">
+				
+<!-- 0 -->
+<div id="p-namespaces" class="vectorTabs">
+	<h5>Espaços nominais</h5>
+	<ul>
+					<li id="ca-nstab-main" class="selected"><a 
+href="http://pt.wikipedia.org/wiki/Quicksort" title="Ver a página de 
+conteúdo [alt-shift-c]" accesskey="c"><span>Página</span></a></li>
+					<li id="ca-talk"><a 
+href="http://pt.wikipedia.org/wiki/Discuss%C3%A3o:Quicksort" 
+title="Discussão sobre o conteúdo da página [alt-shift-t]" accesskey="t"><span>Discussão</span></a></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-variants" class="vectorMenu emptyPortlet">
+		<h5><span>Variantes</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+			</div>
+			<div id="right-navigation">
+				
+<!-- 0 -->
+<div id="p-views" class="vectorTabs">
+	<h5>Vistas</h5>
+	<ul>
+					<li id="ca-view" class="selected"><a 
+href="http://pt.wikipedia.org/wiki/Quicksort"><span>Ler</span></a></li>
+					<li id="ca-edit"><a 
+href="http://pt.wikipedia.org/w/index.php?title=Quicksort&amp;action=edit"
+ title="Pode editar esta página.
+Utilize o botão &quot;Antever resultado&quot; antes de gravar, por 
+favor. [alt-shift-e]" accesskey="e"><span>Editar</span></a></li>
+					<li id="ca-history" class="collapsible "><a 
+href="http://pt.wikipedia.org/w/index.php?title=Quicksort&amp;action=history"
+ title="Edições anteriores desta página. [alt-shift-h]" accesskey="h"><span>Ver
+ histórico</span></a></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-cactions" class="vectorMenu emptyPortlet">
+	<h5><span>Ações</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+
+<!-- 2 -->
+<div id="p-search">
+	<h5><label for="searchInput">Busca</label></h5>
+	<form action="/w/index.php" id="searchform">
+		<input name="title" value="Especial:Pesquisar" type="hidden">
+				<div id="simpleSearch">
+			<input autocomplete="off" tabindex="1" id="searchInput" name="search"
+ title="Pesquisar na Wikipédia [alt-shift-f]" accesskey="f" type="text">
+			<button id="searchButton" type="submit" name="button" title="Procurar
+ páginas que contêm este texto">&nbsp;</button>
+		<label style="position: absolute; color: rgb(153, 153, 153); cursor: 
+text; margin: 0pt 4px; top: 6px; line-height: 13px; left: 0px;">Pesquisa</label></div>
+			</form>
+</div>
+
+<!-- /2 -->
+			</div>
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="mw-panel" class="noprint collapsible-nav">
+				<!-- logo -->
+					<div id="p-logo"><a style="background-image: 
+url(&quot;http://upload.wikimedia.org/wikipedia/commons/c/c3/Wikipedia-logo-v2-pt.png&quot;);"
+ href="http://pt.wikipedia.org/wiki/P%C3%A1gina_principal" title="Visite
+ a página principal"></a></div>
+				<!-- /logo -->
+				
+<!-- SEARCH -->
+
+<!-- /SEARCH -->
+
+<!-- navigation -->
+<div class="portal first persistent" id="p-navigation">
+	<h5>Navegação</h5>
+	<div class="body">
+				<ul>
+					<li id="n-mainpage"><a 
+href="http://pt.wikipedia.org/wiki/P%C3%A1gina_principal" title="Visitar
+ a página principal [alt-shift-z]" accesskey="z">Página principal</a></li>
+					<li id="n-featuredcontent"><a 
+href="http://pt.wikipedia.org/wiki/Portal:Conte%C3%BAdo_destacado">Conteúdo
+ destacado</a></li>
+					<li id="n-currentevents"><a 
+href="http://pt.wikipedia.org/wiki/Portal:Eventos_atuais" 
+title="Informação temática sobre eventos atuais">Eventos atuais</a></li>
+					<li id="n-villagepump"><a 
+href="http://pt.wikipedia.org/wiki/Wikipedia:Esplanada">Esplanada</a></li>
+					<li id="n-randompage"><a 
+href="http://pt.wikipedia.org/wiki/Especial:Aleat%C3%B3ria" 
+title="Carregar página aleatória [alt-shift-x]" accesskey="x">Página 
+aleatória</a></li>
+					<li id="n-portals"><a 
+href="http://pt.wikipedia.org/wiki/Portal:%C3%8Dndice">Portais</a></li>
+				</ul>
+			</div>
+</div>
+
+<!-- /navigation -->
+
+<!-- interaction -->
+<div class="portal expanded" id="p-interaction">
+	<h5 tabindex="2">Colaboração</h5>
+	<div style="display: block;" class="body">
+				<ul>
+					<li id="n-welcome"><a 
+href="http://pt.wikipedia.org/wiki/Wikipedia:Boas-vindas">Boas-vindas</a></li>
+					<li id="n-help"><a 
+href="http://pt.wikipedia.org/wiki/Ajuda:P%C3%A1gina_principal" 
+title="Um local reservado para auxílio.">Ajuda</a></li>
+					<li id="n-testpage"><a 
+href="http://pt.wikipedia.org/wiki/Wikipedia:P%C3%A1gina_de_testes">Página
+ de testes</a></li>
+					<li id="n-portal"><a 
+href="http://pt.wikipedia.org/wiki/Wikipedia:Portal_comunit%C3%A1rio" 
+title="Sobre o projeto">Portal comunitário</a></li>
+					<li id="n-recentchanges"><a 
+href="http://pt.wikipedia.org/wiki/Especial:Mudan%C3%A7as_recentes" 
+title="A lista de mudanças recentes nesta wiki. [alt-shift-r]" 
+accesskey="r">Mudanças recentes</a></li>
+					<li id="n-maintenance"><a 
+href="http://pt.wikipedia.org/wiki/Wikipedia:Estaleiro">Estaleiro</a></li>
+					<li id="n-createpage"><a 
+href="http://pt.wikipedia.org/wiki/Ajuda:Guia_de_edi%C3%A7%C3%A3o/Como_come%C3%A7ar_uma_p%C3%A1gina">Criar
+ página</a></li>
+					<li id="n-newpages-description"><a 
+href="http://pt.wikipedia.org/wiki/Especial:P%C3%A1ginas_novas">Páginas 
+novas</a></li>
+					<li id="n-contact-description"><a 
+href="http://pt.wikipedia.org/wiki/Wikipedia:Contato">Contato</a></li>
+					<li id="n-sitesupport"><a 
+href="http://wikimediafoundation.org/wiki/Coleta_de_fundos" 
+title="Ajude-nos">Donativos</a></li>
+				</ul>
+			</div>
+</div>
+
+<!-- /interaction -->
+
+<!-- coll-print_export -->
+<div class="portal collapsed" id="p-coll-print_export">
+	<h5 tabindex="3">Imprimir/exportar</h5>
+	<div class="body">
+				<ul id="collectionPortletList"><li id="coll-create_a_book"><a 
+href="http://pt.wikipedia.org/w/index.php?title=Especial:Livro&amp;bookcmd=book_creator&amp;referer=Quicksort"
+ title="Cria um livro ou uma colecção de páginas" rel="nofollow">Criar 
+um livro</a></li><li id="coll-download-as-rl"><a 
+href="http://pt.wikipedia.org/w/index.php?title=Especial:Livro&amp;bookcmd=render_article&amp;arttitle=Quicksort&amp;oldid=20880902&amp;writer=rl"
+ title="Descarregar uma versão PDF desta página wiki" rel="nofollow">Descarregar
+ como PDF</a></li><li id="t-print"><a 
+href="http://pt.wikipedia.org/w/index.php?title=Quicksort&amp;printable=yes"
+ title="Versão para impressão desta página [alt-shift-p]" accesskey="p">Versão
+ para impressão</a></li></ul>			</div>
+</div>
+
+<!-- /coll-print_export -->
+
+<!-- TOOLBOX -->
+<div class="portal collapsed" id="p-tb">
+	<h5 tabindex="4">Ferramentas</h5>
+	<div class="body">
+		<ul>
+					<li id="t-whatlinkshere"><a 
+href="http://pt.wikipedia.org/wiki/Especial:P%C3%A1ginas_afluentes/Quicksort"
+ title="Lista de todas as páginas que contêm links para esta 
+[alt-shift-j]" accesskey="j">Páginas afluentes</a></li>
+						<li id="t-recentchangeslinked"><a 
+href="http://pt.wikipedia.org/wiki/Especial:Altera%C3%A7%C3%B5es_relacionadas/Quicksort"
+ title="Mudanças recentes nas páginas para as quais esta contém links 
+[alt-shift-k]" accesskey="k">Alterações relacionadas</a></li>
+																																					<li id="t-upload"><a 
+href="http://pt.wikipedia.org/wiki/Ajuda:Como_carregar_ficheiros_no_Commons"
+ title="Carregar ficheiros [alt-shift-u]" accesskey="u">Carregar 
+ficheiro</a></li>
+											<li id="t-specialpages"><a 
+href="http://pt.wikipedia.org/wiki/Especial:P%C3%A1ginas_especiais" 
+title="Lista de páginas especiais [alt-shift-q]" accesskey="q">Páginas 
+especiais</a></li>
+											<li id="t-permalink"><a 
+href="http://pt.wikipedia.org/w/index.php?title=Quicksort&amp;oldid=20880902"
+ title="Link permanente para esta versão desta página">Link permanente</a></li>
+				<li id="t-cite"><a 
+href="http://pt.wikipedia.org/w/index.php?title=Especial:Citar&amp;page=Quicksort&amp;id=20880902"
+ title="Informação sobre como citar esta página">Citar esta página</a></li>
+		</ul>
+	</div>
+</div>
+
+<!-- /TOOLBOX -->
+
+<!-- LANGUAGES -->
+<div class="portal expanded" id="p-lang">
+	<h5 tabindex="5">Noutras línguas</h5>
+	<div style="display: block;" class="body">
+		<ul>
+					<li class="interwiki-ar"><a 
+href="http://ar.wikipedia.org/wiki/%D8%AA%D8%B1%D8%AA%D9%8A%D8%A8_%D8%B3%D8%B1%D9%8A%D8%B9"
+ title="ترتيب سريع">العربية</a></li>
+					<li class="interwiki-bg"><a 
+href="http://bg.wikipedia.org/wiki/%D0%91%D1%8A%D1%80%D0%B7%D0%BE_%D1%81%D0%BE%D1%80%D1%82%D0%B8%D1%80%D0%B0%D0%BD%D0%B5"
+ title="Бързо сортиране">Български</a></li>
+					<li class="interwiki-bn"><a 
+href="http://bn.wikipedia.org/wiki/%E0%A6%95%E0%A7%81%E0%A6%87%E0%A6%95_%E0%A6%B8%E0%A6%B0%E0%A7%8D%E0%A6%9F"
+ title="কুইক সর্ট">বাংলা</a></li>
+					<li class="interwiki-ca"><a 
+href="http://ca.wikipedia.org/wiki/Quicksort" title="Quicksort">Català</a></li>
+					<li class="interwiki-cs"><a 
+href="http://cs.wikipedia.org/wiki/Quicksort" title="Quicksort">Česky</a></li>
+					<li class="interwiki-de"><a 
+href="http://de.wikipedia.org/wiki/Quicksort" title="Quicksort">Deutsch</a></li>
+					<li class="interwiki-en"><a 
+href="http://en.wikipedia.org/wiki/Quicksort" title="Quicksort">English</a></li>
+					<li class="interwiki-es"><a 
+href="http://es.wikipedia.org/wiki/Quicksort" title="Quicksort">Español</a></li>
+					<li class="interwiki-fa"><a 
+href="http://fa.wikipedia.org/wiki/%D9%85%D8%B1%D8%AA%D8%A8%E2%80%8C%D8%B3%D8%A7%D8%B2%DB%8C_%D8%B3%D8%B1%DB%8C%D8%B9"
+ title="مرتب‌سازی سریع">فارسی</a></li>
+					<li class="interwiki-fi"><a 
+href="http://fi.wikipedia.org/wiki/Pikalajittelu" title="Pikalajittelu">Suomi</a></li>
+					<li class="interwiki-fr"><a 
+href="http://fr.wikipedia.org/wiki/Tri_rapide" title="Tri rapide">Français</a></li>
+					<li class="interwiki-he"><a 
+href="http://he.wikipedia.org/wiki/%D7%9E%D7%99%D7%95%D7%9F_%D7%9E%D7%94%D7%99%D7%A8"
+ title="מיון מהיר">עברית</a></li>
+					<li class="interwiki-hu"><a 
+href="http://hu.wikipedia.org/wiki/Gyorsrendez%C3%A9s" 
+title="Gyorsrendezés">Magyar</a></li>
+					<li class="interwiki-is"><a 
+href="http://is.wikipedia.org/wiki/Snarr%C3%B6%C3%B0un" 
+title="Snarröðun">Íslenska</a></li>
+					<li class="interwiki-it"><a 
+href="http://it.wikipedia.org/wiki/Quicksort" title="Quicksort">Italiano</a></li>
+					<li class="interwiki-ja"><a 
+href="http://ja.wikipedia.org/wiki/%E3%82%AF%E3%82%A4%E3%83%83%E3%82%AF%E3%82%BD%E3%83%BC%E3%83%88"
+ title="クイックソート">日本語</a></li>
+					<li class="interwiki-ko"><a 
+href="http://ko.wikipedia.org/wiki/%ED%80%B5_%EC%A0%95%EB%A0%AC" 
+title="퀵 정렬">한국어</a></li>
+					<li class="interwiki-lt"><a 
+href="http://lt.wikipedia.org/wiki/Greitojo_rikiavimo_algoritmas" 
+title="Greitojo rikiavimo algoritmas">Lietuvių</a></li>
+					<li class="interwiki-nl"><a 
+href="http://nl.wikipedia.org/wiki/Quicksort" title="Quicksort">Nederlands</a></li>
+					<li class="interwiki-no"><a 
+href="http://no.wikipedia.org/wiki/Sorteringsalgoritme#Quick_sort" 
+title="Sorteringsalgoritme">‪Norsk (bokmål)‬</a></li>
+					<li class="interwiki-pl"><a 
+href="http://pl.wikipedia.org/wiki/Sortowanie_szybkie" title="Sortowanie
+ szybkie">Polski</a></li>
+					<li class="interwiki-ro"><a 
+href="http://ro.wikipedia.org/wiki/Quicksort" title="Quicksort">Română</a></li>
+					<li class="interwiki-ru"><a 
+href="http://ru.wikipedia.org/wiki/%D0%91%D1%8B%D1%81%D1%82%D1%80%D0%B0%D1%8F_%D1%81%D0%BE%D1%80%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0"
+ title="Быстрая сортировка">Русский</a></li>
+					<li class="interwiki-sk"><a 
+href="http://sk.wikipedia.org/wiki/Quicksort" title="Quicksort">Slovenčina</a></li>
+					<li class="interwiki-sl"><a 
+href="http://sl.wikipedia.org/wiki/Hitro_urejanje" title="Hitro 
+urejanje">Slovenščina</a></li>
+					<li class="interwiki-sr"><a 
+href="http://sr.wikipedia.org/wiki/%D0%9A%D0%B2%D0%B8%D0%BA%D1%81%D0%BE%D1%80%D1%82"
+ title="Квиксорт">Српски / Srpski</a></li>
+					<li class="interwiki-sv"><a 
+href="http://sv.wikipedia.org/wiki/Quicksort" title="Quicksort">Svenska</a></li>
+					<li class="interwiki-tr"><a 
+href="http://tr.wikipedia.org/wiki/H%C4%B1zl%C4%B1_s%C4%B1ralama" 
+title="Hızlı sıralama">Türkçe</a></li>
+					<li class="interwiki-uk"><a 
+href="http://uk.wikipedia.org/wiki/%D0%A8%D0%B2%D0%B8%D0%B4%D0%BA%D0%B5_%D1%81%D0%BE%D1%80%D1%82%D1%83%D0%B2%D0%B0%D0%BD%D0%BD%D1%8F"
+ title="Швидке сортування">Українська</a></li>
+					<li class="interwiki-uz"><a 
+href="http://uz.wikipedia.org/wiki/Quicksort" title="Quicksort">O'zbek</a></li>
+					<li class="interwiki-vi"><a 
+href="http://vi.wikipedia.org/wiki/S%E1%BA%AFp_x%E1%BA%BFp_nhanh" 
+title="Sắp xếp nhanh">Tiếng Việt</a></li>
+					<li class="interwiki-zh"><a 
+href="http://zh.wikipedia.org/wiki/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F"
+ title="快速排序">中文</a></li>
+				</ul>
+	</div>
+</div>
+
+<!-- /LANGUAGES -->
+			</div>
+		<!-- /panel -->
+		<!-- footer -->
+		<div id="footer">
+											<ul id="footer-info">
+																	<li id="footer-info-lastmod"> Esta página foi 
+modificada pela última vez às 07h48min de 1 de julho de 2010.</li>
+																							<li id="footer-info-copyright">Este texto é 
+disponibilizado nos termos da licença <a 
+href="http://creativecommons.org/licenses/by-sa/3.0/deed.pt">Atribuição-Compartilhamento
+ pela mesma Licença 3.0 Unported (CC-BY-SA)</a>;
+pode estar sujeito a condições adicionais.
+Consulte as <a 
+href="http://wikimediafoundation.org/wiki/Condi%C3%A7%C3%B5es_de_Uso">Condições
+ de Uso</a> para mais detalhes.</li>
+															</ul>
+															<ul id="footer-places">
+																	<li id="footer-places-privacy"><a 
+href="http://pt.wikipedia.org/wiki/Wikipedia:Pol%C3%ADtica_de_privacidade"
+ title="Wikipedia:Política de privacidade">Política de privacidade</a></li>
+																							<li id="footer-places-about"><a 
+href="http://pt.wikipedia.org/wiki/Wikipedia:Sobre" 
+title="Wikipedia:Sobre">Sobre a Wikipédia</a></li>
+																							<li id="footer-places-disclaimer"><a 
+href="http://pt.wikipedia.org/wiki/Wikipedia:Aviso_Geral" 
+title="Wikipedia:Aviso Geral">Avisos gerais</a></li>
+															</ul>
+										<ul id="footer-icons" class="noprint">
+								<li id="footer-icon-poweredby"><a 
+href="http://www.mediawiki.org/"><img 
+src="Quicksort_arquivos/poweredby_mediawiki_88x31.png" alt="Powered by 
+MediaWiki" height="31" width="88"></a></li>
+												<li id="footer-icon-copyright"><a 
+href="http://wikimediafoundation.org/"><img 
+src="Quicksort_arquivos/wikimedia-button.png" alt="Wikimedia Foundation"
+ height="31" width="88"></a></li>
+							</ul>
+			<div style="clear: both;"></div>
+		</div>
+		<!-- /footer -->
+		<!-- fixalpha -->
+		<script type="text/javascript"> if ( window.isMSIE55 ) fixalpha(); </script>
+		<!-- /fixalpha -->
+		
+<script type="text/javascript">if (window.runOnloadHook) runOnloadHook();</script>
+		<!-- Served by srv164 in 0.070 secs. -->			<div class="suggestions" 
+style="top: 74px; width: 188px; display: none; left: auto; right: 36px;"><div
+ class="suggestions-results"></div><div class="suggestions-special"></div></div></body></html>

@@ -1,0 +1,1774 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html class="linux firefox firefox3 gecko gecko1" dir="ltr" 
+xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head>
+
+
+<title>Heapsort - Wikipédia, a enciclopédia livre</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta name="generator" content="MediaWiki 1.16wmf4">
+<link rel="alternate" type="application/x-wiki" title="Editar" 
+href="http://pt.wikipedia.org/w/index.php?title=Heapsort&amp;action=edit">
+<link rel="edit" title="Editar" 
+href="http://pt.wikipedia.org/w/index.php?title=Heapsort&amp;action=edit">
+<link rel="apple-touch-icon" 
+href="http://pt.wikipedia.org/apple-touch-icon.png">
+<link rel="shortcut icon" href="http://pt.wikipedia.org/favicon.ico">
+<link rel="search" type="application/opensearchdescription+xml" 
+href="http://pt.wikipedia.org/w/opensearch_desc.php" title="Wikipedia 
+(pt)">
+<link rel="copyright" 
+href="http://creativecommons.org/licenses/by-sa/3.0/">
+<link rel="alternate" type="application/atom+xml" title="''Feed'' Atom 
+Wikipedia" 
+href="http://pt.wikipedia.org/w/index.php?title=Especial:Mudan%C3%A7as_recentes&amp;feed=atom">
+<link rel="stylesheet" href="Heapsort_arquivos/main-ltr.css" 
+type="text/css" media="screen">
+<link rel="stylesheet" href="Heapsort_arquivos/shared.css" 
+type="text/css" media="screen">
+<link rel="stylesheet" href="Heapsort_arquivos/commonPrint.css" 
+type="text/css" media="print">
+<link rel="stylesheet" href="Heapsort_arquivos/combined.css" 
+type="text/css" media="all">
+<link rel="stylesheet" href="Heapsort_arquivos/jquery-ui-1.css" 
+type="text/css" media="all">
+<link rel="stylesheet" href="Heapsort_arquivos/index_003.css" 
+type="text/css" media="all">
+<link rel="stylesheet" href="Heapsort_arquivos/index_005.css" 
+type="text/css" media="print">
+<link rel="stylesheet" href="Heapsort_arquivos/index_004.css" 
+type="text/css" media="handheld">
+<link rel="stylesheet" href="Heapsort_arquivos/index_002.css" 
+type="text/css" media="all">
+<link rel="stylesheet" href="Heapsort_arquivos/index.css" 
+type="text/css" media="all">
+<script type="text/javascript">
+var skin="vector",
+stylepath="http://bits.wikimedia.org/skins-1.5",
+wgUrlProtocols="http\\:\\/\\/|https\\:\\/\\/|ftp\\:\\/\\/|irc\\:\\/\\/|gopher\\:\\/\\/|telnet\\:\\/\\/|nntp\\:\\/\\/|worldwind\\:\\/\\/|mailto\\:|news\\:|svn\\:\\/\\/",
+wgArticlePath="/wiki/$1",
+wgScriptPath="/w",
+wgScriptExtension=".php",
+wgScript="/w/index.php",
+wgVariantArticlePath=false,
+wgActionPaths={},
+wgServer="http://pt.wikipedia.org",
+wgCanonicalNamespace="",
+wgCanonicalSpecialPageName=false,
+wgNamespaceNumber=0,
+wgPageName="Heapsort",
+wgTitle="Heapsort",
+wgAction="view",
+wgArticleId=14002,
+wgIsArticle=true,
+wgUserName=null,
+wgUserGroups=null,
+wgUserLanguage="pt",
+wgContentLanguage="pt",
+wgBreakFrames=false,
+wgCurRevisionId=20397603,
+wgVersion="1.16wmf4",
+wgEnableAPI=true,
+wgEnableWriteAPI=true,
+wgSeparatorTransformTable=[",	.", " 	,"],
+wgDigitTransformTable=["", ""],
+wgMainPageTitle="Página principal",
+wgFormattedNamespaces={"-2": "Multimédia", "-1": "Especial", "0": "", "1": "Discussão", "2": "Usuário", "3": "Usuário Discussão", "4": "Wikipedia", "5": "Wikipedia Discussão", "6": "Ficheiro", "7": "Ficheiro Discussão", "8": "MediaWiki", "9": "MediaWiki Discussão", "10": "Predefinição", "11": "Predefinição Discussão", "12": "Ajuda", "13": "Ajuda Discussão", "14": "Categoria", "15": "Categoria Discussão", "100": "Portal", "101": "Portal Discussão", "102": "Anexo", "103": "Anexo Discussão"},
+wgNamespaceIds={"multimédia": -2, "especial": -1, "": 0, "discussão": 1, "usuário": 2, "usuário_discussão": 3, "wikipedia": 4, "wikipedia_discussão": 5, "ficheiro": 6, "ficheiro_discussão": 7, "mediawiki": 8, "mediawiki_discussão": 9, "predefinição": 10, "predefinição_discussão": 11, "ajuda": 12, "ajuda_discussão": 13, "categoria": 14, "categoria_discussão": 15, "portal": 100, "portal_discussão": 101, "anexo": 102, "anexo_discussão": 103, "utilizador": 2, "utilizador_discussão": 3, "imagem": 6, "imagem_discussão": 7, "arquivo": 6, "arquivo_discussão": 7, "discussão_portal": 101, "image": 6, "image_talk": 7},
+wgSiteName="Wikipedia",
+wgCategories=["!Esboços sobre programação", "Algoritmos de ordenação"],
+wgMWSuggestTemplate="http://pt.wikipedia.org/w/api.php?action=opensearch\x26search={searchTerms}\x26namespace={namespaces}\x26suggest",
+wgDBname="ptwiki",
+wgSearchNamespaces=[0],
+wgMWSuggestMessages=["com sugestões", "sem sugestões"],
+wgRestrictionEdit=[],
+wgRestrictionMove=[],
+wgWikimediaMobileUrl="http://pt.m.wikipedia.org/wiki",
+wgCollapsibleNavBucketTest=false,
+wgCollapsibleNavForceNewVersion=false,
+wgVectorPreferences={"collapsiblenav": {"enable": 1}, "editwarning": {"enable": 1}, "simplesearch": {"enable": 1, "disablesuggest": 0}},
+wgVectorEnabledModules={"collapsiblenav": true, "collapsibletabs": true, "editwarning": true, "expandablesearch": false, "footercleanup": false, "simplesearch": true},
+wgNotice="",
+wgNoticeLocal="";
+</script><script src="Heapsort_arquivos/wikibits.js" type="text/javascript"></script>
+<script type="text/javascript" src="Heapsort_arquivos/jquery.js"></script>
+<script src="Heapsort_arquivos/ajax.js" type="text/javascript"></script>
+<script src="Heapsort_arquivos/mwsuggest.js" type="text/javascript"></script>
+<script src="Heapsort_arquivos/MobileRedirect.js" type="text/javascript"></script>
+<script src="Heapsort_arquivos/plugins.js" type="text/javascript"></script>
+<script src="Heapsort_arquivos/Vector.js" type="text/javascript"></script>
+<script type="text/javascript">mw.usability.addMessages({'vector-collapsiblenav-more':'Mais línguas','vector-editwarning-warning':'Abandonar esta página pode fazer com que perca todas as suas alterações.\nSe estiver autenticado, pode desactivar este aviso na secção \"Edição\" das preferências.','vector-simplesearch-search':'Pesquisa','vector-simplesearch-containing':'contendo...'});</script>
+<script type="text/javascript" src="Heapsort_arquivos/centralnotice.js"></script><style type="text/css">
+#centralNotice .siteNoticeSmall{display:none;}
+#centralNotice .siteNoticeSmallAnon{display:none;}
+#centralNotice .siteNoticeSmallUser{display:none;}
+#centralNotice.collapsed .siteNoticeBig{display:none;}
+#centralNotice.collapsed .siteNoticeSmall{display:block;}
+#centralNotice.collapsed .siteNoticeSmallUser{display:block;}
+#centralNotice.collapsed .siteNoticeSmallAnon{display:block;}
+#centralNotice.anonnotice .siteNoticeSmallUser{display:none !important;}
+#centralNotice.usernotice .siteNoticeSmallAnon{display:none !important;}
+</style>
+
+
+<!--[if lt IE 7]><style type="text/css">body{behavior:url("/w/skins-1.5/vector/csshover.htc")}</style><![endif]-->
+<script src="Heapsort_arquivos/index.php" type="text/javascript"></script><style type="text/css">#interProject, #sisterProjects {display: none; speak: none;} #p-tb .pBody {padding-right: 0;}</style><script type="text/javascript" src="Heapsort_arquivos/index_004.php"></script><script type="text/javascript" src="Heapsort_arquivos/index_002.php"></script><script type="text/javascript" src="Heapsort_arquivos/index_003.php"></script>
+
+<style type="text/css">/*<![CDATA[*/
+.source-asm {line-height: normal;}
+.source-asm li, .source-asm pre {
+	line-height: normal; border: 0px none white;
+}
+/**
+ * GeSHi Dynamically Generated Stylesheet
+ * --------------------------------------
+ * Dynamically generated stylesheet for asm
+ * CSS class: source-asm, CSS id: 
+ * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann
+ * (http://qbnz.com/highlighter/ and http://geshi.org/)
+ * --------------------------------------
+ */
+.asm.source-asm .de1, .asm.source-asm .de2 {font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;}
+.asm.source-asm  {font-family:monospace;}
+.asm.source-asm .imp {font-weight: bold; color: red;}
+.asm.source-asm li, .asm.source-asm .li1 {font-weight: normal; vertical-align:top;}
+.asm.source-asm .ln {width:1px;text-align:right;margin:0;padding:0 2px;vertical-align:top;}
+.asm.source-asm .li2 {font-weight: bold; vertical-align:top;}
+.asm.source-asm .kw1 {color: #00007f; font-weight: bold;}
+.asm.source-asm .kw2 {color: #0000ff; font-weight: bold;}
+.asm.source-asm .kw3 {color: #00007f;}
+.asm.source-asm .kw4 {color: #000000; font-weight: bold;}
+.asm.source-asm .kw5 {color: #000000; font-weight: bold;}
+.asm.source-asm .co1 {color: #666666; font-style: italic;}
+.asm.source-asm .co2 {color: #adadad; font-style: italic;}
+.asm.source-asm .es0 {color: #000099; font-weight: bold;}
+.asm.source-asm .br0 {color: #009900; font-weight: bold;}
+.asm.source-asm .sy0 {color: #339933;}
+.asm.source-asm .st0 {color: #7f007f;}
+.asm.source-asm .nu0 {color: #0000ff;}
+.asm.source-asm .ln-xtra, .asm.source-asm li.ln-xtra, .asm.source-asm div.ln-xtra {background-color: #ffc;}
+.asm.source-asm span.xtra { display:block; }
+
+/*]]>*/
+</style>
+<style type="text/css">/*<![CDATA[*/
+@import "/w/index.php?title=MediaWiki:Geshi.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=2678400";
+/*]]>*/
+</style><style type="text/css">/*<![CDATA[*/
+.source-c {line-height: normal;}
+.source-c li, .source-c pre {
+	line-height: normal; border: 0px none white;
+}
+/**
+ * GeSHi Dynamically Generated Stylesheet
+ * --------------------------------------
+ * Dynamically generated stylesheet for c
+ * CSS class: source-c, CSS id: 
+ * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann
+ * (http://qbnz.com/highlighter/ and http://geshi.org/)
+ * --------------------------------------
+ */
+.c.source-c .de1, .c.source-c .de2 {font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;}
+.c.source-c  {font-family:monospace;}
+.c.source-c .imp {font-weight: bold; color: red;}
+.c.source-c li, .c.source-c .li1 {font-weight: normal; vertical-align:top;}
+.c.source-c .ln {width:1px;text-align:right;margin:0;padding:0 2px;vertical-align:top;}
+.c.source-c .li2 {font-weight: bold; vertical-align:top;}
+.c.source-c .kw1 {color: #b1b100;}
+.c.source-c .kw2 {color: #000000; font-weight: bold;}
+.c.source-c .kw3 {color: #000066;}
+.c.source-c .kw4 {color: #993333;}
+.c.source-c .co1 {color: #666666; font-style: italic;}
+.c.source-c .co2 {color: #339933;}
+.c.source-c .coMULTI {color: #808080; font-style: italic;}
+.c.source-c .es0 {color: #000099; font-weight: bold;}
+.c.source-c .es1 {color: #000099; font-weight: bold;}
+.c.source-c .es2 {color: #660099; font-weight: bold;}
+.c.source-c .es3 {color: #660099; font-weight: bold;}
+.c.source-c .es4 {color: #660099; font-weight: bold;}
+.c.source-c .es5 {color: #006699; font-weight: bold;}
+.c.source-c .br0 {color: #009900;}
+.c.source-c .sy0 {color: #339933;}
+.c.source-c .st0 {color: #ff0000;}
+.c.source-c .nu0 {color: #0000dd;}
+.c.source-c .nu6 {color: #208080;}
+.c.source-c .nu8 {color: #208080;}
+.c.source-c .nu12 {color: #208080;}
+.c.source-c .nu16 {color:#800080;}
+.c.source-c .nu17 {color:#800080;}
+.c.source-c .nu18 {color:#800080;}
+.c.source-c .nu19 {color:#800080;}
+.c.source-c .me1 {color: #202020;}
+.c.source-c .me2 {color: #202020;}
+.c.source-c .ln-xtra, .c.source-c li.ln-xtra, .c.source-c div.ln-xtra {background-color: #ffc;}
+.c.source-c span.xtra { display:block; }
+
+/*]]>*/
+</style>
+<style type="text/css">/*<![CDATA[*/
+@import "/w/index.php?title=MediaWiki:Geshi.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=2678400";
+/*]]>*/
+</style><style type="text/css">/*<![CDATA[*/
+.source-cpp {line-height: normal;}
+.source-cpp li, .source-cpp pre {
+	line-height: normal; border: 0px none white;
+}
+/**
+ * GeSHi Dynamically Generated Stylesheet
+ * --------------------------------------
+ * Dynamically generated stylesheet for cpp
+ * CSS class: source-cpp, CSS id: 
+ * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann
+ * (http://qbnz.com/highlighter/ and http://geshi.org/)
+ * --------------------------------------
+ */
+.cpp.source-cpp .de1, .cpp.source-cpp .de2 {font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;}
+.cpp.source-cpp  {font-family:monospace;}
+.cpp.source-cpp .imp {font-weight: bold; color: red;}
+.cpp.source-cpp li, .cpp.source-cpp .li1 {font-weight: normal; vertical-align:top;}
+.cpp.source-cpp .ln {width:1px;text-align:right;margin:0;padding:0 2px;vertical-align:top;}
+.cpp.source-cpp .li2 {font-weight: bold; vertical-align:top;}
+.cpp.source-cpp .kw1 {color: #0000ff;}
+.cpp.source-cpp .kw2 {color: #0000ff;}
+.cpp.source-cpp .kw3 {color: #0000dd;}
+.cpp.source-cpp .kw4 {color: #0000ff;}
+.cpp.source-cpp .co1 {color: #666666;}
+.cpp.source-cpp .co2 {color: #339900;}
+.cpp.source-cpp .coMULTI {color: #ff0000; font-style: italic;}
+.cpp.source-cpp .es0 {color: #000099; font-weight: bold;}
+.cpp.source-cpp .es1 {color: #000099; font-weight: bold;}
+.cpp.source-cpp .es2 {color: #660099; font-weight: bold;}
+.cpp.source-cpp .es3 {color: #660099; font-weight: bold;}
+.cpp.source-cpp .es4 {color: #660099; font-weight: bold;}
+.cpp.source-cpp .es5 {color: #006699; font-weight: bold;}
+.cpp.source-cpp .br0 {color: #008000;}
+.cpp.source-cpp .sy0 {color: #008000;}
+.cpp.source-cpp .sy1 {color: #000080;}
+.cpp.source-cpp .sy2 {color: #000040;}
+.cpp.source-cpp .sy3 {color: #000040;}
+.cpp.source-cpp .sy4 {color: #008080;}
+.cpp.source-cpp .st0 {color: #FF0000;}
+.cpp.source-cpp .nu0 {color: #0000dd;}
+.cpp.source-cpp .nu6 {color: #208080;}
+.cpp.source-cpp .nu8 {color: #208080;}
+.cpp.source-cpp .nu12 {color: #208080;}
+.cpp.source-cpp .nu16 {color:#800080;}
+.cpp.source-cpp .nu17 {color:#800080;}
+.cpp.source-cpp .nu18 {color:#800080;}
+.cpp.source-cpp .nu19 {color:#800080;}
+.cpp.source-cpp .me1 {color: #007788;}
+.cpp.source-cpp .me2 {color: #007788;}
+.cpp.source-cpp .ln-xtra, .cpp.source-cpp li.ln-xtra, .cpp.source-cpp div.ln-xtra {background-color: #ffc;}
+.cpp.source-cpp span.xtra { display:block; }
+
+/*]]>*/
+</style>
+<style type="text/css">/*<![CDATA[*/
+@import "/w/index.php?title=MediaWiki:Geshi.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=2678400";
+/*]]>*/
+</style><style type="text/css">/*<![CDATA[*/
+.source-java {line-height: normal;}
+.source-java li, .source-java pre {
+	line-height: normal; border: 0px none white;
+}
+/**
+ * GeSHi Dynamically Generated Stylesheet
+ * --------------------------------------
+ * Dynamically generated stylesheet for java
+ * CSS class: source-java, CSS id: 
+ * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann
+ * (http://qbnz.com/highlighter/ and http://geshi.org/)
+ * --------------------------------------
+ */
+.java.source-java .de1, .java.source-java .de2 {font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;}
+.java.source-java  {font-family:monospace;}
+.java.source-java .imp {font-weight: bold; color: red;}
+.java.source-java li, .java.source-java .li1 {font-weight: normal; vertical-align:top;}
+.java.source-java .ln {width:1px;text-align:right;margin:0;padding:0 2px;vertical-align:top;}
+.java.source-java .li2 {font-weight: bold; vertical-align:top;}
+.java.source-java .kw1 {color: #000000; font-weight: bold;}
+.java.source-java .kw2 {color: #000066; font-weight: bold;}
+.java.source-java .kw3 {color: #003399;}
+.java.source-java .kw4 {color: #000066; font-weight: bold;}
+.java.source-java .co1 {color: #666666; font-style: italic;}
+.java.source-java .co2 {color: #006699;}
+.java.source-java .co3 {color: #008000; font-style: italic; font-weight: bold;}
+.java.source-java .coMULTI {color: #666666; font-style: italic;}
+.java.source-java .es0 {color: #000099; font-weight: bold;}
+.java.source-java .br0 {color: #009900;}
+.java.source-java .sy0 {color: #339933;}
+.java.source-java .st0 {color: #0000ff;}
+.java.source-java .nu0 {color: #cc66cc;}
+.java.source-java .me1 {color: #006633;}
+.java.source-java .me2 {color: #006633;}
+.java.source-java .ln-xtra, .java.source-java li.ln-xtra, .java.source-java div.ln-xtra {background-color: #ffc;}
+.java.source-java span.xtra { display:block; }
+
+/*]]>*/
+</style>
+<style type="text/css">/*<![CDATA[*/
+@import "/w/index.php?title=MediaWiki:Geshi.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=2678400";
+/*]]>*/
+</style><style type="text/css">/*<![CDATA[*/
+.source-java5 {line-height: normal;}
+.source-java5 li, .source-java5 pre {
+	line-height: normal; border: 0px none white;
+}
+/**
+ * GeSHi Dynamically Generated Stylesheet
+ * --------------------------------------
+ * Dynamically generated stylesheet for java5
+ * CSS class: source-java5, CSS id: 
+ * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann
+ * (http://qbnz.com/highlighter/ and http://geshi.org/)
+ * --------------------------------------
+ */
+.java5.source-java5 .de1, .java5.source-java5 .de2 {font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;}
+.java5.source-java5  {font-family:monospace;}
+.java5.source-java5 .imp {font-weight: bold; color: red;}
+.java5.source-java5 li, .java5.source-java5 .li1 {font-weight: normal; vertical-align:top;}
+.java5.source-java5 .ln {width:1px;text-align:right;margin:0;padding:0 2px;vertical-align:top;}
+.java5.source-java5 .li2 {font-weight: bold; vertical-align:top;}
+.java5.source-java5 .kw1 {color: #000000;  font-weight: bold;}
+.java5.source-java5 .kw2 {color: #000000; font-weight: bold;}
+.java5.source-java5 .kw3 {color: #006600; font-weight: bold;}
+.java5.source-java5 .kw4 {color: #006600; font-weight: bold;}
+.java5.source-java5 .kw5 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw6 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw7 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw8 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw9 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw10 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw11 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw12 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw13 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw14 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw15 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw16 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw17 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw18 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw19 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw20 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw21 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw22 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw23 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw24 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw25 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw26 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw27 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw28 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw29 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw30 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw31 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw32 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw33 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw34 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw35 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw36 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw37 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw38 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw39 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw40 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw41 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw42 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw43 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw44 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw45 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw46 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw47 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw48 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw49 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw50 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw51 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw52 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw53 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw54 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw55 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw56 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw57 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw58 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw59 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw60 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw61 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw62 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw63 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw64 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw65 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw66 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw67 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw68 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw69 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw70 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw71 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw72 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw73 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw74 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw75 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw76 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw77 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw78 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw79 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw80 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw81 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw82 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw83 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw84 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw85 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw86 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw87 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw88 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw89 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw90 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw91 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw92 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw93 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw94 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw95 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw96 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw97 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw98 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw99 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw100 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw101 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw102 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw103 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw104 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw105 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw106 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw107 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw108 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw109 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw110 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw111 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw112 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw113 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw114 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw115 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw116 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw117 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw118 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw119 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw120 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw121 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw122 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw123 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw124 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw125 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw126 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw127 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw128 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw129 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw130 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw131 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw132 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw133 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw134 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw135 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw136 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw137 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw138 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw139 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw140 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw141 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw142 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw143 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw144 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw145 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw146 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw147 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw148 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw149 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw150 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw151 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw152 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw153 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw154 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw155 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw156 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw157 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw158 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw159 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw160 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw161 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw162 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw163 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw164 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw165 {color: #003399; font-weight: bold;}
+.java5.source-java5 .kw166 {color: #003399; font-weight: bold;}
+.java5.source-java5 .co1 {color: #666666; font-style: italic;}
+.java5.source-java5 .co2 {color: #006699;}
+.java5.source-java5 .co3 {color: #008000; font-style: italic; font-weight: bold;}
+.java5.source-java5 .coMULTI {color: #666666; font-style: italic;}
+.java5.source-java5 .es0 {color: #000099; font-weight: bold;}
+.java5.source-java5 .br0 {color: #009900;}
+.java5.source-java5 .sy0 {color: #339933;}
+.java5.source-java5 .st0 {color: #0000ff;}
+.java5.source-java5 .nu0 {color: #cc66cc;}
+.java5.source-java5 .me1 {color: #006633;}
+.java5.source-java5 .me2 {color: #006633;}
+.java5.source-java5 .ln-xtra, .java5.source-java5 li.ln-xtra, .java5.source-java5 div.ln-xtra {background-color: #ffc;}
+.java5.source-java5 span.xtra { display:block; }
+
+/*]]>*/
+</style>
+<style type="text/css">/*<![CDATA[*/
+@import "/w/index.php?title=MediaWiki:Geshi.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=2678400";
+/*]]>*/
+</style><style type="text/css">/*<![CDATA[*/
+.source-python {line-height: normal;}
+.source-python li, .source-python pre {
+	line-height: normal; border: 0px none white;
+}
+/**
+ * GeSHi Dynamically Generated Stylesheet
+ * --------------------------------------
+ * Dynamically generated stylesheet for python
+ * CSS class: source-python, CSS id: 
+ * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann
+ * (http://qbnz.com/highlighter/ and http://geshi.org/)
+ * --------------------------------------
+ */
+.python.source-python .de1, .python.source-python .de2 {font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;}
+.python.source-python  {font-family:monospace;}
+.python.source-python .imp {font-weight: bold; color: red;}
+.python.source-python li, .python.source-python .li1 {font-weight: normal; vertical-align:top;}
+.python.source-python .ln {width:1px;text-align:right;margin:0;padding:0 2px;vertical-align:top;}
+.python.source-python .li2 {font-weight: bold; vertical-align:top;}
+.python.source-python .kw1 {color: #ff7700;font-weight:bold;}
+.python.source-python .kw2 {color: #008000;}
+.python.source-python .kw3 {color: #dc143c;}
+.python.source-python .kw4 {color: #0000cd;}
+.python.source-python .co1 {color: #808080; font-style: italic;}
+.python.source-python .coMULTI {color: #808080; font-style: italic;}
+.python.source-python .es0 {color: #000099; font-weight: bold;}
+.python.source-python .br0 {color: black;}
+.python.source-python .sy0 {color: #66cc66;}
+.python.source-python .st0 {color: #483d8b;}
+.python.source-python .nu0 {color: #ff4500;}
+.python.source-python .me1 {color: black;}
+.python.source-python .ln-xtra, .python.source-python li.ln-xtra, .python.source-python div.ln-xtra {background-color: #ffc;}
+.python.source-python span.xtra { display:block; }
+
+/*]]>*/
+</style>
+<style type="text/css">/*<![CDATA[*/
+@import "/w/index.php?title=MediaWiki:Geshi.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=2678400";
+/*]]>*/
+</style></head><body class="mediawiki ltr ns-0 ns-subject page-Heapsort 
+skin-vector">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<!-- content -->
+		<div id="content"><div style="visibility: hidden; display: none; 
+width: 602px; height: 402px; margin: 0px; padding: 0px; 
+background-color: white; position: absolute; right: 2em; top: 1em; 
+border: 1px solid gray; z-index: 13;"><iframe style="z-index: 14; 
+position: absolute; right: 1px; top: 1px; width: 600px; height: 400px; 
+margin: 0px; padding: 0px;" frameborder="0" scrolling="no"></iframe><img
+ style="z-index: 15; position: absolute; right: 11px; top: 9px; width: 
+18px; cursor: pointer;" src="Heapsort_arquivos/Button_hide.png" 
+title="fechar"></div>
+			<a id="top"></a>
+			<div id="mw-js-message" style="display: none;"></div>
+						<!-- sitenotice -->
+			<div id="siteNotice"><script type="text/javascript">if (wgNotice != '') document.writeln(wgNotice);</script><div
+ id="centralNotice" class="expanded anonnotice"><style type="text/css">
+/* Styles for Notices */
+/*COPIED FROM VECTORCHANGED */
+
+.notice-wrapper-vector_transition, .notice-collapsed-wrapper-vector_transition {
+ margin: 2px auto 0;
+ width: 100%;
+ padding: 0;
+ font-family: 'Arial','Helvetica','Tahoma',sans-serif;
+ color: #333;
+ background-color: #ddd;
+ font-size: 1em;
+ font-weight: 200;
+ vertical-align:middle;
+}
+
+.notice-wrapper-vector_transition {
+ border: 1px solid #bbb;
+ background-color: #fcfcfc;
+ text-align: left;
+ font-size: 1em;
+}
+
+.notice-wrapper-vector_transition a {
+ color: #006699;
+}
+
+#vector_post_release_message .toggle-box {
+ text-align: right;
+ font-size: 0.8em;
+ padding: 0;
+}
+
+#vector_post_release_message .trans-box {
+ text-align: right;
+ font-size: 0.8em;
+ padding: 0;
+ white-space: nowrap;
+}
+
+td#table-cell-1 {
+ margin: 0 auto;
+ padding: 1px 0 3px 5px;
+ width: 30px;
+}
+
+td#table-cell-2 {
+ margin: 0 auto;
+ padding: 0 5px 0 0;
+ font-size: 1.3em;
+}
+
+td#table-cell-lht {
+ font-size: 0.8em;
+ padding: 0 5px 0 0;
+ text-align: center;
+}
+
+#vector_post_release_message .line-ht-fix {
+ line-height: 1em;
+ align: center;
+}
+
+
+#centralNotice.collapsed .siteNoticeUser {
+ display:none;
+}
+
+div.notice-links-vector_transition {
+ text-align:right;
+}
+
+
+/* FROM VECTORNEWLOOK */
+
+
+#centralNotice.collapsed .central-notice-banner {
+ display: none;
+}
+#vector_transition_message .central-notice-banner {
+ position: relative;
+ margin-bottom: 1em !important;
+}
+#vector_transition_message .toggle-box {
+ position: absolute;
+ right: 8em;
+ /* right: 0.25em; */
+ /* top: 1.3em; */
+ font-size: 0.8em;
+}
+.vector-banner-base {
+ height: 3em;
+ background-color: white;
+ background-image: url(http://upload.wikimedia.org/centralnotice/enwiki/vector/base.png);
+ background-repeat: repeat-x;
+ background-position: center bottom;
+}
+.vector-banner-base-left {
+ height: 3em;
+ background-image: url(http://upload.wikimedia.org/centralnotice/enwiki/vector/left.png);
+ background-repeat: no-repeat;
+ background-position: left bottom;
+}
+.vector-banner-base-right {
+ height: 3em;
+ background-image: url(http://upload.wikimedia.org/centralnotice/enwiki/vector/right.png);
+ background-repeat: no-repeat;
+ background-position: right bottom;
+}
+.vector-banner-message {
+ text-align: center;
+ height: 3em;
+}
+.vector-banner-message a {
+ display: inline-block;
+ height: 2em;
+ padding: 0 1em !important;
+ padding-top: 1em !important;
+ cursor: pointer;
+ text-decoration: none;
+}
+.vector-banner-message a.vector-banner-message-left {
+ background-image: url(http://upload.wikimedia.org/centralnotice/enwiki/vector/break.png) !important;
+ background-repeat: no-repeat !important;
+ background-position: right bottom !important;
+ color: #333333;
+}
+.vector-banner-message a.vector-banner-message-right {
+ color: #0645AD;
+}
+.vector-banner-message a.vector-banner-message-right:hover {
+ text-decoration: underline;
+}
+</style>
+<div style="display: none;" class="central-notice-banner" 
+id="vector_transition_message">
+ <div class="toggle-box"><a href="#" onclick="toggleNotice();return 
+false">Esconder</a></div>
+ <div class="vector-banner-base">
+  <div class="vector-banner-base-left">
+   <div class="vector-banner-base-right">
+    <div class="vector-banner-message">
+     <a 
+href="http://meta.wikimedia.org/wiki/2010_Wikimedia_design_and_feature_change"
+ class="vector-banner-message-left">Wikipedia está a mudar de aparência.</a><a
+ 
+href="http://meta.wikimedia.org/wiki/2010_Wikimedia_design_and_feature_change"
+ class="vector-banner-message-right">Ajude-nos a encontrar problemas e a
+ completar as traduções da interface de utilizador.</a>
+    </div>
+   </div>
+  </div>
+ </div>
+</div>
+<table style="display: none;" class="siteNoticeUser 
+notice-wrapper-vector_transition" id="vector_post_release_message">
+ <tbody><tr>
+  <td id="table-cell-2" align="center">
+   <span>
+    Notou algo diferente? Fizemos algumas melhorias em Wikipedia. <a 
+href="http://pt.wikipedia.org/wiki/Special:UsabilityInitiativePrefSwitch">Saiba
+ mais.</a>
+   </span>
+  </td>
+  <td id="table-cell-lht" class="line-ht-fix">
+      <span class="toggle-box">
+   [<a href="#" onclick="toggleNotice();return false">Esconder</a>]
+ </span><br>
+  <span class="trans-box">
+  [<a 
+href="http://usability.wikimedia.org/wiki/Releases/Default_Switch#Phase_IV_Deployment">Ajuda-nos
+ com as traduções!</a>]
+  </span>
+  </td>
+ </tr>
+</tbody></table>
+
+<script type="text/javascript">
+// Control which will be displayed
+// This is the lowest form of JS that will work in all supported browsers, is not pretty but it works
+if( 
+ (typeof(wgDBname) == "undefined") ||
+ wgDBname  == 'enwiki' || 
+ wgDBname == 'dewiki' || 
+ wgDBname == 'frwiki'|| 
+ wgDBname == 'plwiki'|| 
+ wgDBname == 'itwiki'|| 
+ wgDBname == 'jawiki'|| 
+ wgDBname == 'eswiki'|| 
+ wgDBname == 'nlwiki'|| 
+ wgDBname == 'ptwiki'|| 
+ wgDBname == 'ruwiki'|| 
+ wgDBname == 'enwikinews'|| 
+ wgDBname == 'nostalgiawiki'|| 
+ wgDBname == 'strategywiki'|| 
+ wgDBname =='strategyappswiki'|| 
+ wgDBname =='usabilitywiki'|| 
+ wgDBname == 'fiwikimedia'|| 
+ wgDBname == 'trwikimedia'|| 
+ wgDBname == 'outreachwiki'|| 
+ wgDBname == 'srwikinews'|| 
+ wgDBname == 'liquidthreads_labswikimedia'|| 
+ wgDBname == 'flaggedrevs_labswikimedia'|| 
+ wgDBname == 'foundationwiki'|| 
+ wgDBname == 'officewiki'|| 
+ wgDBname == 'ukwikimedia'|| 
+ wgDBname == 'commonswiki' ||
+ wgDBname == "wikimania2010wiki" || 
+wgDBname == "wikimania2009wiki" || 
+wgDBname == "wikimania2008wiki" || 
+wgDBname == "wikimania2007wiki" || 
+wgDBname == "wikimania2006wiki" || 
+wgDBname == "wikimania2005wiki" ||
+wgDBname == "brwikimedia" || 
+wgDBname == "dkwikimedia" || 
+wgDBname == "vewikimedia" || 
+wgDBname == "ptwikimedia" || 
+wgDBname == "nowikimedia" || 
+wgDBname == "ruwikimedia" || 
+wgDBname == "sewikimedia" || 
+wgDBname == "rswikimedia" || 
+wgDBname == "cowikimedia" || 
+wgDBname == "plwikimedia" || 
+wgDBname == "chwikimedia" || 
+wgDBname == "ilwikimedia" || 
+wgDBname == "nlwikimedia" || 
+wgDBname == "nzwikimedia" || 
+wgDBname == "uawikimedia" || 
+wgDBname == "metawiki" || 
+wgDBname == "en_labswikimedia" || 
+wgDBname == "de_labswikimedia" || 
+wgDBname == "readerfeedback_labswikimedia"
+) {
+/* already changed */
+    document.getElementById('vector_transition_message').style.display='none';
+    document.getElementById('vector_post_release_message').style.display='none';
+}
+else if(
+wgDBname == "afwiki" || 
+wgDBname == "alswiki" || 
+wgDBname == "arwiki" || 
+wgDBname == "be_x_oldwiki" || 
+wgDBname == "bgwiki" || 
+wgDBname == "bnwiki" || 
+wgDBname == "brwiki" || 
+wgDBname == "bswiki" || 
+wgDBname == "cawiki" || 
+wgDBname == "cswiki" || 
+wgDBname == "cywiki" || 
+wgDBname == "dawiki" || 
+wgDBname == "diqwiki" || 
+wgDBname == "dsbwiki" || 
+wgDBname == "elwiki" || 
+wgDBname == "eowiki" || 
+wgDBname == "etwiki" || 
+wgDBname == "euwiki" || 
+wgDBname == "fawiki" || 
+wgDBname == "fiwiki" || 
+wgDBname == "frpwiki" || 
+wgDBname == "glwiki" || 
+wgDBname == "hewiki" || 
+wgDBname == "hsbwiki" || 
+wgDBname == "huwiki" || 
+wgDBname == "iawiki" || 
+wgDBname == "idwiki" || 
+wgDBname == "kawiki" || 
+wgDBname == "kowiki" || 
+wgDBname == "kshwiki" || 
+wgDBname == "lbwiki" || 
+wgDBname == "mkwiki" || 
+wgDBname == "mlwiki" || 
+wgDBname == "mswiki" || 
+wgDBname == "mtwiki" || 
+wgDBname == "nnwiki" || 
+wgDBname == "nowiki" || 
+wgDBname == "ocwiki" || 
+wgDBname == "pmswiki" || 
+wgDBname == "rowiki" || 
+wgDBname == "roa_tarawiki" || 
+wgDBname == "sahwiki" || 
+wgDBname == "skwiki" || 
+wgDBname == "slwiki" || 
+wgDBname == "sqwiki" || 
+wgDBname == "svwiki" || 
+wgDBname == "tewiki" || 
+wgDBname == "thwiki" || 
+wgDBname == "tlwiki" || 
+wgDBname == "trwiki" || 
+wgDBname == "viwiki" || 
+wgDBname == "yiwiki" || 
+wgDBname == "yowiki" || 
+wgDBname == "zhwiki" || 
+wgDBname == "zh_yuewiki" ||
+wgDBname == "incubatorwiki" || 
+wgDBname == "mediawikiwiki" 
+) {
+/* Phase IV projects, show post-release msg */
+    document.getElementById('vector_transition_message').style.display='none';
+}
+else{
+/* all others, just hide post-release */
+    document.getElementById('vector_post_release_message').style.display='none';
+   if(wgUserName == null){
+    document.getElementById('vector_transition_message').style.display='none';
+   }
+}
+
+
+</script></div>
+</div>
+			<!-- /sitenotice -->
+						<!-- firstHeading -->
+			<h1 id="firstHeading" class="firstHeading">Heapsort</h1>
+			<!-- /firstHeading -->
+			<!-- bodyContent -->
+			<div id="bodyContent">
+				<!-- tagline -->
+				<h3 id="siteSub">Origem: Wikipédia, a enciclopédia livre.</h3>
+				<!-- /tagline -->
+				<!-- subtitle -->
+				<div id="contentSub"></div>
+				<!-- /subtitle -->
+																<!-- jumpto -->
+				<div id="jump-to-nav">
+					Ir para: <a href="#mw-head">navegação</a>,
+					<a href="#p-search">pesquisa</a>
+				</div>
+				<!-- /jumpto -->
+								<!-- bodytext -->
+				<p>O <a href="http://pt.wikipedia.org/wiki/Algoritmo" 
+title="Algoritmo">algoritmo</a> <b>heapsort</b> é um <a 
+href="http://pt.wikipedia.org/wiki/Algoritmo_de_ordena%C3%A7%C3%A3o" 
+title="Algoritmo de ordenação">algoritmo de ordenação</a> generalista, e
+ faz parte da família de algoritmos de <a 
+href="http://pt.wikipedia.org/wiki/Ordena%C3%A7%C3%A3o_por_sele%C3%A7%C3%A3o"
+ title="Ordenação por seleção" class="mw-redirect">ordenação por seleção</a>.
+ Foi desenvolvido em 1964 por <b>Robert W. Floyd</b> e <b>J.W.J. 
+Williams</b>.</p>
+<table id="toc" class="toc">
+<tbody><tr>
+<td>
+<div id="toctitle">
+<h2>Índice</h2>
+ <span class="toctoggle">[<a href="#" class="internal" id="togglelink">esconder</a>]</span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Defini.C3.A7.C3.A3o"><span
+ class="tocnumber">1</span> <span class="toctext">Definição</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Caracter.C3.ADsticas"><span
+ class="tocnumber">2</span> <span class="toctext">Características</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Funcionamento"><span 
+class="tocnumber">3</span> <span class="toctext">Funcionamento</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Implementa.C3.A7.C3.B5es"><span
+ class="tocnumber">4</span> <span class="toctext">Implementações</span></a>
+<ul>
+<li class="toclevel-2 tocsection-5"><a href="#Assembly_x86-gas-Linux"><span
+ class="tocnumber">4.1</span> <span class="toctext">Assembly 
+x86-gas-Linux</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#C.C3.B3digo_em_C"><span 
+class="tocnumber">4.2</span> <span class="toctext">Código em C</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#C.C3.B3digo_em_C.2B.2B"><span
+ class="tocnumber">4.3</span> <span class="toctext">Código em C++</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="#C.C3.B3digo_em_Java"><span
+ class="tocnumber">4.4</span> <span class="toctext">Código em Java</span></a></li>
+<li class="toclevel-2 tocsection-9"><a 
+href="#C.C3.B3digo_em_Java_.285.0.29"><span class="tocnumber">4.5</span>
+ <span class="toctext">Código em Java (5.0)</span></a></li>
+<li class="toclevel-2 tocsection-10"><a href="#C.C3.B3digo_em_python"><span
+ class="tocnumber">4.6</span> <span class="toctext">Código em python</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-11"><a 
+href="#Liga.C3.A7.C3.B5es_externas"><span class="tocnumber">5</span> <span
+ class="toctext">Ligações externas</span></a></li>
+</ul>
+</td>
+</tr>
+</tbody></table>
+<script type="text/javascript">
+//<![CDATA[
+if (window.showTocToggle) { var tocShowText = "mostrar"; var tocHideText = "esconder"; showTocToggle(); } 
+//]]>
+</script>
+<h2><span class="editsection">[<a 
+href="http://pt.wikipedia.org/w/index.php?title=Heapsort&amp;action=edit&amp;section=1"
+ title="Editar seção: Definição">editar</a>]</span> <span 
+class="mw-headline" id="Defini.C3.A7.C3.A3o">Definição</span></h2>
+<p>Tem um desempenho em tempo de execução muito bom em conjuntos 
+ordenados aleatoriamente, tem um uso de memória bem comportado e o seu 
+desempenho em <a 
+href="http://pt.wikipedia.org/wiki/Complexidade_Pior_caso" 
+title="Complexidade Pior caso" class="mw-redirect">pior cenário</a> é 
+praticamente igual ao desempenho em <a 
+href="http://pt.wikipedia.org/wiki/Complexidade_Caso_m%C3%A9dio" 
+title="Complexidade Caso médio" class="mw-redirect">cenário médio</a>. 
+Alguns algoritmos de ordenação rápidos têm desempenhos espectacularmente
+ ruins no pior cenário, quer em tempo de execução, quer no uso da 
+memória. O Heapsort trabalha no lugar e o tempo de execução em pior 
+cenário para ordenar <i>n</i> elementos é de <a 
+href="http://pt.wikipedia.org/wiki/Nota%C3%A7%C3%A3o_O_mai%C3%BAsculo" 
+title="Notação O maiúsculo" class="mw-redirect">O</a> (<i>n</i> lg <i>n</i>).
+ Lê-se logaritmo (ou log) de "n" na base 2. Para valores de <i>n</i>, 
+razoavelmente grande, o termo lg <i>n</i> é quase constante, de modo que
+ o tempo de ordenação é quase linear com o número de itens a ordenar.</p>
+<h2><span class="editsection">[<a 
+href="http://pt.wikipedia.org/w/index.php?title=Heapsort&amp;action=edit&amp;section=2"
+ title="Editar seção: Características">editar</a>]</span> <span 
+class="mw-headline" id="Caracter.C3.ADsticas">Características</span></h2>
+<ul>
+<li>Comparações no pior caso: 2n log<sub>2</sub>n + O(n) é o mesmo que 
+2n lgn + O(n)</li>
+<li>Trocas no pior caso: n log<sub>2</sub>n + O(n) é o mesmo que n lgn +
+ O(n)</li>
+<li>Melhor e pior caso: O(n log<sub>2</sub>n) é o mesmo que O(n lgn)</li>
+</ul>
+<h2><span class="editsection">[<a 
+href="http://pt.wikipedia.org/w/index.php?title=Heapsort&amp;action=edit&amp;section=3"
+ title="Editar seção: Funcionamento">editar</a>]</span> <span 
+class="mw-headline" id="Funcionamento">Funcionamento</span></h2>
+<p>O heapsort utiliza uma estrutura de dados chamada <a 
+href="http://pt.wikipedia.org/wiki/Heap" title="Heap">heap</a> para 
+ordenar os elementos a medida que os insere na estrutura. Assim, ao 
+final das inserções, os elementos podem ser sucessivamente removidos da 
+raiz da <a href="http://pt.wikipedia.org/wiki/Heap" title="Heap">heap</a>,
+ na ordem desejada, lembrando-se sempre de manter a propriedade de 
+max-heap.</p>
+<p>A heap pode ser representada como uma árvore ou como um vetor. Para 
+uma ordenação crescente, deve ser construído um heap máximo (o maior 
+elemento fica na raiz). Para uma ordenação decrescente, deve ser 
+construído um heap mínimo (o menor elemento fica na raiz).</p>
+<h2><span class="editsection">[<a 
+href="http://pt.wikipedia.org/w/index.php?title=Heapsort&amp;action=edit&amp;section=4"
+ title="Editar seção: Implementações">editar</a>]</span> <span 
+class="mw-headline" id="Implementa.C3.A7.C3.B5es">Implementações</span></h2>
+<h3><span class="editsection">[<a 
+href="http://pt.wikipedia.org/w/index.php?title=Heapsort&amp;action=edit&amp;section=5"
+ title="Editar seção: Assembly x86-gas-Linux">editar</a>]</span> <span 
+class="mw-headline" id="Assembly_x86-gas-Linux">Assembly x86-gas-Linux</span></h3>
+<div dir="ltr" class="mw-geshi" style="text-align: left;">
+<div class="asm source-asm" style="font-family: monospace;">
+<pre class="de1"><span class="sy0">/*</span> void heap_sort_as<span class="br0">(</span><span class="kw1">int</span> <span class="sy0">*</span>x<span class="sy0">,</span> <span class="kw1">int</span> n<span class="br0">)</span><span class="co1">;*/</span>
+<span class="sy0">.</span>globl heap_sort_as
+heap_sort_as<span class="sy0">:</span>
+	pushl <span class="sy0">%</span><span class="kw3">ebp</span>
+	movl <span class="sy0">%</span><span class="kw3">esp</span><span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">ebp</span>
+	<span class="sy0">/*</span> 8<span class="br0">(</span><span class="sy0">%</span><span class="kw3">ebp</span><span class="br0">)</span> <span class="sy0">-</span>&gt; arranjo<span class="sy0">*/</span>	
+	<span class="sy0">/*</span> 12<span class="br0">(</span><span class="sy0">%</span><span class="kw3">ebp</span><span class="br0">)</span> <span class="sy0">-</span>&gt; num de elementos <span class="sy0">*</span>4 <span class="sy0">*/</span>
+	movl 12<span class="br0">(</span><span class="sy0">%</span><span class="kw3">ebp</span><span class="br0">)</span><span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">eax</span>
+	movl $4<span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">ebx</span>
+	<span class="kw1">mul</span> <span class="sy0">%</span><span class="kw3">ebx</span>
+	pushl <span class="sy0">%</span><span class="kw3">eax</span>
+	pushl 8<span class="br0">(</span><span class="sy0">%</span><span class="kw3">ebp</span><span class="br0">)</span>	
+	<span class="kw1">call</span> montar_heap_as
+	addl $4<span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">esp</span>
+	popl <span class="sy0">%</span><span class="kw3">eax</span>       
+	subl $4<span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">eax</span>          <span class="sy0">/*</span> <span class="kw3">eax</span> eh <span class="br0">(</span>n<span class="sy0">*</span>4<span class="br0">)</span><span class="sy0">-</span>4<span class="sy0">*/</span>
+	<span class="sy0">/*</span> faz a troca <span class="sy0">*/</span>
+	movl 8<span class="br0">(</span><span class="sy0">%</span><span class="kw3">ebp</span><span class="br0">)</span><span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">ebx</span>     <span class="sy0">/*</span> tmp = <span class="sy0">*</span>x <span class="sy0">*/</span>
+	pushl <span class="sy0">%</span><span class="kw3">eax</span>
+	movl <span class="sy0">%</span><span class="kw3">ebx</span><span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">ecx</span>
+	addl <span class="sy0">%</span><span class="kw3">eax</span><span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">ecx</span>
+	movl <span class="br0">(</span><span class="sy0">%</span><span class="kw3">ebx</span><span class="br0">)</span><span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">eax</span>
+	movl <span class="br0">(</span><span class="sy0">%</span><span class="kw3">ecx</span><span class="br0">)</span><span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">edx</span>
+	movl <span class="sy0">%</span><span class="kw3">eax</span><span class="sy0">,</span> <span class="br0">(</span><span class="sy0">%</span><span class="kw3">ecx</span><span class="br0">)</span>
+	movl <span class="sy0">%</span><span class="kw3">edx</span><span class="sy0">,</span> <span class="br0">(</span><span class="sy0">%</span><span class="kw3">ebx</span><span class="br0">)</span>
+	popl <span class="sy0">%</span><span class="kw3">eax</span>              <span class="sy0">/*</span> <span class="kw3">eax</span> representa <span class="br0">(</span>n<span class="sy0">*</span>4<span class="br0">)</span><span class="sy0">-</span>4 <span class="sy0">*/</span>
+	pushl $0
+	pushl <span class="sy0">%</span><span class="kw3">eax</span>
+	pushl 8<span class="br0">(</span><span class="sy0">%</span><span class="kw3">ebp</span><span class="br0">)</span>	
+heap_sort_as_loop<span class="sy0">:</span>
+	<span class="kw1">cmp</span> $1<span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">eax</span>
+	<span class="kw1">jle</span> heap_sort_as_fim
+	<span class="kw1">call</span> man_heap_as
+	movl 4<span class="br0">(</span><span class="sy0">%</span><span class="kw3">esp</span><span class="br0">)</span><span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">eax</span>
+	subl $4<span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">eax</span>
+	<span class="sy0">/*</span> faz a troca <span class="sy0">*/</span>
+	movl 8<span class="br0">(</span><span class="sy0">%</span><span class="kw3">ebp</span><span class="br0">)</span><span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">ebx</span>     <span class="sy0">/*</span> tmp = <span class="sy0">*</span>x <span class="sy0">*/</span>
+	pushl <span class="sy0">%</span><span class="kw3">eax</span>
+	movl <span class="sy0">%</span><span class="kw3">ebx</span><span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">ecx</span>
+	addl <span class="sy0">%</span><span class="kw3">eax</span><span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">ecx</span>
+	movl <span class="br0">(</span><span class="sy0">%</span><span class="kw3">ebx</span><span class="br0">)</span><span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">eax</span>
+	movl <span class="br0">(</span><span class="sy0">%</span><span class="kw3">ecx</span><span class="br0">)</span><span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">edx</span>
+	movl <span class="sy0">%</span><span class="kw3">eax</span><span class="sy0">,</span> <span class="br0">(</span><span class="sy0">%</span><span class="kw3">ecx</span><span class="br0">)</span>
+	movl <span class="sy0">%</span><span class="kw3">edx</span><span class="sy0">,</span> <span class="br0">(</span><span class="sy0">%</span><span class="kw3">ebx</span><span class="br0">)</span>
+	popl <span class="sy0">%</span><span class="kw3">eax</span>              <span class="sy0">/*</span> <span class="kw3">eax</span> representa <span class="br0">(</span>n<span class="sy0">*</span>4<span class="br0">)</span><span class="sy0">-</span>4 <span class="sy0">*/</span>
+	movl <span class="sy0">%</span><span class="kw3">eax</span><span class="sy0">,</span> 4<span class="br0">(</span><span class="sy0">%</span><span class="kw3">esp</span><span class="br0">)</span>
+	<span class="kw1">jmp</span> heap_sort_as_loop
+heap_sort_as_fim<span class="sy0">:</span>
+	<span class="kw1">leave</span>
+	<span class="kw1">ret</span>
+montar_heap_as<span class="sy0">:</span>
+	pushl <span class="sy0">%</span><span class="kw3">ebp</span>
+	movl <span class="sy0">%</span><span class="kw3">esp</span><span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">ebp</span>
+	<span class="sy0">/*</span> 8<span class="br0">(</span><span class="sy0">%</span><span class="kw3">ebp</span><span class="br0">)</span> <span class="sy0">-</span>&gt; arranjo<span class="sy0">*/</span>	
+	<span class="sy0">/*</span> 12<span class="br0">(</span><span class="sy0">%</span><span class="kw3">ebp</span><span class="br0">)</span> <span class="sy0">-</span>&gt; num de elementos <span class="sy0">*</span>4 <span class="sy0">*/</span>
+	movl 12<span class="br0">(</span><span class="sy0">%</span><span class="kw3">ebp</span><span class="br0">)</span><span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">eax</span>
+	movl $2<span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">ecx</span>
+	cltd
+	idivl <span class="sy0">%</span><span class="kw3">ecx</span>
+	movl $4<span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">ecx</span>
+	cltd
+	idivl <span class="sy0">%</span><span class="kw3">ecx</span>
+	<span class="kw1">mul</span> <span class="sy0">%</span><span class="kw3">ecx</span>
+	subl $4<span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">eax</span> <span class="sy0">/*</span> <span class="kw3">eax</span> eh h<span class="sy0">*/</span>
+	pushl <span class="sy0">%</span><span class="kw3">eax</span>
+	pushl 12<span class="br0">(</span><span class="sy0">%</span><span class="kw3">ebp</span><span class="br0">)</span>
+	pushl 8<span class="br0">(</span><span class="sy0">%</span><span class="kw3">ebp</span><span class="br0">)</span>	
+montar_heap_as_whmz<span class="sy0">:</span>
+	<span class="kw1">cmp</span> $0<span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">eax</span>
+	<span class="kw1">jl</span> montar_heap_as_fim
+	<span class="kw1">call</span> man_heap_as
+	movl 8<span class="br0">(</span><span class="sy0">%</span><span class="kw3">esp</span><span class="br0">)</span><span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">eax</span>
+	subl $4<span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">eax</span>
+	movl <span class="sy0">%</span><span class="kw3">eax</span><span class="sy0">,</span> 8<span class="br0">(</span><span class="sy0">%</span><span class="kw3">esp</span><span class="br0">)</span>
+	<span class="kw1">jmp</span> montar_heap_as_whmz
+montar_heap_as_fim<span class="sy0">:</span>
+	<span class="kw1">leave</span>
+	<span class="kw1">ret</span>
+man_heap_as<span class="sy0">:</span>
+	pushl <span class="sy0">%</span><span class="kw3">ebp</span>
+	movl <span class="sy0">%</span><span class="kw3">esp</span><span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">ebp</span>
+	<span class="sy0">/*</span> 8<span class="br0">(</span><span class="sy0">%</span><span class="kw3">ebp</span><span class="br0">)</span> <span class="sy0">-</span>&gt; arranjo <span class="sy0">*/</span>
+	<span class="sy0">/*</span> 12<span class="br0">(</span><span class="sy0">%</span><span class="kw3">ebp</span><span class="br0">)</span> <span class="sy0">-</span>&gt; num de elementos <span class="sy0">*</span>4 <span class="sy0">*/</span>	
+	<span class="sy0">/*</span> 16<span class="br0">(</span><span class="sy0">%</span><span class="kw3">ebp</span><span class="br0">)</span> <span class="sy0">-</span>&gt; pai <span class="sy0">*</span>4 <span class="sy0">*/</span>
+	movl 16<span class="br0">(</span><span class="sy0">%</span><span class="kw3">ebp</span><span class="br0">)</span><span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">eax</span>
+	pushl <span class="sy0">%</span><span class="kw3">eax</span>
+	movl $2<span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">ebx</span>
+	<span class="kw1">mul</span> <span class="sy0">%</span><span class="kw3">ebx</span>
+	addl $4<span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">eax</span>             <span class="sy0">/*</span> agora <span class="kw3">eax</span> eh f<span class="sy0">*/</span>
+man_heap_as_wfmn<span class="sy0">:</span>
+	<span class="kw1">cmp</span> 12<span class="br0">(</span><span class="sy0">%</span><span class="kw3">ebp</span><span class="br0">)</span><span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">eax</span>
+	<span class="kw1">jge</span> man_heap_as_fim
+	movl <span class="sy0">%</span><span class="kw3">eax</span><span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">ebx</span>
+	addl $4<span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">ebx</span>             <span class="sy0">/*</span> <span class="kw3">ebx</span> eh f2 <span class="sy0">*/</span>
+	movl 8<span class="br0">(</span><span class="sy0">%</span><span class="kw3">ebp</span><span class="br0">)</span><span class="sy0">,%</span><span class="kw3">edx</span>
+	addl <span class="sy0">%</span><span class="kw3">eax</span><span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">edx</span>           <span class="sy0">/*</span> <span class="kw3">edx</span> aponta p<span class="sy0">/</span> x<span class="br0">[</span>f<span class="br0">]</span> <span class="sy0">*/</span>
+	movl <span class="br0">(</span><span class="sy0">%</span><span class="kw3">edx</span><span class="br0">)</span><span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">edx</span>
+	<span class="kw1">cmp</span> 12<span class="br0">(</span><span class="sy0">%</span><span class="kw3">ebp</span><span class="br0">)</span><span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">ebx</span>
+	<span class="kw1">jge</span> man_heap_as_testetroca
+	movl 8<span class="br0">(</span><span class="sy0">%</span><span class="kw3">ebp</span><span class="br0">)</span><span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">ecx</span>
+	addl <span class="sy0">%</span><span class="kw3">ebx</span><span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">ecx</span>          <span class="sy0">/*</span> <span class="kw3">ecx</span> aponta p<span class="sy0">/</span> x<span class="br0">[</span>f2<span class="br0">]</span> <span class="sy0">*/</span>
+	movl <span class="br0">(</span><span class="sy0">%</span><span class="kw3">ecx</span><span class="br0">)</span><span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">ecx</span>
+	<span class="kw1">cmp</span> <span class="sy0">%</span><span class="kw3">edx</span><span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">ecx</span>
+	<span class="kw1">jle</span> man_heap_as_testetroca
+	movl <span class="sy0">%</span><span class="kw3">ebx</span><span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">eax</span>          <span class="sy0">/*</span> f=f2 ou seja maior filho eh f2 <span class="sy0">*/</span>
+	movl <span class="sy0">%</span><span class="kw3">ecx</span><span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">edx</span>          <span class="sy0">/*</span> movimentacao apenas p<span class="sy0">/</span> testar <span class="sy0">*/</span>	
+man_heap_as_testetroca<span class="sy0">:</span>
+	popl <span class="sy0">%</span><span class="kw3">ebx</span>           <span class="sy0">/*</span> <span class="kw3">ebx</span> eh p <span class="sy0">*/</span>
+	movl 8<span class="br0">(</span><span class="sy0">%</span><span class="kw3">ebp</span><span class="br0">)</span><span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">ecx</span> 
+	addl <span class="sy0">%</span><span class="kw3">ebx</span><span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">ecx</span>     <span class="sy0">/*</span> <span class="kw3">ecx</span> eh x<span class="br0">[</span>p<span class="br0">]</span><span class="sy0">*/</span>
+	movl <span class="br0">(</span><span class="sy0">%</span><span class="kw3">ecx</span><span class="br0">)</span><span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">ecx</span>
+	<span class="kw1">cmp</span> <span class="sy0">%</span><span class="kw3">ecx</span><span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">edx</span>
+	<span class="kw1">jle</span> man_heap_as_fim
+	<span class="sy0">/*</span>fazer a troca <span class="sy0">*/</span>	
+	pushl <span class="sy0">%</span><span class="kw3">eax</span>          <span class="sy0">/*</span> salva f na pilha<span class="sy0">*/</span>
+	addl 8<span class="br0">(</span><span class="sy0">%</span><span class="kw3">ebp</span><span class="br0">)</span><span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">eax</span>
+	movl <span class="sy0">%</span><span class="kw3">ecx</span><span class="sy0">,</span> <span class="br0">(</span><span class="sy0">%</span><span class="kw3">eax</span><span class="br0">)</span>   <span class="sy0">/*</span> x<span class="br0">[</span>f<span class="br0">]</span> = x<span class="br0">[</span>p<span class="br0">]</span> <span class="sy0">*/</span>
+	addl 8<span class="br0">(</span><span class="sy0">%</span><span class="kw3">ebp</span><span class="br0">)</span><span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">ebx</span>
+	movl <span class="sy0">%</span><span class="kw3">edx</span><span class="sy0">,</span> <span class="br0">(</span><span class="sy0">%</span><span class="kw3">ebx</span><span class="br0">)</span>   <span class="sy0">/*</span> x<span class="br0">[</span>p<span class="br0">]</span> = x<span class="br0">[</span>f<span class="br0">]</span> <span class="sy0">*/</span>	
+	movl <span class="br0">(</span><span class="sy0">%</span><span class="kw3">esp</span><span class="br0">)</span><span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">eax</span>
+	movl $2<span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">ebx</span>
+	<span class="kw1">mul</span> <span class="sy0">%</span><span class="kw3">ebx</span>
+	addl $4<span class="sy0">,</span> <span class="sy0">%</span><span class="kw3">eax</span>
+	<span class="kw1">jmp</span> man_heap_as_wfmn
+man_heap_as_fim<span class="sy0">:</span>
+	<span class="kw1">leave</span>
+	<span class="kw1">ret</span>
+</pre></div>
+</div>
+<h3><span class="editsection">[<a 
+href="http://pt.wikipedia.org/w/index.php?title=Heapsort&amp;action=edit&amp;section=6"
+ title="Editar seção: Código em C">editar</a>]</span> <span 
+class="mw-headline" id="C.C3.B3digo_em_C">Código em C</span></h3>
+<div dir="ltr" class="mw-geshi" style="text-align: left;">
+<div class="c source-c" style="font-family: monospace;">
+<pre class="de1"><span class="kw4">void</span> heapsort<span class="br0">(</span>tipo<span class="sy0">*</span> a<span class="sy0">,</span> <span class="kw4">int</span> n<span class="br0">)</span>
+<span class="br0">{</span>
+   <span class="kw4">int</span> i <span class="sy0">=</span> n<span class="sy0">/</span>2<span class="sy0">,</span> pai<span class="sy0">,</span> filho<span class="sy0">;</span>
+   tipo t<span class="sy0">;</span>
+ 
+   <span class="kw1">for</span> <span class="br0">(</span><span class="sy0">;;</span><span class="br0">)</span>
+   <span class="br0">{</span>
+      <span class="kw1">if</span> <span class="br0">(</span>i <span class="sy0">&gt;</span> 0<span class="br0">)</span>
+      <span class="br0">{</span>
+          i<span class="sy0">--;</span>
+          t <span class="sy0">=</span> a<span class="br0">[</span>i<span class="br0">]</span><span class="sy0">;</span>
+      <span class="br0">}</span>
+      <span class="kw1">else</span>
+      <span class="br0">{</span>
+          n<span class="sy0">--;</span>
+          <span class="kw1">if</span> <span class="br0">(</span>n <span class="sy0">==</span> 0<span class="br0">)</span>
+             <span class="kw1">return</span><span class="sy0">;</span>
+          t <span class="sy0">=</span> a<span class="br0">[</span>n<span class="br0">]</span><span class="sy0">;</span>
+          a<span class="br0">[</span>n<span class="br0">]</span> <span class="sy0">=</span> a<span class="br0">[</span>0<span class="br0">]</span><span class="sy0">;</span>
+      <span class="br0">}</span>
+ 
+      pai <span class="sy0">=</span> i<span class="sy0">;</span>
+      filho <span class="sy0">=</span> i<span class="sy0">*</span>2 <span class="sy0">+</span> <span class="nu0">1</span><span class="sy0">;</span>
+ 
+      <span class="kw1">while</span> <span class="br0">(</span>filho <span class="sy0">&lt;</span> n<span class="br0">)</span>
+      <span class="br0">{</span>
+          <span class="kw1">if</span> <span class="br0">(</span><span class="br0">(</span>filho <span class="sy0">+</span> 1 <span class="sy0">&lt;</span> n<span class="br0">)</span>  <span class="sy0">&amp;&amp;</span>  <span class="br0">(</span>a<span class="br0">[</span>filho <span class="sy0">+</span> 1<span class="br0">]</span> <span class="sy0">&gt;</span> a<span class="br0">[</span>filho<span class="br0">]</span><span class="br0">)</span><span class="br0">)</span>
+              filho<span class="sy0">++;</span>
+          <span class="kw1">if</span> <span class="br0">(</span>a<span class="br0">[</span>filho<span class="br0">]</span> <span class="sy0">&gt;</span> t<span class="br0">)</span>
+          <span class="br0">{</span>
+             a<span class="br0">[</span>pai<span class="br0">]</span> <span class="sy0">=</span> a<span class="br0">[</span>filho<span class="br0">]</span><span class="sy0">;</span>
+             pai <span class="sy0">=</span> filho<span class="sy0">;</span>
+             filho <span class="sy0">=</span> pai<span class="sy0">*</span>2 <span class="sy0">+</span> <span class="nu0">1</span><span class="sy0">;</span>
+          <span class="br0">}</span>
+          <span class="kw1">else</span>
+             <span class="kw2">break</span><span class="sy0">;</span>
+      <span class="br0">}</span>
+      a<span class="br0">[</span>pai<span class="br0">]</span> <span class="sy0">=</span> t<span class="sy0">;</span>
+   <span class="br0">}</span>
+<span class="br0">}</span>
+</pre></div>
+</div>
+<h3><span class="editsection">[<a 
+href="http://pt.wikipedia.org/w/index.php?title=Heapsort&amp;action=edit&amp;section=7"
+ title="Editar seção: Código em C++">editar</a>]</span> <span 
+class="mw-headline" id="C.C3.B3digo_em_C.2B.2B">Código em C++</span></h3>
+<div dir="ltr" class="mw-geshi" style="text-align: left;">
+<div class="cpp source-cpp" style="font-family: monospace;">
+<pre class="de1"><span class="kw2">template</span><span class="sy1">&lt;</span><span class="kw2">class</span> T<span class="sy1">&gt;</span>
+<span class="kw4">void</span> heap_sort<span class="br0">(</span> std<span class="sy4">::</span><span class="me2">vector</span><span class="sy1">&lt;</span>T<span class="sy1">&gt;</span> <span class="sy3">&amp;</span>lista <span class="br0">)</span>
+<span class="br0">{</span>  
+    <span class="kw4">int</span> tam <span class="sy1">=</span> <span class="kw2">static_cast</span><span class="sy1">&lt;</span><span class="kw4">int</span><span class="sy1">&gt;</span><span class="br0">(</span> lista.<span class="me1">size</span><span class="br0">(</span><span class="br0">)</span> <span class="br0">)</span>, i<span class="sy4">;</span>
+ 
+    <span class="kw1">for</span><span class="br0">(</span> i <span class="sy1">=</span> tam<span class="sy2">/</span>2 <span class="sy2">-</span> <span class="nu0">1</span><span class="sy4">;</span> i <span class="sy1">&gt;=</span> <span class="nu0">0</span><span class="sy4">;</span> <span class="sy2">--</span>i <span class="br0">)</span>
+    <span class="br0">{</span>
+       maxHeapify<span class="br0">(</span>lista, i , tam <span class="br0">)</span><span class="sy4">;</span>
+    <span class="br0">}</span>
+ 
+    std<span class="sy4">::</span><span class="me2">vector</span><span class="sy1">&lt;</span>T<span class="sy1">&gt;</span><span class="sy4">::</span><span class="me2">reverse_iterator</span> elem<span class="sy4">;</span>
+ 
+    <span class="kw1">for</span><span class="br0">(</span> elem <span class="sy1">=</span> lista.<span class="me1">rbegin</span><span class="br0">(</span><span class="br0">)</span><span class="sy4">;</span> elem <span class="sy3">!</span><span class="sy1">=</span> lista.<span class="me1">rend</span><span class="br0">(</span><span class="br0">)</span><span class="sy4">;</span> elem<span class="sy2">++</span> <span class="br0">)</span>
+    <span class="br0">{</span>
+       std<span class="sy4">::</span><span class="me2">iter_swap</span><span class="br0">(</span> elem, lista.<span class="me1">begin</span><span class="br0">(</span><span class="br0">)</span> <span class="br0">)</span><span class="sy4">;</span>
+       maxHeapify<span class="br0">(</span> lista, 0, <span class="sy2">--</span>tam <span class="br0">)</span><span class="sy4">;</span>
+    <span class="br0">}</span>
+<span class="br0">}</span>
+ 
+<span class="kw2">template</span><span class="sy1">&lt;</span><span class="kw2">class</span> T<span class="sy1">&gt;</span>
+<span class="kw4">void</span> maxHeapify<span class="br0">(</span> std<span class="sy4">::</span><span class="me2">vector</span><span class="sy1">&lt;</span>T<span class="sy1">&gt;</span> <span class="sy3">&amp;</span>lista, <span class="kw4">const</span> <span class="kw4">int</span> pos, <span class="kw4">const</span> <span class="kw4">int</span> n <span class="br0">)</span> 
+<span class="br0">{</span> 
+    <span class="kw4">int</span> max <span class="sy1">=</span> 2 <span class="sy2">*</span> pos <span class="sy2">+</span> <span class="nu0">1</span><span class="sy4">;</span>
+ 
+    <span class="kw1">if</span><span class="br0">(</span> max <span class="sy1">&lt;</span> n <span class="br0">)</span>
+    <span class="br0">{</span> 
+       <span class="kw1">if</span><span class="br0">(</span> <span class="br0">(</span>max<span class="sy2">+</span>1<span class="br0">)</span> <span class="sy1">&lt;</span> n <span class="sy3">&amp;&amp;</span> lista.<span class="me1">at</span><span class="br0">(</span>max<span class="br0">)</span> <span class="sy1">&lt;</span> lista.<span class="me1">at</span><span class="br0">(</span>max<span class="sy2">+</span>1<span class="br0">)</span> <span class="br0">)</span>
+       <span class="br0">{</span>
+          <span class="sy2">++</span>max<span class="sy4">;</span>
+       <span class="br0">}</span>
+       <span class="kw1">if</span><span class="br0">(</span> lista.<span class="me1">at</span><span class="br0">(</span>max<span class="br0">)</span> <span class="sy1">&gt;</span> lista.<span class="me1">at</span><span class="br0">(</span>pos<span class="br0">)</span> <span class="br0">)</span> 
+       <span class="br0">{</span> 
+          std<span class="sy4">::</span><span class="me2">swap</span><span class="br0">(</span> lista<span class="br0">[</span>max<span class="br0">]</span>, lista<span class="br0">[</span>pos<span class="br0">]</span> <span class="br0">)</span><span class="sy4">;</span>
+          maxHeapify<span class="br0">(</span> lista, max, n <span class="br0">)</span><span class="sy4">;</span>
+       <span class="br0">}</span>
+    <span class="br0">}</span>
+<span class="br0">}</span>
+</pre></div>
+</div>
+<h3><span class="editsection">[<a 
+href="http://pt.wikipedia.org/w/index.php?title=Heapsort&amp;action=edit&amp;section=8"
+ title="Editar seção: Código em Java">editar</a>]</span> <span 
+class="mw-headline" id="C.C3.B3digo_em_Java">Código em Java</span></h3>
+<div dir="ltr" class="mw-geshi" style="text-align: left;">
+<div class="java source-java" style="font-family: monospace;">
+<pre class="de1">       <span class="kw1">public</span> <span class="kw1">static</span> <span class="kw4">void</span> heapSort<span class="br0">(</span><span class="kw4">int</span><span class="br0">[</span><span class="br0">]</span> v<span class="br0">)</span>
+       <span class="br0">{</span>  
+         buildMaxHeap<span class="br0">(</span>v<span class="br0">)</span><span class="sy0">;</span>
+         <span class="kw4">int</span> n <span class="sy0">=</span> v.<span class="me1">length</span><span class="sy0">;</span>
+ 
+         <span class="kw1">for</span> <span class="br0">(</span><span class="kw4">int</span> i <span class="sy0">=</span> v.<span class="me1">length</span> <span class="sy0">-</span> <span class="nu0">1</span><span class="sy0">;</span> i <span class="sy0">&gt;</span> <span class="nu0">0</span><span class="sy0">;</span> i<span class="sy0">--</span><span class="br0">)</span> 
+         <span class="br0">{</span> 
+            swap<span class="br0">(</span>v, i , 0<span class="br0">)</span><span class="sy0">;</span>
+            maxHeapify<span class="br0">(</span>v, 0, <span class="sy0">--</span>n<span class="br0">)</span><span class="sy0">;</span>
+         <span class="br0">}</span>
+       <span class="br0">}</span>
+       <span class="kw1">private</span> <span class="kw1">static</span> <span class="kw4">void</span> buildMaxHeap<span class="br0">(</span><span class="kw4">int</span><span class="br0">[</span><span class="br0">]</span> v<span class="br0">)</span>
+       <span class="br0">{</span> 
+          <span class="kw1">for</span> <span class="br0">(</span><span class="kw4">int</span> i <span class="sy0">=</span> v.<span class="me1">length</span><span class="sy0">/</span>2 <span class="sy0">-</span> <span class="nu0">1</span><span class="sy0">;</span> i <span class="sy0">&gt;=</span> <span class="nu0">0</span><span class="sy0">;</span> i<span class="sy0">--</span><span class="br0">)</span>
+             maxHeapify<span class="br0">(</span>v, i , v. <span class="me1">length</span> <span class="br0">)</span><span class="sy0">;</span>
+       <span class="br0">}</span>
+       <span class="kw1">private</span> <span class="kw1">static</span> <span class="kw4">void</span> maxHeapify<span class="br0">(</span><span class="kw4">int</span><span class="br0">[</span><span class="br0">]</span> v, <span class="kw4">int</span> pos, <span class="kw4">int</span> n<span class="br0">)</span> 
+       <span class="br0">{</span> 
+          <span class="kw4">int</span> max <span class="sy0">=</span> 2 <span class="sy0">*</span> pos <span class="sy0">+</span> 1, right <span class="sy0">=</span> max <span class="sy0">+</span> <span class="nu0">1</span><span class="sy0">;</span>
+          <span class="kw1">if</span> <span class="br0">(</span>max <span class="sy0">&lt;</span> n<span class="br0">)</span>
+          <span class="br0">{</span> 
+             <span class="kw1">if</span> <span class="br0">(</span> right <span class="sy0">&lt;</span> n <span class="sy0">&amp;&amp;</span> v<span class="br0">[</span>max<span class="br0">]</span> <span class="sy0">&lt;</span> v<span class="br0">[</span>right<span class="br0">]</span><span class="br0">)</span>
+                max <span class="sy0">=</span> right<span class="sy0">;</span>
+             <span class="kw1">if</span> <span class="br0">(</span>v<span class="br0">[</span>max<span class="br0">]</span> <span class="sy0">&gt;</span> v<span class="br0">[</span>pos<span class="br0">]</span><span class="br0">)</span> 
+             <span class="br0">{</span> 
+                swap<span class="br0">(</span>v, max, pos<span class="br0">)</span><span class="sy0">;</span>
+                maxHeapify<span class="br0">(</span>v, max, n<span class="br0">)</span><span class="sy0">;</span>
+             <span class="br0">}</span>
+          <span class="br0">}</span>
+       <span class="br0">}</span>
+ 
+       <span class="kw1">public</span> <span class="kw1">static</span> <span class="kw4">void</span> swap <span class="br0">(</span> <span class="kw4">int</span><span class="br0">[</span> <span class="br0">]</span> v, <span class="kw4">int</span> j, <span class="kw4">int</span> aposJ <span class="br0">)</span>
+       <span class="br0">{</span>
+          <span class="kw4">int</span> aux <span class="sy0">=</span> v <span class="br0">[</span> j <span class="br0">]</span><span class="sy0">;</span>
+          v <span class="br0">[</span> j <span class="br0">]</span> <span class="sy0">=</span> v <span class="br0">[</span> aposJ <span class="br0">]</span><span class="sy0">;</span>
+          v <span class="br0">[</span> aposJ <span class="br0">]</span> <span class="sy0">=</span> aux<span class="sy0">;</span>
+       <span class="br0">}</span>
+</pre></div>
+</div>
+<h3><span class="editsection">[<a 
+href="http://pt.wikipedia.org/w/index.php?title=Heapsort&amp;action=edit&amp;section=9"
+ title="Editar seção: Código em Java (5.0)">editar</a>]</span> <span 
+class="mw-headline" id="C.C3.B3digo_em_Java_.285.0.29">Código em Java 
+(5.0)</span></h3>
+<div dir="ltr" class="mw-geshi" style="text-align: left;">
+<div class="java5 source-java5" style="font-family: monospace;">
+<pre class="de1">    <span class="kw2">public</span> <span class="kw2">static</span> <span class="sy0">&lt;</span>T <span class="kw2">extends</span> Comparable<span class="sy0">&lt;?</span> <span class="kw2">super</span> T<span class="sy0">&gt;&gt;</span> <span class="kw3">void</span> heapSort<span class="br0">(</span>T<span class="br0">[</span><span class="br0">]</span> v<span class="br0">)</span> <span class="br0">{</span>
+        buildMaxHeap<span class="br0">(</span>v<span class="br0">)</span><span class="sy0">;</span>
+        <span class="kw3">int</span> n = v.<span class="me1">length</span><span class="sy0">;</span>
+ 
+        <span class="kw1">for</span> <span class="br0">(</span><span class="kw3">int</span> i = v.<span class="me1">length</span> - <span class="nu0">1</span><span class="sy0">;</span> i <span class="sy0">&gt;</span> <span class="nu0">0</span><span class="sy0">;</span> i--<span class="br0">)</span> <span class="br0">{</span>
+            swap<span class="br0">(</span>v, i, 0<span class="br0">)</span><span class="sy0">;</span>
+            maxHeapify<span class="br0">(</span>v, 0, --n<span class="br0">)</span><span class="sy0">;</span>
+        <span class="br0">}</span>
+    <span class="br0">}</span>
+ 
+    <span class="kw2">private</span> <span class="kw2">static</span> <span class="sy0">&lt;</span>T <span class="kw2">extends</span> Comparable<span class="sy0">&lt;?</span> <span class="kw2">super</span> T<span class="sy0">&gt;&gt;</span> <span class="kw3">void</span> buildMaxHeap<span class="br0">(</span>T v<span class="br0">[</span><span class="br0">]</span><span class="br0">)</span> <span class="br0">{</span>
+        <span class="kw1">for</span> <span class="br0">(</span><span class="kw3">int</span> i = v.<span class="me1">length</span> / 2 - <span class="nu0">1</span><span class="sy0">;</span> i <span class="sy0">&gt;</span>= <span class="nu0">0</span><span class="sy0">;</span> i--<span class="br0">)</span>
+            maxHeapify<span class="br0">(</span>v, i, v.<span class="me1">length</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="br0">}</span>
+ 
+    <span class="kw2">private</span> <span class="kw2">static</span> <span class="sy0">&lt;</span>T <span class="kw2">extends</span> Comparable<span class="sy0">&lt;?</span> <span class="kw2">super</span> T<span class="sy0">&gt;&gt;</span> <span class="kw3">void</span> maxHeapify<span class="br0">(</span>T<span class="br0">[</span><span class="br0">]</span> v, <span class="kw3">int</span> pos,
+            <span class="kw3">int</span> n<span class="br0">)</span> <span class="br0">{</span>
+        <span class="kw3">int</span> max = 2 <span class="sy0">*</span> pos + 1, right = max + <span class="nu0">1</span><span class="sy0">;</span>
+        <span class="kw1">if</span> <span class="br0">(</span>max <span class="sy0">&lt;</span> n<span class="br0">)</span> <span class="br0">{</span>
+            <span class="kw1">if</span> <span class="br0">(</span>right <span class="sy0">&lt;</span> n <span class="sy0">&amp;&amp;</span> v<span class="br0">[</span>max<span class="br0">]</span>.<span class="me1">compareTo</span><span class="br0">(</span>v<span class="br0">[</span>right<span class="br0">]</span><span class="br0">)</span> <span class="sy0">&lt;</span> 0<span class="br0">)</span>
+                max = right<span class="sy0">;</span>
+            <span class="kw1">if</span> <span class="br0">(</span>v<span class="br0">[</span>max<span class="br0">]</span>.<span class="me1">compareTo</span><span class="br0">(</span>v<span class="br0">[</span>pos<span class="br0">]</span><span class="br0">)</span> <span class="sy0">&gt;</span> 0<span class="br0">)</span> <span class="br0">{</span>
+                swap<span class="br0">(</span>v, max, pos<span class="br0">)</span><span class="sy0">;</span>
+                maxHeapify<span class="br0">(</span>v, max, n<span class="br0">)</span><span class="sy0">;</span>
+            <span class="br0">}</span>
+        <span class="br0">}</span>
+    <span class="br0">}</span>
+ 
+    <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw3">void</span> swap<span class="br0">(</span><span class="kw166">Object</span><span class="br0">[</span><span class="br0">]</span> v, <span class="kw3">int</span> j, <span class="kw3">int</span> aposJ<span class="br0">)</span> <span class="br0">{</span>
+        <span class="kw166">Object</span> aux = v<span class="br0">[</span>j<span class="br0">]</span><span class="sy0">;</span>
+        v<span class="br0">[</span>j<span class="br0">]</span> = v<span class="br0">[</span>aposJ<span class="br0">]</span><span class="sy0">;</span>
+        v<span class="br0">[</span>aposJ<span class="br0">]</span> = aux<span class="sy0">;</span>
+    <span class="br0">}</span>
+</pre></div>
+</div>
+<h3><span class="editsection">[<a 
+href="http://pt.wikipedia.org/w/index.php?title=Heapsort&amp;action=edit&amp;section=10"
+ title="Editar seção: Código em python">editar</a>]</span> <span 
+class="mw-headline" id="C.C3.B3digo_em_python">Código em python</span></h3>
+<div dir="ltr" class="mw-geshi" style="text-align: left;">
+<div class="python source-python" style="font-family: monospace;">
+<pre class="de1"><span class="kw1">def</span> heapsort<span class="br0">(</span>lst<span class="br0">)</span>:
+  <span class="st0">''</span><span class="st0">' Heapsort. Note: this function sorts in-place (it mutates the list). '</span><span class="st0">''</span>
+ 
+  <span class="co1"># in pseudo-code, heapify only called once, so inline it here</span>
+  <span class="kw1">for</span> start <span class="kw1">in</span> <span class="kw2">range</span><span class="br0">(</span><span class="br0">(</span><span class="kw2">len</span><span class="br0">(</span>lst<span class="br0">)</span>-2<span class="br0">)</span>/2, -1, -1<span class="br0">)</span>:
+    siftdown<span class="br0">(</span>lst, start, <span class="kw2">len</span><span class="br0">(</span>lst<span class="br0">)</span>-1<span class="br0">)</span>
+ 
+  <span class="kw1">for</span> end <span class="kw1">in</span> <span class="kw2">range</span><span class="br0">(</span><span class="kw2">len</span><span class="br0">(</span>lst<span class="br0">)</span>-1, 0, -1<span class="br0">)</span>:
+    lst<span class="br0">[</span>end<span class="br0">]</span>, lst<span class="br0">[</span>0<span class="br0">]</span> = lst<span class="br0">[</span>0<span class="br0">]</span>, lst<span class="br0">[</span>end<span class="br0">]</span>
+    siftdown<span class="br0">(</span>lst, 0, end - 1<span class="br0">)</span>
+  <span class="kw1">return</span> lst
+ 
+<span class="kw1">def</span> siftdown<span class="br0">(</span>lst, start, end<span class="br0">)</span>:
+  root = start
+  <span class="kw1">while</span> <span class="kw2">True</span>:
+    child = root <span class="sy0">*</span> 2 + 1
+    <span class="kw1">if</span> child <span class="sy0">&gt;</span> end: <span class="kw1">break</span>
+    <span class="kw1">if</span> child + 1 <span class="sy0">&lt;</span>= end <span class="kw1">and</span> lst<span class="br0">[</span>child<span class="br0">]</span> <span class="sy0">&lt;</span> lst<span class="br0">[</span>child + 1<span class="br0">]</span>:
+      child += 1
+    <span class="kw1">if</span> lst<span class="br0">[</span>root<span class="br0">]</span> <span class="sy0">&lt;</span> lst<span class="br0">[</span>child<span class="br0">]</span>:
+      lst<span class="br0">[</span>root<span class="br0">]</span>, lst<span class="br0">[</span>child<span class="br0">]</span> = lst<span class="br0">[</span>child<span class="br0">]</span>, lst<span class="br0">[</span>root<span class="br0">]</span>
+      root = child
+    <span class="kw1">else</span>:
+      <span class="kw1">break</span>
+</pre></div>
+</div>
+<h2><span class="editsection">[<a 
+href="http://pt.wikipedia.org/w/index.php?title=Heapsort&amp;action=edit&amp;section=11"
+ title="Editar seção: Ligações externas">editar</a>]</span> <span 
+class="mw-headline" id="Liga.C3.A7.C3.B5es_externas">Ligações externas</span></h2>
+<ul>
+<li><a href="http://c2.com/cgi/wiki?HeapSort" class="external text" 
+rel="nofollow">HeapSort</a></li>
+<li>(<a href="http://www.ime.usp.br/%7Epf/algoritmos/aulas/hpsrt.html" 
+class="external free" rel="nofollow">http://www.ime.usp.br/~pf/algoritmos/aulas/hpsrt.html</a>)</li>
+<li><a 
+href="http://www.cs.ubc.ca/spider/harrison/Java/sorting-demo.html" 
+class="external text" rel="nofollow"><i>Animação do processo de 
+ordenação pelo Heapsort</i></a></li>
+<li><a 
+href="http://www.datastructures.info/what-is-heap-sort-and-how-does-it-work-heap-sort-algorithm/"
+ class="external text" rel="nofollow">Heapsort in C++</a></li>
+<li><a href="http://www.algorithm-code.com/wiki/Heapsort" 
+class="external text" rel="nofollow">Heapsort code</a></li>
+</ul>
+<table class="noprint" style="border-top: 3px solid silver; 
+border-bottom: 1px solid silver; background: none repeat scroll 0% 0% 
+transparent; clear: both;" width="100%">
+<tbody><tr>
+<td align="center"><a 
+href="http://pt.wikipedia.org/wiki/Ficheiro:Singleton.png" class="image"><img
+ alt="Ícone de esboço" src="Heapsort_arquivos/50px-Singleton.png" 
+height="17" width="50"></a></td>
+<td><i>Este artigo sobre <span style="font-weight: bold;"><a 
+href="http://pt.wikipedia.org/wiki/Programa%C3%A7%C3%A3o_de_computadores"
+ title="Programação de computadores">Programação</a></span> é um <a 
+href="http://pt.wikipedia.org/wiki/Wikipedia:Esbo%C3%A7o" 
+title="Wikipedia:Esboço">esboço</a>. Você pode ajudar a Wikipédia <span 
+class="plainlinks"><a 
+href="http://pt.wikipedia.org/w/index.php?title=Heapsort&amp;action=edit"
+ class="external text" rel="nofollow">expandindo-o</a></span>.</i></td>
+</tr>
+</tbody></table>
+
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 229/1000000
+Post-expand include size: 2051/2048000 bytes
+Template argument size: 192/2048000 bytes
+Expensive parser function count: 0/500
+-->
+
+<!-- Saved in parser cache with key ptwiki:pcache:idhash:14002-0!1!0!!pt!4 and timestamp 20100630150144 -->
+<div class="printfooter">
+Obtida de "<a href="http://pt.wikipedia.org/wiki/Heapsort">http://pt.wikipedia.org/wiki/Heapsort</a>"</div>
+				<!-- /bodytext -->
+								<!-- catlinks -->
+				<div id="catlinks" class="catlinks"><div id="mw-normal-catlinks"><a 
+href="http://pt.wikipedia.org/wiki/Especial:Categorias" 
+title="Especial:Categorias">Categoria</a>: <span dir="ltr"><a 
+href="http://pt.wikipedia.org/wiki/Categoria:Algoritmos_de_ordena%C3%A7%C3%A3o"
+ title="Categoria:Algoritmos de ordenação">Algoritmos de ordenação</a></span></div><div
+ id="mw-hidden-catlinks" class="mw-hidden-cats-hidden">Categoria oculta:
+ <span dir="ltr"><a 
+href="http://pt.wikipedia.org/wiki/Categoria:%21Esbo%C3%A7os_sobre_programa%C3%A7%C3%A3o"
+ title="Categoria:!Esboços sobre programação">!Esboços sobre programação</a></span></div></div>
+				<!-- /catlinks -->
+												<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="mw-head" class="noprint">
+			
+<!-- 0 -->
+<div id="p-personal" class="">
+	<h5>Ferramentas pessoais</h5>
+	<ul>
+					<li id="pt-prefswitch-link-anon"><a 
+href="http://pt.wikipedia.org/w/index.php?title=Especial:UsabilityInitiativePrefSwitch&amp;from=Heapsort"
+ title="Descubra as funcionalidades novas" class="no-text-transform">Funcionalidades
+ novas</a></li>
+					<li id="pt-login"><a 
+href="http://pt.wikipedia.org/w/index.php?title=Especial:Entrar&amp;returnto=Heapsort"
+ title="Aconselhamos-lhe a criar uma conta na Wikipédia, embora tal não 
+seja obrigatório. [alt-shift-o]" accesskey="o">Entrar / criar conta</a></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+			<div id="left-navigation">
+				
+<!-- 0 -->
+<div id="p-namespaces" class="vectorTabs">
+	<h5>Espaços nominais</h5>
+	<ul>
+					<li id="ca-nstab-main" class="selected"><a 
+href="http://pt.wikipedia.org/wiki/Heapsort" title="Ver a página de 
+conteúdo [alt-shift-c]" accesskey="c"><span>Página</span></a></li>
+					<li id="ca-talk"><a 
+href="http://pt.wikipedia.org/wiki/Discuss%C3%A3o:Heapsort" 
+title="Discussão sobre o conteúdo da página [alt-shift-t]" accesskey="t"><span>Discussão</span></a></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-variants" class="vectorMenu emptyPortlet">
+		<h5><span>Variantes</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+			</div>
+			<div id="right-navigation">
+				
+<!-- 0 -->
+<div id="p-views" class="vectorTabs">
+	<h5>Vistas</h5>
+	<ul>
+					<li id="ca-view" class="selected"><a 
+href="http://pt.wikipedia.org/wiki/Heapsort"><span>Ler</span></a></li>
+					<li id="ca-edit"><a 
+href="http://pt.wikipedia.org/w/index.php?title=Heapsort&amp;action=edit"
+ title="Pode editar esta página.
+Utilize o botão &quot;Antever resultado&quot; antes de gravar, por 
+favor. [alt-shift-e]" accesskey="e"><span>Editar</span></a></li>
+					<li id="ca-history" class="collapsible "><a 
+href="http://pt.wikipedia.org/w/index.php?title=Heapsort&amp;action=history"
+ title="Edições anteriores desta página. [alt-shift-h]" accesskey="h"><span>Ver
+ histórico</span></a></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-cactions" class="vectorMenu emptyPortlet">
+	<h5><span>Ações</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+
+<!-- 2 -->
+<div id="p-search">
+	<h5><label for="searchInput">Busca</label></h5>
+	<form action="/w/index.php" id="searchform">
+		<input name="title" value="Especial:Pesquisar" type="hidden">
+				<div id="simpleSearch">
+			<input autocomplete="off" tabindex="1" id="searchInput" name="search"
+ title="Pesquisar na Wikipédia [alt-shift-f]" accesskey="f" type="text">
+			<button id="searchButton" type="submit" name="button" title="Procurar
+ páginas que contêm este texto">&nbsp;</button>
+		<label style="position: absolute; color: rgb(153, 153, 153); cursor: 
+text; margin: 0pt 4px; top: 6px; line-height: 13px; left: 0px;">Pesquisa</label></div>
+			</form>
+</div>
+
+<!-- /2 -->
+			</div>
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="mw-panel" class="noprint collapsible-nav">
+				<!-- logo -->
+					<div id="p-logo"><a style="background-image: 
+url(&quot;http://upload.wikimedia.org/wikipedia/commons/c/c3/Wikipedia-logo-v2-pt.png&quot;);"
+ href="http://pt.wikipedia.org/wiki/P%C3%A1gina_principal" title="Visite
+ a página principal"></a></div>
+				<!-- /logo -->
+				
+<!-- SEARCH -->
+
+<!-- /SEARCH -->
+
+<!-- navigation -->
+<div class="portal first persistent" id="p-navigation">
+	<h5>Navegação</h5>
+	<div class="body">
+				<ul>
+					<li id="n-mainpage"><a 
+href="http://pt.wikipedia.org/wiki/P%C3%A1gina_principal" title="Visitar
+ a página principal [alt-shift-z]" accesskey="z">Página principal</a></li>
+					<li id="n-featuredcontent"><a 
+href="http://pt.wikipedia.org/wiki/Portal:Conte%C3%BAdo_destacado">Conteúdo
+ destacado</a></li>
+					<li id="n-currentevents"><a 
+href="http://pt.wikipedia.org/wiki/Portal:Eventos_atuais" 
+title="Informação temática sobre eventos atuais">Eventos atuais</a></li>
+					<li id="n-villagepump"><a 
+href="http://pt.wikipedia.org/wiki/Wikipedia:Esplanada">Esplanada</a></li>
+					<li id="n-randompage"><a 
+href="http://pt.wikipedia.org/wiki/Especial:Aleat%C3%B3ria" 
+title="Carregar página aleatória [alt-shift-x]" accesskey="x">Página 
+aleatória</a></li>
+					<li id="n-portals"><a 
+href="http://pt.wikipedia.org/wiki/Portal:%C3%8Dndice">Portais</a></li>
+				</ul>
+			</div>
+</div>
+
+<!-- /navigation -->
+
+<!-- interaction -->
+<div class="portal expanded" id="p-interaction">
+	<h5 tabindex="2">Colaboração</h5>
+	<div style="display: block;" class="body">
+				<ul>
+					<li id="n-welcome"><a 
+href="http://pt.wikipedia.org/wiki/Wikipedia:Boas-vindas">Boas-vindas</a></li>
+					<li id="n-help"><a 
+href="http://pt.wikipedia.org/wiki/Ajuda:P%C3%A1gina_principal" 
+title="Um local reservado para auxílio.">Ajuda</a></li>
+					<li id="n-testpage"><a 
+href="http://pt.wikipedia.org/wiki/Wikipedia:P%C3%A1gina_de_testes">Página
+ de testes</a></li>
+					<li id="n-portal"><a 
+href="http://pt.wikipedia.org/wiki/Wikipedia:Portal_comunit%C3%A1rio" 
+title="Sobre o projeto">Portal comunitário</a></li>
+					<li id="n-recentchanges"><a 
+href="http://pt.wikipedia.org/wiki/Especial:Mudan%C3%A7as_recentes" 
+title="A lista de mudanças recentes nesta wiki. [alt-shift-r]" 
+accesskey="r">Mudanças recentes</a></li>
+					<li id="n-maintenance"><a 
+href="http://pt.wikipedia.org/wiki/Wikipedia:Estaleiro">Estaleiro</a></li>
+					<li id="n-createpage"><a 
+href="http://pt.wikipedia.org/wiki/Ajuda:Guia_de_edi%C3%A7%C3%A3o/Como_come%C3%A7ar_uma_p%C3%A1gina">Criar
+ página</a></li>
+					<li id="n-newpages-description"><a 
+href="http://pt.wikipedia.org/wiki/Especial:P%C3%A1ginas_novas">Páginas 
+novas</a></li>
+					<li id="n-contact-description"><a 
+href="http://pt.wikipedia.org/wiki/Wikipedia:Contato">Contato</a></li>
+					<li id="n-sitesupport"><a 
+href="http://wikimediafoundation.org/wiki/Coleta_de_fundos" 
+title="Ajude-nos">Donativos</a></li>
+				</ul>
+			</div>
+</div>
+
+<!-- /interaction -->
+
+<!-- coll-print_export -->
+<div class="portal collapsed" id="p-coll-print_export">
+	<h5 tabindex="3">Imprimir/exportar</h5>
+	<div class="body">
+				<ul id="collectionPortletList"><li id="coll-create_a_book"><a 
+href="http://pt.wikipedia.org/w/index.php?title=Especial:Livro&amp;bookcmd=book_creator&amp;referer=Heapsort"
+ title="Cria um livro ou uma colecção de páginas" rel="nofollow">Criar 
+um livro</a></li><li id="coll-download-as-rl"><a 
+href="http://pt.wikipedia.org/w/index.php?title=Especial:Livro&amp;bookcmd=render_article&amp;arttitle=Heapsort&amp;oldid=20397603&amp;writer=rl"
+ title="Descarregar uma versão PDF desta página wiki" rel="nofollow">Descarregar
+ como PDF</a></li><li id="t-print"><a 
+href="http://pt.wikipedia.org/w/index.php?title=Heapsort&amp;printable=yes"
+ title="Versão para impressão desta página [alt-shift-p]" accesskey="p">Versão
+ para impressão</a></li></ul>			</div>
+</div>
+
+<!-- /coll-print_export -->
+
+<!-- TOOLBOX -->
+<div class="portal collapsed" id="p-tb">
+	<h5 tabindex="4">Ferramentas</h5>
+	<div class="body">
+		<ul>
+					<li id="t-whatlinkshere"><a 
+href="http://pt.wikipedia.org/wiki/Especial:P%C3%A1ginas_afluentes/Heapsort"
+ title="Lista de todas as páginas que contêm links para esta 
+[alt-shift-j]" accesskey="j">Páginas afluentes</a></li>
+						<li id="t-recentchangeslinked"><a 
+href="http://pt.wikipedia.org/wiki/Especial:Altera%C3%A7%C3%B5es_relacionadas/Heapsort"
+ title="Mudanças recentes nas páginas para as quais esta contém links 
+[alt-shift-k]" accesskey="k">Alterações relacionadas</a></li>
+																																					<li id="t-upload"><a 
+href="http://pt.wikipedia.org/wiki/Ajuda:Como_carregar_ficheiros_no_Commons"
+ title="Carregar ficheiros [alt-shift-u]" accesskey="u">Carregar 
+ficheiro</a></li>
+											<li id="t-specialpages"><a 
+href="http://pt.wikipedia.org/wiki/Especial:P%C3%A1ginas_especiais" 
+title="Lista de páginas especiais [alt-shift-q]" accesskey="q">Páginas 
+especiais</a></li>
+											<li id="t-permalink"><a 
+href="http://pt.wikipedia.org/w/index.php?title=Heapsort&amp;oldid=20397603"
+ title="Link permanente para esta versão desta página">Link permanente</a></li>
+				<li id="t-cite"><a 
+href="http://pt.wikipedia.org/w/index.php?title=Especial:Citar&amp;page=Heapsort&amp;id=20397603"
+ title="Informação sobre como citar esta página">Citar esta página</a></li>
+		</ul>
+	</div>
+</div>
+
+<!-- /TOOLBOX -->
+
+<!-- LANGUAGES -->
+<div class="portal expanded" id="p-lang">
+	<h5 tabindex="5">Noutras línguas</h5>
+	<div style="display: block;" class="body">
+		<ul>
+					<li class="interwiki-cs"><a 
+href="http://cs.wikipedia.org/wiki/%C5%98azen%C3%AD_haldou" 
+title="Řazení haldou">Česky</a></li>
+					<li class="interwiki-de"><a 
+href="http://de.wikipedia.org/wiki/Heapsort" title="Heapsort">Deutsch</a></li>
+					<li class="interwiki-en"><a 
+href="http://en.wikipedia.org/wiki/Heapsort" title="Heapsort">English</a></li>
+					<li class="interwiki-es"><a 
+href="http://es.wikipedia.org/wiki/Heapsort" title="Heapsort">Español</a></li>
+					<li class="interwiki-fa"><a 
+href="http://fa.wikipedia.org/wiki/%D9%85%D8%B1%D8%AA%D8%A8%E2%80%8C%D8%B3%D8%A7%D8%B2%DB%8C_%D9%87%D8%B1%D9%85%DB%8C"
+ title="مرتب‌سازی هرمی">فارسی</a></li>
+					<li class="interwiki-fr"><a 
+href="http://fr.wikipedia.org/wiki/Tri_par_tas" title="Tri par tas">Français</a></li>
+					<li class="interwiki-he"><a 
+href="http://he.wikipedia.org/wiki/%D7%9E%D7%99%D7%95%D7%9F_%D7%A2%D7%A8%D7%99%D7%9E%D7%94"
+ title="מיון ערימה">עברית</a></li>
+					<li class="interwiki-hu"><a 
+href="http://hu.wikipedia.org/wiki/Kupacrendez%C3%A9s" 
+title="Kupacrendezés">Magyar</a></li>
+					<li class="interwiki-is"><a 
+href="http://is.wikipedia.org/wiki/Hr%C3%BAgur%C3%B6%C3%B0un" 
+title="Hrúguröðun">Íslenska</a></li>
+					<li class="interwiki-it"><a 
+href="http://it.wikipedia.org/wiki/Heap_sort" title="Heap sort">Italiano</a></li>
+					<li class="interwiki-ja"><a 
+href="http://ja.wikipedia.org/wiki/%E3%83%92%E3%83%BC%E3%83%97%E3%82%BD%E3%83%BC%E3%83%88"
+ title="ヒープソート">日本語</a></li>
+					<li class="interwiki-ko"><a 
+href="http://ko.wikipedia.org/wiki/%ED%9E%99_%EC%A0%95%EB%A0%AC" 
+title="힙 정렬">한국어</a></li>
+					<li class="interwiki-lb"><a 
+href="http://lb.wikipedia.org/wiki/Heapsort" title="Heapsort">Lëtzebuergesch</a></li>
+					<li class="interwiki-lt"><a 
+href="http://lt.wikipedia.org/wiki/Kr%C5%ABvos_rikiavimo_algoritmas" 
+title="Krūvos rikiavimo algoritmas">Lietuvių</a></li>
+					<li class="interwiki-ml"><a 
+href="http://ml.wikipedia.org/wiki/%E0%B4%B9%E0%B5%80%E0%B4%AA%E0%B5%8D_%E0%B4%B8%E0%B5%8B%E0%B5%BC%E0%B4%9F%E0%B5%8D%E0%B4%9F%E0%B5%8D"
+ title="ഹീപ് സോർട്ട്">മലയാളം</a></li>
+					<li class="interwiki-nl"><a 
+href="http://nl.wikipedia.org/wiki/Heapsort" title="Heapsort">Nederlands</a></li>
+					<li class="interwiki-no"><a 
+href="http://no.wikipedia.org/wiki/Sorteringsalgoritme#Heap_sort" 
+title="Sorteringsalgoritme">‪Norsk (bokmål)‬</a></li>
+					<li class="interwiki-pl"><a 
+href="http://pl.wikipedia.org/wiki/Sortowanie_przez_kopcowanie" 
+title="Sortowanie przez kopcowanie">Polski</a></li>
+					<li class="interwiki-ru"><a 
+href="http://ru.wikipedia.org/wiki/%D0%9F%D0%B8%D1%80%D0%B0%D0%BC%D0%B8%D0%B4%D0%B0%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F_%D1%81%D0%BE%D1%80%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0"
+ title="Пирамидальная сортировка">Русский</a></li>
+					<li class="interwiki-sl"><a 
+href="http://sl.wikipedia.org/wiki/Urejanje_s_kopico" title="Urejanje s 
+kopico">Slovenščina</a></li>
+					<li class="interwiki-tr"><a 
+href="http://tr.wikipedia.org/wiki/Y%C4%B1%C4%9F%C4%B1n_s%C4%B1ralamas%C4%B1"
+ title="Yığın sıralaması">Türkçe</a></li>
+					<li class="interwiki-uk"><a 
+href="http://uk.wikipedia.org/wiki/%D0%9F%D1%96%D1%80%D0%B0%D0%BC%D1%96%D0%B4%D0%B0%D0%BB%D1%8C%D0%BD%D0%B5_%D1%81%D0%BE%D1%80%D1%82%D1%83%D0%B2%D0%B0%D0%BD%D0%BD%D1%8F"
+ title="Пірамідальне сортування">Українська</a></li>
+					<li class="interwiki-vi"><a 
+href="http://vi.wikipedia.org/wiki/S%E1%BA%AFp_x%E1%BA%BFp_vun_%C4%91%E1%BB%91ng"
+ title="Sắp xếp vun đống">Tiếng Việt</a></li>
+					<li class="interwiki-zh"><a 
+href="http://zh.wikipedia.org/wiki/%E5%A0%86%E7%A9%8D%E6%8E%92%E5%BA%8F"
+ title="堆積排序">中文</a></li>
+				</ul>
+	</div>
+</div>
+
+<!-- /LANGUAGES -->
+			</div>
+		<!-- /panel -->
+		<!-- footer -->
+		<div id="footer">
+											<ul id="footer-info">
+																	<li id="footer-info-lastmod"> Esta página foi 
+modificada pela última vez às 17h27min de 25 de maio de 2010.</li>
+																							<li id="footer-info-copyright">Este texto é 
+disponibilizado nos termos da licença <a 
+href="http://creativecommons.org/licenses/by-sa/3.0/deed.pt">Atribuição-Compartilhamento
+ pela mesma Licença 3.0 Unported (CC-BY-SA)</a>;
+pode estar sujeito a condições adicionais.
+Consulte as <a 
+href="http://wikimediafoundation.org/wiki/Condi%C3%A7%C3%B5es_de_Uso">Condições
+ de Uso</a> para mais detalhes.</li>
+															</ul>
+															<ul id="footer-places">
+																	<li id="footer-places-privacy"><a 
+href="http://pt.wikipedia.org/wiki/Wikipedia:Pol%C3%ADtica_de_privacidade"
+ title="Wikipedia:Política de privacidade">Política de privacidade</a></li>
+																							<li id="footer-places-about"><a 
+href="http://pt.wikipedia.org/wiki/Wikipedia:Sobre" 
+title="Wikipedia:Sobre">Sobre a Wikipédia</a></li>
+																							<li id="footer-places-disclaimer"><a 
+href="http://pt.wikipedia.org/wiki/Wikipedia:Aviso_Geral" 
+title="Wikipedia:Aviso Geral">Avisos gerais</a></li>
+															</ul>
+										<ul id="footer-icons" class="noprint">
+								<li id="footer-icon-poweredby"><a 
+href="http://www.mediawiki.org/"><img 
+src="Heapsort_arquivos/poweredby_mediawiki_88x31.png" alt="Powered by 
+MediaWiki" height="31" width="88"></a></li>
+												<li id="footer-icon-copyright"><a 
+href="http://wikimediafoundation.org/"><img 
+src="Heapsort_arquivos/wikimedia-button.png" alt="Wikimedia Foundation" 
+height="31" width="88"></a></li>
+							</ul>
+			<div style="clear: both;"></div>
+		</div>
+		<!-- /footer -->
+		<!-- fixalpha -->
+		<script type="text/javascript"> if ( window.isMSIE55 ) fixalpha(); </script>
+		<!-- /fixalpha -->
+		
+<script type="text/javascript">if (window.runOnloadHook) runOnloadHook();</script>
+		<!-- Served by srv238 in 0.050 secs. -->			<div class="suggestions" 
+style="top: 74px; width: 188px; display: none; left: auto; right: 36px;"><div
+ class="suggestions-results"></div><div class="suggestions-special"></div></div></body></html>

@@ -1,0 +1,1561 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html class="linux firefox firefox3 gecko gecko1" dir="ltr" 
+xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head>
+
+
+<title>Insertion sort - Wikipédia, a enciclopédia livre</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta name="generator" content="MediaWiki 1.16wmf4">
+<link rel="alternate" type="application/x-wiki" title="Editar" 
+href="http://pt.wikipedia.org/w/index.php?title=Insertion_sort&amp;action=edit">
+<link rel="edit" title="Editar" 
+href="http://pt.wikipedia.org/w/index.php?title=Insertion_sort&amp;action=edit">
+<link rel="apple-touch-icon" 
+href="http://pt.wikipedia.org/apple-touch-icon.png">
+<link rel="shortcut icon" href="http://pt.wikipedia.org/favicon.ico">
+<link rel="search" type="application/opensearchdescription+xml" 
+href="http://pt.wikipedia.org/w/opensearch_desc.php" title="Wikipedia 
+(pt)">
+<link rel="copyright" 
+href="http://creativecommons.org/licenses/by-sa/3.0/">
+<link rel="alternate" type="application/atom+xml" title="''Feed'' Atom 
+Wikipedia" 
+href="http://pt.wikipedia.org/w/index.php?title=Especial:Mudan%C3%A7as_recentes&amp;feed=atom">
+<link rel="stylesheet" href="Insertion_sort_arquivos/main-ltr.css" 
+type="text/css" media="screen">
+<link rel="stylesheet" href="Insertion_sort_arquivos/shared.css" 
+type="text/css" media="screen">
+<link rel="stylesheet" href="Insertion_sort_arquivos/commonPrint.css" 
+type="text/css" media="print">
+<link rel="stylesheet" href="Insertion_sort_arquivos/combined.css" 
+type="text/css" media="all">
+<link rel="stylesheet" href="Insertion_sort_arquivos/jquery-ui-1.css" 
+type="text/css" media="all">
+<link rel="stylesheet" href="Insertion_sort_arquivos/index_003.css" 
+type="text/css" media="all">
+<link rel="stylesheet" href="Insertion_sort_arquivos/index_005.css" 
+type="text/css" media="print">
+<link rel="stylesheet" href="Insertion_sort_arquivos/index_004.css" 
+type="text/css" media="handheld">
+<link rel="stylesheet" href="Insertion_sort_arquivos/index_002.css" 
+type="text/css" media="all">
+<link rel="stylesheet" href="Insertion_sort_arquivos/index.css" 
+type="text/css" media="all">
+<script type="text/javascript">
+var skin="vector",
+stylepath="http://bits.wikimedia.org/skins-1.5",
+wgUrlProtocols="http\\:\\/\\/|https\\:\\/\\/|ftp\\:\\/\\/|irc\\:\\/\\/|gopher\\:\\/\\/|telnet\\:\\/\\/|nntp\\:\\/\\/|worldwind\\:\\/\\/|mailto\\:|news\\:|svn\\:\\/\\/",
+wgArticlePath="/wiki/$1",
+wgScriptPath="/w",
+wgScriptExtension=".php",
+wgScript="/w/index.php",
+wgVariantArticlePath=false,
+wgActionPaths={},
+wgServer="http://pt.wikipedia.org",
+wgCanonicalNamespace="",
+wgCanonicalSpecialPageName=false,
+wgNamespaceNumber=0,
+wgPageName="Insertion_sort",
+wgTitle="Insertion sort",
+wgAction="view",
+wgArticleId=98042,
+wgIsArticle=true,
+wgUserName=null,
+wgUserGroups=null,
+wgUserLanguage="pt",
+wgContentLanguage="pt",
+wgBreakFrames=false,
+wgCurRevisionId=20702823,
+wgVersion="1.16wmf4",
+wgEnableAPI=true,
+wgEnableWriteAPI=true,
+wgSeparatorTransformTable=[",	.", " 	,"],
+wgDigitTransformTable=["", ""],
+wgMainPageTitle="Página principal",
+wgFormattedNamespaces={"-2": "Multimédia", "-1": "Especial", "0": "", "1": "Discussão", "2": "Usuário", "3": "Usuário Discussão", "4": "Wikipedia", "5": "Wikipedia Discussão", "6": "Ficheiro", "7": "Ficheiro Discussão", "8": "MediaWiki", "9": "MediaWiki Discussão", "10": "Predefinição", "11": "Predefinição Discussão", "12": "Ajuda", "13": "Ajuda Discussão", "14": "Categoria", "15": "Categoria Discussão", "100": "Portal", "101": "Portal Discussão", "102": "Anexo", "103": "Anexo Discussão"},
+wgNamespaceIds={"multimédia": -2, "especial": -1, "": 0, "discussão": 1, "usuário": 2, "usuário_discussão": 3, "wikipedia": 4, "wikipedia_discussão": 5, "ficheiro": 6, "ficheiro_discussão": 7, "mediawiki": 8, "mediawiki_discussão": 9, "predefinição": 10, "predefinição_discussão": 11, "ajuda": 12, "ajuda_discussão": 13, "categoria": 14, "categoria_discussão": 15, "portal": 100, "portal_discussão": 101, "anexo": 102, "anexo_discussão": 103, "utilizador": 2, "utilizador_discussão": 3, "imagem": 6, "imagem_discussão": 7, "arquivo": 6, "arquivo_discussão": 7, "discussão_portal": 101, "image": 6, "image_talk": 7},
+wgSiteName="Wikipedia",
+wgCategories=["Algoritmos de ordenação"],
+wgMWSuggestTemplate="http://pt.wikipedia.org/w/api.php?action=opensearch\x26search={searchTerms}\x26namespace={namespaces}\x26suggest",
+wgDBname="ptwiki",
+wgSearchNamespaces=[0],
+wgMWSuggestMessages=["com sugestões", "sem sugestões"],
+wgRestrictionEdit=[],
+wgRestrictionMove=[],
+wgWikimediaMobileUrl="http://pt.m.wikipedia.org/wiki",
+wgCollapsibleNavBucketTest=false,
+wgCollapsibleNavForceNewVersion=false,
+wgVectorPreferences={"collapsiblenav": {"enable": 1}, "editwarning": {"enable": 1}, "simplesearch": {"enable": 1, "disablesuggest": 0}},
+wgVectorEnabledModules={"collapsiblenav": true, "collapsibletabs": true, "editwarning": true, "expandablesearch": false, "footercleanup": false, "simplesearch": true},
+wgNotice="",
+wgNoticeLocal="";
+</script><script src="Insertion_sort_arquivos/wikibits.js" type="text/javascript"></script>
+<script type="text/javascript" src="Insertion_sort_arquivos/jquery.js"></script>
+<script src="Insertion_sort_arquivos/ajax.js" type="text/javascript"></script>
+<script src="Insertion_sort_arquivos/mwsuggest.js" type="text/javascript"></script>
+<script src="Insertion_sort_arquivos/MobileRedirect.js" type="text/javascript"></script>
+<script src="Insertion_sort_arquivos/plugins.js" type="text/javascript"></script>
+<script src="Insertion_sort_arquivos/Vector.js" type="text/javascript"></script>
+<script type="text/javascript">mw.usability.addMessages({'vector-collapsiblenav-more':'Mais línguas','vector-editwarning-warning':'Abandonar esta página pode fazer com que perca todas as suas alterações.\nSe estiver autenticado, pode desactivar este aviso na secção \"Edição\" das preferências.','vector-simplesearch-search':'Pesquisa','vector-simplesearch-containing':'contendo...'});</script>
+<script type="text/javascript" src="Insertion_sort_arquivos/centralnotice.js"></script><style type="text/css">
+#centralNotice .siteNoticeSmall{display:none;}
+#centralNotice .siteNoticeSmallAnon{display:none;}
+#centralNotice .siteNoticeSmallUser{display:none;}
+#centralNotice.collapsed .siteNoticeBig{display:none;}
+#centralNotice.collapsed .siteNoticeSmall{display:block;}
+#centralNotice.collapsed .siteNoticeSmallUser{display:block;}
+#centralNotice.collapsed .siteNoticeSmallAnon{display:block;}
+#centralNotice.anonnotice .siteNoticeSmallUser{display:none !important;}
+#centralNotice.usernotice .siteNoticeSmallAnon{display:none !important;}
+</style>
+
+
+<!--[if lt IE 7]><style type="text/css">body{behavior:url("/w/skins-1.5/vector/csshover.htc")}</style><![endif]-->
+<script src="Insertion_sort_arquivos/index.php" type="text/javascript"></script><style type="text/css">#interProject, #sisterProjects {display: none; speak: none;} #p-tb .pBody {padding-right: 0;}</style><script type="text/javascript" src="Insertion_sort_arquivos/index_004.php"></script><script type="text/javascript" src="Insertion_sort_arquivos/index_002.php"></script><script type="text/javascript" src="Insertion_sort_arquivos/index_003.php"></script>
+
+<style type="text/css">/*<![CDATA[*/
+.source-vb {line-height: normal;}
+.source-vb li, .source-vb pre {
+	line-height: normal; border: 0px none white;
+}
+/**
+ * GeSHi Dynamically Generated Stylesheet
+ * --------------------------------------
+ * Dynamically generated stylesheet for vb
+ * CSS class: source-vb, CSS id: 
+ * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann
+ * (http://qbnz.com/highlighter/ and http://geshi.org/)
+ * --------------------------------------
+ */
+.vb.source-vb .de1, .vb.source-vb .de2 {font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;}
+.vb.source-vb  {font-family:monospace;}
+.vb.source-vb .imp {font-weight: bold; color: red;}
+.vb.source-vb li, .vb.source-vb .li1 {font-weight: normal; vertical-align:top;}
+.vb.source-vb .ln {width:1px;text-align:right;margin:0;padding:0 2px;vertical-align:top;}
+.vb.source-vb .li2 {font-weight: bold; vertical-align:top;}
+.vb.source-vb .kw1 {color: #000080;}
+.vb.source-vb .co1 {color: #008000;}
+.vb.source-vb .es0 {color: #800000; font-weight: bold;}
+.vb.source-vb .st0 {color: #800000;}
+.vb.source-vb .ln-xtra, .vb.source-vb li.ln-xtra, .vb.source-vb div.ln-xtra {background-color: #ffc;}
+.vb.source-vb span.xtra { display:block; }
+
+/*]]>*/
+</style>
+<style type="text/css">/*<![CDATA[*/
+@import "/w/index.php?title=MediaWiki:Geshi.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=2678400";
+/*]]>*/
+</style><style type="text/css">/*<![CDATA[*/
+.source-c {line-height: normal;}
+.source-c li, .source-c pre {
+	line-height: normal; border: 0px none white;
+}
+/**
+ * GeSHi Dynamically Generated Stylesheet
+ * --------------------------------------
+ * Dynamically generated stylesheet for c
+ * CSS class: source-c, CSS id: 
+ * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann
+ * (http://qbnz.com/highlighter/ and http://geshi.org/)
+ * --------------------------------------
+ */
+.c.source-c .de1, .c.source-c .de2 {font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;}
+.c.source-c  {font-family:monospace;}
+.c.source-c .imp {font-weight: bold; color: red;}
+.c.source-c li, .c.source-c .li1 {font-weight: normal; vertical-align:top;}
+.c.source-c .ln {width:1px;text-align:right;margin:0;padding:0 2px;vertical-align:top;}
+.c.source-c .li2 {font-weight: bold; vertical-align:top;}
+.c.source-c .kw1 {color: #b1b100;}
+.c.source-c .kw2 {color: #000000; font-weight: bold;}
+.c.source-c .kw3 {color: #000066;}
+.c.source-c .kw4 {color: #993333;}
+.c.source-c .co1 {color: #666666; font-style: italic;}
+.c.source-c .co2 {color: #339933;}
+.c.source-c .coMULTI {color: #808080; font-style: italic;}
+.c.source-c .es0 {color: #000099; font-weight: bold;}
+.c.source-c .es1 {color: #000099; font-weight: bold;}
+.c.source-c .es2 {color: #660099; font-weight: bold;}
+.c.source-c .es3 {color: #660099; font-weight: bold;}
+.c.source-c .es4 {color: #660099; font-weight: bold;}
+.c.source-c .es5 {color: #006699; font-weight: bold;}
+.c.source-c .br0 {color: #009900;}
+.c.source-c .sy0 {color: #339933;}
+.c.source-c .st0 {color: #ff0000;}
+.c.source-c .nu0 {color: #0000dd;}
+.c.source-c .nu6 {color: #208080;}
+.c.source-c .nu8 {color: #208080;}
+.c.source-c .nu12 {color: #208080;}
+.c.source-c .nu16 {color:#800080;}
+.c.source-c .nu17 {color:#800080;}
+.c.source-c .nu18 {color:#800080;}
+.c.source-c .nu19 {color:#800080;}
+.c.source-c .me1 {color: #202020;}
+.c.source-c .me2 {color: #202020;}
+.c.source-c .ln-xtra, .c.source-c li.ln-xtra, .c.source-c div.ln-xtra {background-color: #ffc;}
+.c.source-c span.xtra { display:block; }
+
+/*]]>*/
+</style>
+<style type="text/css">/*<![CDATA[*/
+@import "/w/index.php?title=MediaWiki:Geshi.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=2678400";
+/*]]>*/
+</style><style type="text/css">/*<![CDATA[*/
+.source-pascal {line-height: normal;}
+.source-pascal li, .source-pascal pre {
+	line-height: normal; border: 0px none white;
+}
+/**
+ * GeSHi Dynamically Generated Stylesheet
+ * --------------------------------------
+ * Dynamically generated stylesheet for pascal
+ * CSS class: source-pascal, CSS id: 
+ * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann
+ * (http://qbnz.com/highlighter/ and http://geshi.org/)
+ * --------------------------------------
+ */
+.pascal.source-pascal .de1, .pascal.source-pascal .de2 {font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;}
+.pascal.source-pascal  {font-family:monospace;}
+.pascal.source-pascal .imp {font-weight: bold; color: red;}
+.pascal.source-pascal li, .pascal.source-pascal .li1 {font-weight: normal; vertical-align:top;}
+.pascal.source-pascal .ln {width:1px;text-align:right;margin:0;padding:0 2px;vertical-align:top;}
+.pascal.source-pascal .li2 {font-weight: bold; vertical-align:top;}
+.pascal.source-pascal .kw1 {color: #000000; font-weight: bold;}
+.pascal.source-pascal .kw2 {color: #000000; font-weight: bold;}
+.pascal.source-pascal .kw3 {color: #000066;}
+.pascal.source-pascal .kw4 {color: #000066; font-weight: bold;}
+.pascal.source-pascal .co1 {color: #666666; font-style: italic;}
+.pascal.source-pascal .coMULTI {color: #666666; font-style: italic;}
+.pascal.source-pascal .es0 {color: #000099; font-weight: bold;}
+.pascal.source-pascal .es_h {color: #000099; font-weight: bold;}
+.pascal.source-pascal .br0 {color: #009900;}
+.pascal.source-pascal .sy0 {color: #339933;}
+.pascal.source-pascal .st0 {color: #ff0000;}
+.pascal.source-pascal .st_h {color: #ff0000;}
+.pascal.source-pascal .nu0 {color: #cc66cc;}
+.pascal.source-pascal .me1 {color: #0066ee;}
+.pascal.source-pascal .ln-xtra, .pascal.source-pascal li.ln-xtra, .pascal.source-pascal div.ln-xtra {background-color: #ffc;}
+.pascal.source-pascal span.xtra { display:block; }
+
+/*]]>*/
+</style>
+<style type="text/css">/*<![CDATA[*/
+@import "/w/index.php?title=MediaWiki:Geshi.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=2678400";
+/*]]>*/
+</style><style type="text/css">/*<![CDATA[*/
+.source-python {line-height: normal;}
+.source-python li, .source-python pre {
+	line-height: normal; border: 0px none white;
+}
+/**
+ * GeSHi Dynamically Generated Stylesheet
+ * --------------------------------------
+ * Dynamically generated stylesheet for python
+ * CSS class: source-python, CSS id: 
+ * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann
+ * (http://qbnz.com/highlighter/ and http://geshi.org/)
+ * --------------------------------------
+ */
+.python.source-python .de1, .python.source-python .de2 {font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;}
+.python.source-python  {font-family:monospace;}
+.python.source-python .imp {font-weight: bold; color: red;}
+.python.source-python li, .python.source-python .li1 {font-weight: normal; vertical-align:top;}
+.python.source-python .ln {width:1px;text-align:right;margin:0;padding:0 2px;vertical-align:top;}
+.python.source-python .li2 {font-weight: bold; vertical-align:top;}
+.python.source-python .kw1 {color: #ff7700;font-weight:bold;}
+.python.source-python .kw2 {color: #008000;}
+.python.source-python .kw3 {color: #dc143c;}
+.python.source-python .kw4 {color: #0000cd;}
+.python.source-python .co1 {color: #808080; font-style: italic;}
+.python.source-python .coMULTI {color: #808080; font-style: italic;}
+.python.source-python .es0 {color: #000099; font-weight: bold;}
+.python.source-python .br0 {color: black;}
+.python.source-python .sy0 {color: #66cc66;}
+.python.source-python .st0 {color: #483d8b;}
+.python.source-python .nu0 {color: #ff4500;}
+.python.source-python .me1 {color: black;}
+.python.source-python .ln-xtra, .python.source-python li.ln-xtra, .python.source-python div.ln-xtra {background-color: #ffc;}
+.python.source-python span.xtra { display:block; }
+
+/*]]>*/
+</style>
+<style type="text/css">/*<![CDATA[*/
+@import "/w/index.php?title=MediaWiki:Geshi.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=2678400";
+/*]]>*/
+</style><style type="text/css">/*<![CDATA[*/
+.source-haskell {line-height: normal;}
+.source-haskell li, .source-haskell pre {
+	line-height: normal; border: 0px none white;
+}
+/**
+ * GeSHi Dynamically Generated Stylesheet
+ * --------------------------------------
+ * Dynamically generated stylesheet for haskell
+ * CSS class: source-haskell, CSS id: 
+ * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann
+ * (http://qbnz.com/highlighter/ and http://geshi.org/)
+ * --------------------------------------
+ */
+.haskell.source-haskell .de1, .haskell.source-haskell .de2 {font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;}
+.haskell.source-haskell  {font-family:monospace;}
+.haskell.source-haskell .imp {font-weight: bold; color: red;}
+.haskell.source-haskell li, .haskell.source-haskell .li1 {font-weight: normal; vertical-align:top;}
+.haskell.source-haskell .ln {width:1px;text-align:right;margin:0;padding:0 2px;vertical-align:top;}
+.haskell.source-haskell .li2 {font-weight: bold; vertical-align:top;}
+.haskell.source-haskell .kw1 {color: #06c; font-weight: bold;}
+.haskell.source-haskell .kw2 {color: #06c; font-weight: bold;}
+.haskell.source-haskell .kw3 {font-weight: bold;}
+.haskell.source-haskell .kw4 {color: #cccc00; font-weight: bold;}
+.haskell.source-haskell .kw5 {color: maroon;}
+.haskell.source-haskell .co1 {color: #5d478b; font-style: italic;}
+.haskell.source-haskell .co2 {color: #339933; font-weight: bold;}
+.haskell.source-haskell .coMULTI {color: #5d478b; font-style: italic;}
+.haskell.source-haskell .es0 {background-color: #3cb371; font-weight: bold;}
+.haskell.source-haskell .br0 {color: green;}
+.haskell.source-haskell .sy0 {color: #339933; font-weight: bold;}
+.haskell.source-haskell .st0 {background-color: #3cb371;}
+.haskell.source-haskell .nu0 {color: red;}
+.haskell.source-haskell .me1 {color: #060;}
+.haskell.source-haskell .ln-xtra, .haskell.source-haskell li.ln-xtra, .haskell.source-haskell div.ln-xtra {background-color: #ffc;}
+.haskell.source-haskell span.xtra { display:block; }
+
+/*]]>*/
+</style>
+<style type="text/css">/*<![CDATA[*/
+@import "/w/index.php?title=MediaWiki:Geshi.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=2678400";
+/*]]>*/
+</style><style type="text/css">/*<![CDATA[*/
+.source-csharp {line-height: normal;}
+.source-csharp li, .source-csharp pre {
+	line-height: normal; border: 0px none white;
+}
+/**
+ * GeSHi Dynamically Generated Stylesheet
+ * --------------------------------------
+ * Dynamically generated stylesheet for csharp
+ * CSS class: source-csharp, CSS id: 
+ * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann
+ * (http://qbnz.com/highlighter/ and http://geshi.org/)
+ * --------------------------------------
+ */
+.csharp.source-csharp .de1, .csharp.source-csharp .de2 {font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;}
+.csharp.source-csharp  {font-family:monospace;}
+.csharp.source-csharp .imp {font-weight: bold; color: red;}
+.csharp.source-csharp li, .csharp.source-csharp .li1 {font-weight: normal; vertical-align:top;}
+.csharp.source-csharp .ln {width:1px;text-align:right;margin:0;padding:0 2px;vertical-align:top;}
+.csharp.source-csharp .li2 {font-weight: bold; vertical-align:top;}
+.csharp.source-csharp .kw1 {color: #0600FF;}
+.csharp.source-csharp .kw2 {color: #FF8000; font-weight: bold;}
+.csharp.source-csharp .kw3 {color: #008000;}
+.csharp.source-csharp .kw4 {color: #FF0000;}
+.csharp.source-csharp .kw5 {color: #000000;}
+.csharp.source-csharp .co1 {color: #008080; font-style: italic;}
+.csharp.source-csharp .co2 {color: #008080;}
+.csharp.source-csharp .co3 {color: #008080;}
+.csharp.source-csharp .coMULTI {color: #008080; font-style: italic;}
+.csharp.source-csharp .es0 {color: #008080; font-weight: bold;}
+.csharp.source-csharp .es_h {color: #008080; font-weight: bold;}
+.csharp.source-csharp .br0 {color: #000000;}
+.csharp.source-csharp .sy0 {color: #008000;}
+.csharp.source-csharp .st0 {color: #666666;}
+.csharp.source-csharp .st_h {color: #666666;}
+.csharp.source-csharp .nu0 {color: #FF0000;}
+.csharp.source-csharp .me1 {color: #0000FF;}
+.csharp.source-csharp .me2 {color: #0000FF;}
+.csharp.source-csharp .ln-xtra, .csharp.source-csharp li.ln-xtra, .csharp.source-csharp div.ln-xtra {background-color: #ffc;}
+.csharp.source-csharp span.xtra { display:block; }
+
+/*]]>*/
+</style>
+<style type="text/css">/*<![CDATA[*/
+@import "/w/index.php?title=MediaWiki:Geshi.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=2678400";
+/*]]>*/
+</style><style type="text/css">/*<![CDATA[*/
+.source-php {line-height: normal;}
+.source-php li, .source-php pre {
+	line-height: normal; border: 0px none white;
+}
+/**
+ * GeSHi Dynamically Generated Stylesheet
+ * --------------------------------------
+ * Dynamically generated stylesheet for php
+ * CSS class: source-php, CSS id: 
+ * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann
+ * (http://qbnz.com/highlighter/ and http://geshi.org/)
+ * --------------------------------------
+ */
+.php.source-php .de1, .php.source-php .de2 {font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;}
+.php.source-php  {font-family:monospace;}
+.php.source-php .imp {font-weight: bold; color: red;}
+.php.source-php li, .php.source-php .li1 {font-weight: normal; vertical-align:top;}
+.php.source-php .ln {width:1px;text-align:right;margin:0;padding:0 2px;vertical-align:top;}
+.php.source-php .li2 {font-weight: bold; vertical-align:top;}
+.php.source-php .kw1 {color: #b1b100;}
+.php.source-php .kw2 {color: #000000; font-weight: bold;}
+.php.source-php .kw3 {color: #990000;}
+.php.source-php .kw4 {color: #009900; font-weight: bold;}
+.php.source-php .co1 {color: #666666; font-style: italic;}
+.php.source-php .co2 {color: #666666; font-style: italic;}
+.php.source-php .co3 {color: #0000cc; font-style: italic;}
+.php.source-php .co4 {color: #009933; font-style: italic;}
+.php.source-php .coMULTI {color: #666666; font-style: italic;}
+.php.source-php .es0 {color: #000099; font-weight: bold;}
+.php.source-php .es1 {color: #000099; font-weight: bold;}
+.php.source-php .es2 {color: #660099; font-weight: bold;}
+.php.source-php .es3 {color: #660099; font-weight: bold;}
+.php.source-php .es4 {color: #006699; font-weight: bold;}
+.php.source-php .es5 {color: #006699; font-weight: bold; font-style: italic;}
+.php.source-php .es6 {color: #009933; font-weight: bold;}
+.php.source-php .es_h {color: #000099; font-weight: bold;}
+.php.source-php .br0 {color: #009900;}
+.php.source-php .sy0 {color: #339933;}
+.php.source-php .sy1 {color: #000000; font-weight: bold;}
+.php.source-php .st0 {color: #0000ff;}
+.php.source-php .st_h {color: #0000ff;}
+.php.source-php .nu0 {color: #cc66cc;}
+.php.source-php .nu8 {color: #208080;}
+.php.source-php .nu12 {color: #208080;}
+.php.source-php .nu19 {color:#800080;}
+.php.source-php .me1 {color: #004000;}
+.php.source-php .me2 {color: #004000;}
+.php.source-php .re0 {color: #000088;}
+.php.source-php .ln-xtra, .php.source-php li.ln-xtra, .php.source-php div.ln-xtra {background-color: #ffc;}
+.php.source-php span.xtra { display:block; }
+
+/*]]>*/
+</style>
+<style type="text/css">/*<![CDATA[*/
+@import "/w/index.php?title=MediaWiki:Geshi.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=2678400";
+/*]]>*/
+</style></head><body class="mediawiki ltr ns-0 ns-subject 
+page-Insertion_sort skin-vector">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<!-- content -->
+		<div id="content"><div style="visibility: hidden; display: none; 
+width: 602px; height: 402px; margin: 0px; padding: 0px; 
+background-color: white; position: absolute; right: 2em; top: 1em; 
+border: 1px solid gray; z-index: 13;"><iframe style="z-index: 14; 
+position: absolute; right: 1px; top: 1px; width: 600px; height: 400px; 
+margin: 0px; padding: 0px;" frameborder="0" scrolling="no"></iframe><img
+ style="z-index: 15; position: absolute; right: 11px; top: 9px; width: 
+18px; cursor: pointer;" src="Insertion_sort_arquivos/Button_hide.png" 
+title="fechar"></div>
+			<a id="top"></a>
+			<div id="mw-js-message" style="display: none;"></div>
+						<!-- sitenotice -->
+			<div id="siteNotice"><script type="text/javascript">if (wgNotice != '') document.writeln(wgNotice);</script><div
+ id="centralNotice" class="expanded anonnotice"><style type="text/css">
+/* Styles for Notices */
+/*COPIED FROM VECTORCHANGED */
+
+.notice-wrapper-vector_transition, .notice-collapsed-wrapper-vector_transition {
+ margin: 2px auto 0;
+ width: 100%;
+ padding: 0;
+ font-family: 'Arial','Helvetica','Tahoma',sans-serif;
+ color: #333;
+ background-color: #ddd;
+ font-size: 1em;
+ font-weight: 200;
+ vertical-align:middle;
+}
+
+.notice-wrapper-vector_transition {
+ border: 1px solid #bbb;
+ background-color: #fcfcfc;
+ text-align: left;
+ font-size: 1em;
+}
+
+.notice-wrapper-vector_transition a {
+ color: #006699;
+}
+
+#vector_post_release_message .toggle-box {
+ text-align: right;
+ font-size: 0.8em;
+ padding: 0;
+}
+
+#vector_post_release_message .trans-box {
+ text-align: right;
+ font-size: 0.8em;
+ padding: 0;
+ white-space: nowrap;
+}
+
+td#table-cell-1 {
+ margin: 0 auto;
+ padding: 1px 0 3px 5px;
+ width: 30px;
+}
+
+td#table-cell-2 {
+ margin: 0 auto;
+ padding: 0 5px 0 0;
+ font-size: 1.3em;
+}
+
+td#table-cell-lht {
+ font-size: 0.8em;
+ padding: 0 5px 0 0;
+ text-align: center;
+}
+
+#vector_post_release_message .line-ht-fix {
+ line-height: 1em;
+ align: center;
+}
+
+
+#centralNotice.collapsed .siteNoticeUser {
+ display:none;
+}
+
+div.notice-links-vector_transition {
+ text-align:right;
+}
+
+
+/* FROM VECTORNEWLOOK */
+
+
+#centralNotice.collapsed .central-notice-banner {
+ display: none;
+}
+#vector_transition_message .central-notice-banner {
+ position: relative;
+ margin-bottom: 1em !important;
+}
+#vector_transition_message .toggle-box {
+ position: absolute;
+ right: 8em;
+ /* right: 0.25em; */
+ /* top: 1.3em; */
+ font-size: 0.8em;
+}
+.vector-banner-base {
+ height: 3em;
+ background-color: white;
+ background-image: url(http://upload.wikimedia.org/centralnotice/enwiki/vector/base.png);
+ background-repeat: repeat-x;
+ background-position: center bottom;
+}
+.vector-banner-base-left {
+ height: 3em;
+ background-image: url(http://upload.wikimedia.org/centralnotice/enwiki/vector/left.png);
+ background-repeat: no-repeat;
+ background-position: left bottom;
+}
+.vector-banner-base-right {
+ height: 3em;
+ background-image: url(http://upload.wikimedia.org/centralnotice/enwiki/vector/right.png);
+ background-repeat: no-repeat;
+ background-position: right bottom;
+}
+.vector-banner-message {
+ text-align: center;
+ height: 3em;
+}
+.vector-banner-message a {
+ display: inline-block;
+ height: 2em;
+ padding: 0 1em !important;
+ padding-top: 1em !important;
+ cursor: pointer;
+ text-decoration: none;
+}
+.vector-banner-message a.vector-banner-message-left {
+ background-image: url(http://upload.wikimedia.org/centralnotice/enwiki/vector/break.png) !important;
+ background-repeat: no-repeat !important;
+ background-position: right bottom !important;
+ color: #333333;
+}
+.vector-banner-message a.vector-banner-message-right {
+ color: #0645AD;
+}
+.vector-banner-message a.vector-banner-message-right:hover {
+ text-decoration: underline;
+}
+</style>
+<div style="display: none;" class="central-notice-banner" 
+id="vector_transition_message">
+ <div class="toggle-box"><a href="#" onclick="toggleNotice();return 
+false">Esconder</a></div>
+ <div class="vector-banner-base">
+  <div class="vector-banner-base-left">
+   <div class="vector-banner-base-right">
+    <div class="vector-banner-message">
+     <a 
+href="http://meta.wikimedia.org/wiki/2010_Wikimedia_design_and_feature_change"
+ class="vector-banner-message-left">Wikipedia está a mudar de aparência.</a><a
+ 
+href="http://meta.wikimedia.org/wiki/2010_Wikimedia_design_and_feature_change"
+ class="vector-banner-message-right">Ajude-nos a encontrar problemas e a
+ completar as traduções da interface de utilizador.</a>
+    </div>
+   </div>
+  </div>
+ </div>
+</div>
+<table style="display: none;" class="siteNoticeUser 
+notice-wrapper-vector_transition" id="vector_post_release_message">
+ <tbody><tr>
+  <td id="table-cell-2" align="center">
+   <span>
+    Notou algo diferente? Fizemos algumas melhorias em Wikipedia. <a 
+href="http://pt.wikipedia.org/wiki/Special:UsabilityInitiativePrefSwitch">Saiba
+ mais.</a>
+   </span>
+  </td>
+  <td id="table-cell-lht" class="line-ht-fix">
+      <span class="toggle-box">
+   [<a href="#" onclick="toggleNotice();return false">Esconder</a>]
+ </span><br>
+  <span class="trans-box">
+  [<a 
+href="http://usability.wikimedia.org/wiki/Releases/Default_Switch#Phase_IV_Deployment">Ajuda-nos
+ com as traduções!</a>]
+  </span>
+  </td>
+ </tr>
+</tbody></table>
+
+<script type="text/javascript">
+// Control which will be displayed
+// This is the lowest form of JS that will work in all supported browsers, is not pretty but it works
+if( 
+ (typeof(wgDBname) == "undefined") ||
+ wgDBname  == 'enwiki' || 
+ wgDBname == 'dewiki' || 
+ wgDBname == 'frwiki'|| 
+ wgDBname == 'plwiki'|| 
+ wgDBname == 'itwiki'|| 
+ wgDBname == 'jawiki'|| 
+ wgDBname == 'eswiki'|| 
+ wgDBname == 'nlwiki'|| 
+ wgDBname == 'ptwiki'|| 
+ wgDBname == 'ruwiki'|| 
+ wgDBname == 'enwikinews'|| 
+ wgDBname == 'nostalgiawiki'|| 
+ wgDBname == 'strategywiki'|| 
+ wgDBname =='strategyappswiki'|| 
+ wgDBname =='usabilitywiki'|| 
+ wgDBname == 'fiwikimedia'|| 
+ wgDBname == 'trwikimedia'|| 
+ wgDBname == 'outreachwiki'|| 
+ wgDBname == 'srwikinews'|| 
+ wgDBname == 'liquidthreads_labswikimedia'|| 
+ wgDBname == 'flaggedrevs_labswikimedia'|| 
+ wgDBname == 'foundationwiki'|| 
+ wgDBname == 'officewiki'|| 
+ wgDBname == 'ukwikimedia'|| 
+ wgDBname == 'commonswiki' ||
+ wgDBname == "wikimania2010wiki" || 
+wgDBname == "wikimania2009wiki" || 
+wgDBname == "wikimania2008wiki" || 
+wgDBname == "wikimania2007wiki" || 
+wgDBname == "wikimania2006wiki" || 
+wgDBname == "wikimania2005wiki" ||
+wgDBname == "brwikimedia" || 
+wgDBname == "dkwikimedia" || 
+wgDBname == "vewikimedia" || 
+wgDBname == "ptwikimedia" || 
+wgDBname == "nowikimedia" || 
+wgDBname == "ruwikimedia" || 
+wgDBname == "sewikimedia" || 
+wgDBname == "rswikimedia" || 
+wgDBname == "cowikimedia" || 
+wgDBname == "plwikimedia" || 
+wgDBname == "chwikimedia" || 
+wgDBname == "ilwikimedia" || 
+wgDBname == "nlwikimedia" || 
+wgDBname == "nzwikimedia" || 
+wgDBname == "uawikimedia" || 
+wgDBname == "metawiki" || 
+wgDBname == "en_labswikimedia" || 
+wgDBname == "de_labswikimedia" || 
+wgDBname == "readerfeedback_labswikimedia"
+) {
+/* already changed */
+    document.getElementById('vector_transition_message').style.display='none';
+    document.getElementById('vector_post_release_message').style.display='none';
+}
+else if(
+wgDBname == "afwiki" || 
+wgDBname == "alswiki" || 
+wgDBname == "arwiki" || 
+wgDBname == "be_x_oldwiki" || 
+wgDBname == "bgwiki" || 
+wgDBname == "bnwiki" || 
+wgDBname == "brwiki" || 
+wgDBname == "bswiki" || 
+wgDBname == "cawiki" || 
+wgDBname == "cswiki" || 
+wgDBname == "cywiki" || 
+wgDBname == "dawiki" || 
+wgDBname == "diqwiki" || 
+wgDBname == "dsbwiki" || 
+wgDBname == "elwiki" || 
+wgDBname == "eowiki" || 
+wgDBname == "etwiki" || 
+wgDBname == "euwiki" || 
+wgDBname == "fawiki" || 
+wgDBname == "fiwiki" || 
+wgDBname == "frpwiki" || 
+wgDBname == "glwiki" || 
+wgDBname == "hewiki" || 
+wgDBname == "hsbwiki" || 
+wgDBname == "huwiki" || 
+wgDBname == "iawiki" || 
+wgDBname == "idwiki" || 
+wgDBname == "kawiki" || 
+wgDBname == "kowiki" || 
+wgDBname == "kshwiki" || 
+wgDBname == "lbwiki" || 
+wgDBname == "mkwiki" || 
+wgDBname == "mlwiki" || 
+wgDBname == "mswiki" || 
+wgDBname == "mtwiki" || 
+wgDBname == "nnwiki" || 
+wgDBname == "nowiki" || 
+wgDBname == "ocwiki" || 
+wgDBname == "pmswiki" || 
+wgDBname == "rowiki" || 
+wgDBname == "roa_tarawiki" || 
+wgDBname == "sahwiki" || 
+wgDBname == "skwiki" || 
+wgDBname == "slwiki" || 
+wgDBname == "sqwiki" || 
+wgDBname == "svwiki" || 
+wgDBname == "tewiki" || 
+wgDBname == "thwiki" || 
+wgDBname == "tlwiki" || 
+wgDBname == "trwiki" || 
+wgDBname == "viwiki" || 
+wgDBname == "yiwiki" || 
+wgDBname == "yowiki" || 
+wgDBname == "zhwiki" || 
+wgDBname == "zh_yuewiki" ||
+wgDBname == "incubatorwiki" || 
+wgDBname == "mediawikiwiki" 
+) {
+/* Phase IV projects, show post-release msg */
+    document.getElementById('vector_transition_message').style.display='none';
+}
+else{
+/* all others, just hide post-release */
+    document.getElementById('vector_post_release_message').style.display='none';
+   if(wgUserName == null){
+    document.getElementById('vector_transition_message').style.display='none';
+   }
+}
+
+
+</script></div>
+</div>
+			<!-- /sitenotice -->
+						<!-- firstHeading -->
+			<h1 id="firstHeading" class="firstHeading">Insertion sort</h1>
+			<!-- /firstHeading -->
+			<!-- bodyContent -->
+			<div id="bodyContent">
+				<!-- tagline -->
+				<h3 id="siteSub">Origem: Wikipédia, a enciclopédia livre.</h3>
+				<!-- /tagline -->
+				<!-- subtitle -->
+				<div id="contentSub"></div>
+				<!-- /subtitle -->
+																<!-- jumpto -->
+				<div id="jump-to-nav">
+					Ir para: <a href="#mw-head">navegação</a>,
+					<a href="#p-search">pesquisa</a>
+				</div>
+				<!-- /jumpto -->
+								<!-- bodytext -->
+				<p><b>Insertion sort</b>, ou <i>ordenação por inserção</i>, é um 
+simples <a 
+href="http://pt.wikipedia.org/wiki/Algoritmo_de_ordena%C3%A7%C3%A3o" 
+title="Algoritmo de ordenação">algoritmo de ordenação</a>, eficiente 
+quando aplicado a um pequeno número de elementos. Em termos gerais, ele 
+percorre um vetor de elementos da esquerda para a direita e à medida que
+ avança vai deixando os elementos mais à esquerda ordenados. O algoritmo
+ de inserção funciona da mesma maneira com que muitas pessoas ordenam 
+cartas em um jogo de baralho como o pôquer.</p>
+<table id="toc" class="toc">
+<tbody><tr>
+<td>
+<div id="toctitle">
+<h2>Índice</h2>
+ <span class="toctoggle">[<a href="#" class="internal" id="togglelink">esconder</a>]</span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Caracter.C3.ADsticas"><span
+ class="tocnumber">1</span> <span class="toctext">Características</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Implementa.C3.A7.C3.B5es"><span
+ class="tocnumber">2</span> <span class="toctext">Implementações</span></a>
+<ul>
+<li class="toclevel-2 tocsection-3"><a href="#Pseudoc.C3.B3digo"><span 
+class="tocnumber">2.1</span> <span class="toctext">Pseudocódigo</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#xHarbour"><span 
+class="tocnumber">2.2</span> <span class="toctext">xHarbour</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#Java"><span 
+class="tocnumber">2.3</span> <span class="toctext">Java</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#Visual_Basic"><span 
+class="tocnumber">2.4</span> <span class="toctext">Visual Basic</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#C"><span class="tocnumber">2.5</span>
+ <span class="toctext">C</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="#Pascal"><span 
+class="tocnumber">2.6</span> <span class="toctext">Pascal</span></a></li>
+<li class="toclevel-2 tocsection-9"><a href="#Python"><span 
+class="tocnumber">2.7</span> <span class="toctext">Python</span></a></li>
+<li class="toclevel-2 tocsection-10"><a href="#Haskell"><span 
+class="tocnumber">2.8</span> <span class="toctext">Haskell</span></a></li>
+<li class="toclevel-2 tocsection-11"><a href="#C.23"><span 
+class="tocnumber">2.9</span> <span class="toctext">C#</span></a></li>
+<li class="toclevel-2 tocsection-12"><a href="#PHP"><span 
+class="tocnumber">2.10</span> <span class="toctext">PHP</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-13"><a href="#Simulador_Online"><span 
+class="tocnumber">3</span> <span class="toctext">Simulador Online</span></a></li>
+<li class="toclevel-1 tocsection-14"><a href="#Ver_tamb.C3.A9m"><span 
+class="tocnumber">4</span> <span class="toctext">Ver também</span></a></li>
+<li class="toclevel-1 tocsection-15"><a href="#Refer.C3.AAncias"><span 
+class="tocnumber">5</span> <span class="toctext">Referências</span></a></li>
+<li class="toclevel-1 tocsection-16"><a 
+href="#Liga.C3.A7.C3.B5es_externas"><span class="tocnumber">6</span> <span
+ class="toctext">Ligações externas</span></a></li>
+</ul>
+</td>
+</tr>
+</tbody></table>
+<script type="text/javascript">
+//<![CDATA[
+if (window.showTocToggle) { var tocShowText = "mostrar"; var tocHideText = "esconder"; showTocToggle(); } 
+//]]>
+</script>
+<h2><span class="editsection">[<a 
+href="http://pt.wikipedia.org/w/index.php?title=Insertion_sort&amp;action=edit&amp;section=1"
+ title="Editar seção: Características">editar</a>]</span> <span 
+class="mw-headline" id="Caracter.C3.ADsticas">Características</span></h2>
+<ul>
+<li>Menor número de trocas e comparações entre os algoritmos de 
+ordenação Ω(n) quando o vetor está ordenado.</li>
+<li>Pior caso O(n²)</li>
+</ul>
+<h2><span class="editsection">[<a 
+href="http://pt.wikipedia.org/w/index.php?title=Insertion_sort&amp;action=edit&amp;section=2"
+ title="Editar seção: Implementações">editar</a>]</span> <span 
+class="mw-headline" id="Implementa.C3.A7.C3.B5es">Implementações</span></h2>
+<h3><span class="editsection">[<a 
+href="http://pt.wikipedia.org/w/index.php?title=Insertion_sort&amp;action=edit&amp;section=3"
+ title="Editar seção: Pseudocódigo">editar</a>]</span> <span 
+class="mw-headline" id="Pseudoc.C3.B3digo"><a 
+href="http://pt.wikipedia.org/wiki/Pseudoc%C3%B3digo" 
+title="Pseudocódigo">Pseudocódigo</a></span></h3>
+<p>Segue uma versão simples do pseudocódigo do algoritmo, com vetores 
+começando em zero:</p>
+<pre> INSERTION_SORT(A, size) 
+         for  j ←2  to  size do 
+                key  ← A[ j] 
+                i  ← j –1 
+                while  i &gt; 0  and  A[i] &gt; key  do 
+                         A[i+1]  ← A[i] 
+                         i  ← i –1 
+        A[i+1]          ←  key 
+</pre>
+<h3><span class="editsection">[<a 
+href="http://pt.wikipedia.org/w/index.php?title=Insertion_sort&amp;action=edit&amp;section=4"
+ title="Editar seção: xHarbour">editar</a>]</span> <span 
+class="mw-headline" id="xHarbour"><a 
+href="http://pt.wikipedia.org/wiki/XHarbour" title="XHarbour">xHarbour</a></span></h3>
+<pre>Function SortInsertion( aList )
+   Local nLoop1 := 0
+   Local nLoop2 := 0
+   Local nIndex := 0
+   For nLoop1 := 1 To Len( aList )
+       nLoop2 := nLoop1
+       nIndex := aList[ nLoop1 ]
+       While nLoop2 &gt; 1 .And. aList[ nLoop2 - 1 ] &gt; nIndex
+          aList[ nLoop2 ] := aList[ nLoop2 - 1 ]
+          nLoop2 --
+       EndDo
+       aList[ nLoop2 ] := nIndex
+   Next
+Return NIL
+</pre>
+<h3><span class="editsection">[<a 
+href="http://pt.wikipedia.org/w/index.php?title=Insertion_sort&amp;action=edit&amp;section=5"
+ title="Editar seção: Java">editar</a>]</span> <span class="mw-headline"
+ id="Java"><a 
+href="http://pt.wikipedia.org/wiki/Java_%28linguagem_de_programa%C3%A7%C3%A3o%29"
+ title="Java (linguagem de programação)">Java</a></span></h3>
+<pre>        public static Integer[] insertionSort(Integer[] array) {
+		for (int i = 1; i &lt; array.length; i++) {
+			int a = array[i];
+			int j;
+			for (j = i - 1; j &gt;= 0 &amp;&amp; array[j] &gt; a; j--)
+				array[j + 1] = array[j];
+			array[j] = a;
+		}
+		return array;
+	}
+</pre>
+<h3><span class="editsection">[<a 
+href="http://pt.wikipedia.org/w/index.php?title=Insertion_sort&amp;action=edit&amp;section=6"
+ title="Editar seção: Visual Basic">editar</a>]</span> <span 
+class="mw-headline" id="Visual_Basic"><a 
+href="http://pt.wikipedia.org/wiki/Visual_Basic" title="Visual Basic">Visual
+ Basic</a></span></h3>
+<div dir="ltr" class="mw-geshi" style="text-align: left;">
+<div class="vb source-vb" style="font-family: monospace;">
+<pre class="de1">    <span class="kw1">Private</span> <span class="kw1">Sub</span> Ordenacao(Numeros() <span class="kw1">As</span> <span class="kw1">Integer</span>)
+       <span class="kw1">Dim</span> i <span class="kw1">As</span> <span class="kw1">Long</span>
+       <span class="kw1">Dim</span> j <span class="kw1">As</span> <span class="kw1">Long</span>
+       <span class="kw1">Dim</span> iMin <span class="kw1">As</span> <span class="kw1">Long</span>
+       <span class="kw1">Dim</span> iMax <span class="kw1">As</span> <span class="kw1">Long</span>
+       <span class="kw1">Dim</span> varSwap <span class="kw1">As</span> <span class="kw1">Variant</span>
+       iMin = <span class="kw1">LBound</span>(Numeros) + 1
+       iMax = <span class="kw1">UBound</span>(Numeros)
+       <span class="kw1">For</span> i = iMin <span class="kw1">To</span> iMax
+           varSwap = Numeros(i)
+           <span class="kw1">For</span> j = i <span class="kw1">To</span> iMin <span class="kw1">Step</span> -1
+               <span class="kw1">If</span> varSwap &lt; Numeros(j - 1) <span class="kw1">Then</span> Numeros(j) = Numeros(j - 1) <span class="kw1">Else</span> <span class="kw1">Exit</span> <span class="kw1">For</span>
+           <span class="kw1">Next</span> j
+          Numeros(j) = varSwap
+       <span class="kw1">Next</span> i
+<span class="kw1">End</span> <span class="kw1">Sub</span>
+'Code By Kalandar
+</pre></div>
+</div>
+<h3><span class="editsection">[<a 
+href="http://pt.wikipedia.org/w/index.php?title=Insertion_sort&amp;action=edit&amp;section=7"
+ title="Editar seção: C">editar</a>]</span> <span class="mw-headline" 
+id="C"><a 
+href="http://pt.wikipedia.org/wiki/Linguagem_de_programa%C3%A7%C3%A3o_C"
+ title="Linguagem de programação C" class="mw-redirect">C</a></span></h3>
+<div dir="ltr" class="mw-geshi" style="text-align: left;">
+<div class="c source-c" style="font-family: monospace;">
+<pre class="de1"><span class="kw4">void</span> insertionSort<span class="br0">(</span><span class="kw4">int</span> <span class="sy0">*</span>primeiro<span class="sy0">,</span> <span class="kw4">int</span> <span class="sy0">*</span>ultimo<span class="br0">)</span>
+<span class="br0">{</span>
+  <span class="kw4">int</span> aInserir<span class="sy0">,</span> <span class="sy0">*</span>posAIncio <span class="sy0">+</span> 1<span class="sy0">,</span> <span class="sy0">*</span>posAtual<span class="sy0">;</span>
+  <span class="kw1">for</span> <span class="br0">(</span><span class="sy0">;</span> posAInsir <span class="sy0">&lt;=</span> ulmo<span class="sy0">;</span> <span class="sy0">++</span>posAInserir<span class="br0">)</span>
+  <span class="br0">{</span>
+    aInserir <span class="sy0">=</span> <span class="sy0">*</span>posAInserir<span class="sy0">;</span>
+    posAtual <span class="sy0">=</span> posArir <span class="sy0">-</span> <span class="nu0">1</span><span class="sy0">;</span>
+    <span class="kw1">while</span> <span class="br0">(</span>Atual <span class="sy0">&gt;=</span> priro <span class="sy0">&amp;&amp;</span> <span class="sy0">*</span>posAtual <span class="sy0">&gt;</span> aerir <span class="br0">)</span>
+    <span class="br0">{</span>
+      <span class="sy0">*</span><span class="br0">(</span>posAtu<span class="sy0">+</span>1<span class="br0">)</span> <span class="sy0">=</span> <span class="sy0">*</span>posAtual<span class="sy0">;</span>
+      <span class="sy0">--</span>posal<span class="sy0">;</span>
+    <span class="br0">}</span>
+    <span class="sy0">*</span><span class="br0">(</span>posl<span class="sy0">+</span>1<span class="br0">)</span> <span class="sy0">=</span> aInserir<span class="sy0">;</span>
+  <span class="br0">}</span>
+<span class="br0">}</span>
+</pre></div>
+</div>
+<div dir="ltr" class="mw-geshi" style="text-align: left;">
+<div class="c source-c" style="font-family: monospace;">
+<pre class="de1"><span class="kw4">void</span> insertionSort<span class="br0">(</span><span class="kw4">int</span> v<span class="br0">[</span><span class="br0">]</span><span class="sy0">,</span> <span class="kw4">int</span> n<span class="br0">)</span>
+<span class="br0">{</span>
+	<span class="kw4">int</span> i<span class="sy0">,</span> j<span class="sy0">,</span> chave<span class="sy0">;</span>
+ 
+	<span class="kw1">for</span><span class="br0">(</span>j<span class="sy0">=</span><span class="nu0">1</span><span class="sy0">;</span> j<span class="sy0">&lt;</span>n<span class="sy0">;</span> j<span class="sy0">++</span><span class="br0">)</span> 
+	<span class="br0">{</span>
+		chave <span class="sy0">=</span> v<span class="br0">[</span>j<span class="br0">]</span><span class="sy0">;</span>
+		i <span class="sy0">=</span> j<span class="sy0">-</span><span class="nu0">1</span><span class="sy0">;</span>
+		<span class="kw1">while</span><span class="br0">(</span>i <span class="sy0">&gt;=</span> 0 <span class="sy0">&amp;&amp;</span> v<span class="br0">[</span>i<span class="br0">]</span> <span class="sy0">&gt;</span> chave<span class="br0">)</span>
+		<span class="br0">{</span>
+			v<span class="br0">[</span>i<span class="sy0">+</span>1<span class="br0">]</span> <span class="sy0">=</span> v<span class="br0">[</span>i<span class="br0">]</span><span class="sy0">;</span>
+			i<span class="sy0">--;</span>
+		<span class="br0">}</span>		
+		v<span class="br0">[</span>i<span class="sy0">+</span>1<span class="br0">]</span> <span class="sy0">=</span> chave<span class="sy0">;</span>
+	<span class="br0">}</span>
+<span class="br0">}</span>
+</pre></div>
+</div>
+<h3><span class="editsection">[<a 
+href="http://pt.wikipedia.org/w/index.php?title=Insertion_sort&amp;action=edit&amp;section=8"
+ title="Editar seção: Pascal">editar</a>]</span> <span 
+class="mw-headline" id="Pascal"><a 
+href="http://pt.wikipedia.org/wiki/Pascal" title="Pascal">Pascal</a></span></h3>
+<div dir="ltr" class="mw-geshi" style="text-align: left;">
+<div class="pascal source-pascal" style="font-family: monospace;">
+<pre class="de1"><span class="kw1">procedure</span> InsertionSort<span class="br0">(</span><span class="kw1">var</span> a<span class="sy0">:</span>vetor; n<span class="sy0">:</span><span class="kw4">integer</span>; <span class="kw1">var</span> NC<span class="sy0">,</span> NT<span class="sy0">:</span> <span class="kw4">integer</span><span class="br0">)</span>;
+<span class="kw1">var</span> j<span class="sy0">,</span>o<span class="sy0">:</span><span class="kw4">integer</span>; <span class="coMULTI">{variaveis auxiliares}</span>
+<span class="kw1">begin</span>
+<span class="kw1">for</span> j<span class="sy0">:=</span>2 <span class="kw1">to</span> n <span class="kw1">do</span>
+ <span class="kw1">begin</span>
+o<span class="sy0">:=</span>j<span class="sy0">-</span><span class="nu0">1</span>;
+ <span class="kw1">while</span> <span class="br0">(</span>a<span class="br0">[</span>j<span class="br0">]</span>&lt;a<span class="br0">[</span>o<span class="br0">]</span><span class="br0">)</span> <span class="kw3">and</span> <span class="br0">(</span>i&gt;1<span class="br0">)</span> <span class="kw1">do</span>
+ <span class="kw1">begin</span>
+  inc<span class="br0">(</span>NT<span class="br0">)</span>;
+  troca<span class="br0">(</span>a<span class="br0">[</span>j<span class="br0">]</span><span class="sy0">,</span>a<span class="br0">[</span>o<span class="br0">]</span><span class="br0">)</span>;
+  j<span class="sy0">:=</span>i<span class="sy0">-</span><span class="nu0">1</span>;
+  o<span class="sy0">:=</span>o<span class="sy0">-</span><span class="nu0">1</span>;
+  inc<span class="br0">(</span>NC<span class="br0">)</span>;
+ <span class="kw1">end</span>;
+ <span class="kw1">end</span>;
+<span class="kw1">end</span>;
+</pre></div>
+</div>
+<h3><span class="editsection">[<a 
+href="http://pt.wikipedia.org/w/index.php?title=Insertion_sort&amp;action=edit&amp;section=9"
+ title="Editar seção: Python">editar</a>]</span> <span 
+class="mw-headline" id="Python"><a 
+href="http://pt.wikipedia.org/wiki/Python" title="Python">Python</a></span></h3>
+<div dir="ltr" class="mw-geshi" style="text-align: left;">
+<div class="python source-python" style="font-family: monospace;">
+<pre class="de1"><span class="kw1">def</span> inssort<span class="br0">(</span>v<span class="br0">)</span>:
+    <span class="kw1">for</span> j <span class="kw1">in</span> <span class="kw2">range</span><span class="br0">(</span>1, <span class="kw2">len</span><span class="br0">(</span>v<span class="br0">)</span><span class="br0">)</span>:
+        key = v<span class="br0">[</span>j<span class="br0">]</span>
+        i = j - 1
+        <span class="kw1">while</span> a<span class="br0">[</span>i<span class="br0">]</span> <span class="sy0">&gt;</span> key <span class="kw1">and</span> i <span class="sy0">&gt;</span>= <span class="nu0">0</span>:
+            a<span class="br0">[</span>i+<span class="nu0">1</span><span class="br0">]</span> = a<span class="br0">[</span>i<span class="br0">]</span>
+            i -= <span class="nu0">1</span>
+        v<span class="br0">[</span>i+<span class="nu0">1</span><span class="br0">]</span> = key
+</pre></div>
+</div>
+<h3><span class="editsection">[<a 
+href="http://pt.wikipedia.org/w/index.php?title=Insertion_sort&amp;action=edit&amp;section=10"
+ title="Editar seção: Haskell">editar</a>]</span> <span 
+class="mw-headline" id="Haskell"><a 
+href="http://pt.wikipedia.org/wiki/Haskell" title="Haskell">Haskell</a></span></h3>
+<div dir="ltr" class="mw-geshi" style="text-align: left;">
+<div class="haskell source-haskell" style="font-family: monospace;">
+<pre class="de1"><span class="kw1">import</span> Data<span class="sy0">.</span>List <span class="br0">(</span>insert<span class="br0">)</span>
+ 
+insertsort <span class="sy0">::</span> <span class="kw4">Ord</span> a <span class="sy0">=&gt;</span> <span class="br0">[</span>a<span class="br0">]</span> <span class="sy0">-&gt;</span> <span class="br0">[</span>a<span class="br0">]</span>
+insertsort <span class="sy0">=</span> <span class="kw3">foldr</span> insert <span class="br0">[</span><span class="br0">]</span>
+</pre></div>
+</div>
+<h3><span class="editsection">[<a 
+href="http://pt.wikipedia.org/w/index.php?title=Insertion_sort&amp;action=edit&amp;section=11"
+ title="Editar seção: C#">editar</a>]</span> <span class="mw-headline" 
+id="C.23"><a href="http://pt.wikipedia.org/wiki/C" title="C">C#</a></span></h3>
+<div dir="ltr" class="mw-geshi" style="text-align: left;">
+<div class="csharp source-csharp" style="font-family: monospace;">
+<pre class="de1">   <span class="kw1">static</span> <span class="kw4">int</span><span class="br0">[</span><span class="br0">]</span> ordernar<span class="br0">(</span><span class="kw4">int</span><span class="br0">[</span><span class="br0">]</span> A<span class="br0">)</span>
+   <span class="br0">{</span> 
+      <span class="kw4">int</span> i, j, index<span class="sy0">;</span>
+      <span class="kw1">for</span> <span class="br0">(</span>i <span class="sy0">=</span> <span class="nu0">1</span><span class="sy0">;</span> i <span class="sy0">&lt;</span> A.<span class="me1">Length</span><span class="sy0">;</span> i<span class="sy0">++</span><span class="br0">)</span>
+      <span class="br0">{</span>
+          index <span class="sy0">=</span> A<span class="br0">[</span>i<span class="br0">]</span><span class="sy0">;</span>
+          j <span class="sy0">=</span> i<span class="sy0">;</span>
+          <span class="kw1">while</span> <span class="br0">(</span><span class="br0">(</span>j <span class="sy0">&gt;</span> 0<span class="br0">)</span> <span class="sy0">&amp;&amp;</span> <span class="br0">(</span>A<span class="br0">[</span>j <span class="sy0">-</span> 1<span class="br0">]</span> <span class="sy0">&gt;</span> index<span class="br0">)</span><span class="br0">)</span>
+          <span class="br0">{</span>
+              A<span class="br0">[</span>j<span class="br0">]</span> <span class="sy0">=</span> A<span class="br0">[</span>j <span class="sy0">-</span> 1<span class="br0">]</span><span class="sy0">;</span>
+              j <span class="sy0">=</span> j <span class="sy0">-</span> <span class="nu0">1</span><span class="sy0">;</span>
+          <span class="br0">}</span>
+          A<span class="br0">[</span>j<span class="br0">]</span> <span class="sy0">=</span> index<span class="sy0">;</span>
+      <span class="br0">}</span>
+      <span class="kw1">return</span> A<span class="sy0">;</span>
+   <span class="br0">}</span>
+</pre></div>
+</div>
+<p><br></p>
+<h3><span class="editsection">[<a 
+href="http://pt.wikipedia.org/w/index.php?title=Insertion_sort&amp;action=edit&amp;section=12"
+ title="Editar seção: PHP">editar</a>]</span> <span class="mw-headline" 
+id="PHP"><a href="http://pt.wikipedia.org/wiki/PHP" title="PHP">PHP</a></span></h3>
+<div dir="ltr" class="mw-geshi" style="text-align: left;">
+<div class="php source-php" style="font-family: monospace;">
+<pre class="de1"><span class="co4">/**
+ * @author Nissius Guilet Ribas
+ * @copyright 2009
+ *
+ * Correção, no while, não é j&gt;=0 e sim j&gt;0;
+ */</span>
+ 
+<span class="kw3">ini_set</span><span class="br0">(</span><span class="st_h">'max_execution_time'</span><span class="sy0">,</span><span class="st_h">'600'</span><span class="br0">)</span><span class="sy0">;</span>
+ 
+<span class="kw2">function</span> microtime_float<span class="br0">(</span><span class="br0">)</span>
+<span class="br0">{</span>
+    <span class="kw3">list</span><span class="br0">(</span><span class="re0">$usec</span><span class="sy0">,</span> <span class="re0">$sec</span><span class="br0">)</span> <span class="sy0">=</span> <span class="kw3">explode</span><span class="br0">(</span><span class="st0">" "</span><span class="sy0">,</span> <span class="kw3">microtime</span><span class="br0">(</span><span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="kw1">return</span> <span class="br0">(</span><span class="br0">(</span>float<span class="br0">)</span><span class="re0">$usec</span> <span class="sy0">+</span> <span class="br0">(</span>float<span class="br0">)</span><span class="re0">$sec</span><span class="br0">)</span><span class="sy0">;</span>
+<span class="br0">}</span>
+ 
+ 
+<span class="kw1">for</span> <span class="br0">(</span><span class="re0">$gera</span> <span class="sy0">=</span> <span class="nu0">0</span><span class="sy0">;</span> <span class="re0">$gera</span> <span class="sy0">&lt;=</span><span class="nu0">20000</span><span class="sy0">;</span> <span class="re0">$gera</span><span class="sy0">++</span><span class="br0">)</span><span class="br0">{</span>
+	<span class="re0">$array</span><span class="br0">[</span><span class="re0">$gera</span><span class="br0">]</span> <span class="sy0">=</span> <span class="kw3">rand</span><span class="br0">(</span>0<span class="sy0">,</span> 10000<span class="br0">)</span><span class="sy0">;</span>
+<span class="br0">}</span>
+ 
+<span class="re0">$time_start</span> <span class="sy0">=</span> microtime_float<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+<span class="kw1">for</span><span class="br0">(</span><span class="re0">$i</span> <span class="sy0">=</span> <span class="nu0">1</span><span class="sy0">;</span> <span class="re0">$i</span> <span class="sy0">&lt;</span> <span class="kw3">count</span><span class="br0">(</span><span class="re0">$array</span><span class="br0">)</span><span class="sy0">;</span> <span class="re0">$i</span><span class="sy0">++</span><span class="br0">)</span><span class="br0">{</span>
+	<span class="re0">$copiado</span> <span class="sy0">=</span> <span class="re0">$array</span><span class="br0">[</span><span class="re0">$i</span><span class="br0">]</span><span class="sy0">;</span>
+	<span class="re0">$j</span> <span class="sy0">=</span> <span class="re0">$i</span><span class="sy0">;</span>
+		<span class="kw1">while</span> <span class="br0">(</span><span class="br0">(</span><span class="re0">$j</span> <span class="sy0">&gt;</span> 0 <span class="br0">)</span> <span class="sy0">&amp;&amp;</span> <span class="br0">(</span><span class="re0">$copiado</span> <span class="sy0">&lt;</span> <span class="re0">$array</span><span class="br0">[</span><span class="re0">$j</span><span class="sy0">-</span>1<span class="br0">]</span><span class="br0">)</span><span class="br0">)</span><span class="br0">{</span>
+			<span class="re0">$array</span><span class="br0">[</span><span class="re0">$j</span><span class="br0">]</span> <span class="sy0">=</span> <span class="re0">$array</span><span class="br0">[</span><span class="re0">$j</span><span class="sy0">-</span>1<span class="br0">]</span><span class="sy0">;</span>
+			<span class="re0">$j</span><span class="sy0">--;</span>
+		<span class="br0">}</span>
+		<span class="re0">$array</span><span class="br0">[</span><span class="re0">$j</span><span class="br0">]</span> <span class="sy0">=</span> <span class="re0">$copiado</span><span class="sy0">;</span>	
+<span class="br0">}</span>
+<span class="re0">$time_end</span> <span class="sy0">=</span> microtime_float<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+<span class="co1">//Mostra o tempo que levou para ordenar</span>
+<span class="kw1">echo</span> <span class="re0">$time</span> <span class="sy0">=</span> <span class="re0">$time_end</span> <span class="sy0">-</span> <span class="re0">$time_start</span><span class="sy0">;</span>
+ 
+<span class="co1">//Exibe a ordenação</span>
+<span class="kw3">print_r</span> <span class="br0">(</span><span class="re0">$array</span><span class="br0">)</span><span class="sy0">;</span>
+</pre></div>
+</div>
+<h2><span class="editsection">[<a 
+href="http://pt.wikipedia.org/w/index.php?title=Insertion_sort&amp;action=edit&amp;section=13"
+ title="Editar seção: Simulador Online">editar</a>]</span> <span 
+class="mw-headline" id="Simulador_Online">Simulador Online</span></h2>
+<p>Para um melhor entendimento, recomendo utilizarem o <a 
+href="http://wikipedia.artudi.org/Insertion%20Sort.php" class="external 
+text" rel="nofollow">Simulador Online</a> para visualizarem exemplos de 
+ordenação de números aleatórios pelo Insertion Sort.</p>
+<h2><span class="editsection">[<a 
+href="http://pt.wikipedia.org/w/index.php?title=Insertion_sort&amp;action=edit&amp;section=14"
+ title="Editar seção: Ver também">editar</a>]</span> <span 
+class="mw-headline" id="Ver_tamb.C3.A9m">Ver também</span></h2>
+<ul>
+<li><a href="http://pt.wikipedia.org/wiki/Selection_sort" 
+title="Selection sort">Selection sort</a></li>
+<li><a href="http://pt.wikipedia.org/wiki/Bubble_sort" title="Bubble 
+sort">Bubble sort</a></li>
+</ul>
+<h2><span class="editsection">[<a 
+href="http://pt.wikipedia.org/w/index.php?title=Insertion_sort&amp;action=edit&amp;section=15"
+ title="Editar seção: Referências">editar</a>]</span> <span 
+class="mw-headline" id="Refer.C3.AAncias">Referências</span></h2>
+<ul>
+<li><a href="http://pt.wikipedia.org/wiki/Donald_Knuth" title="Donald 
+Knuth">Donald Knuth</a>. <i>The Art of Computer Programming</i>, Volume 
+3: <i>Sorting and Searching</i>, Third Edition. Addison-Wesley, 1997. <a
+ 
+href="http://pt.wikipedia.org/wiki/Especial:Fontes_de_livros/0201896850"
+ class="internal mw-magiclink-isbn">ISBN 0-201-89685-0</a>. Section 
+5.2.1: Sorting by Insertion, pp.&nbsp;80–105.</li>
+<li><a 
+href="http://pt.wikipedia.org/w/index.php?title=Thomas_H._Cormen&amp;action=edit&amp;redlink=1"
+ class="new" title="Thomas H. Cormen (página não existe)">Thomas H. 
+Cormen</a>, <a 
+href="http://pt.wikipedia.org/w/index.php?title=Charles_E._Leiserson&amp;action=edit&amp;redlink=1"
+ class="new" title="Charles E. Leiserson (página não existe)">Charles E.
+ Leiserson</a>, <a 
+href="http://pt.wikipedia.org/w/index.php?title=Ronald_L._Rivest&amp;action=edit&amp;redlink=1"
+ class="new" title="Ronald L. Rivest (página não existe)">Ronald L. 
+Rivest</a>, and <a 
+href="http://pt.wikipedia.org/w/index.php?title=Clifford_Stein&amp;action=edit&amp;redlink=1"
+ class="new" title="Clifford Stein (página não existe)">Clifford Stein</a>.
+ <i><a 
+href="http://pt.wikipedia.org/w/index.php?title=Introduction_to_Algorithms&amp;action=edit&amp;redlink=1"
+ class="new" title="Introduction to Algorithms (página não existe)">Introduction
+ to Algorithms</a></i>, Second Edition. MIT Press and McGraw-Hill, 2001.
+ <a 
+href="http://pt.wikipedia.org/wiki/Especial:Fontes_de_livros/0262032937"
+ class="internal mw-magiclink-isbn">ISBN 0262032937</a>. Section 2.1: 
+Insertion sort, pp.&nbsp;15–21.</li>
+</ul>
+<h2><span class="editsection">[<a 
+href="http://pt.wikipedia.org/w/index.php?title=Insertion_sort&amp;action=edit&amp;section=16"
+ title="Editar seção: Ligações externas">editar</a>]</span> <span 
+class="mw-headline" id="Liga.C3.A7.C3.B5es_externas">Ligações externas</span></h2>
+<ul>
+<li><a 
+href="http://web.engr.oregonstate.edu/%7Eminoura/cs162/javaProgs/sort/InsertSort.html"
+ class="external text" rel="nofollow">Uma animação em Java mostrando 
+passo-a-passo a implementação do insertion sort.</a></li>
+</ul>
+
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 166/1000000
+Post-expand include size: 30/2048000 bytes
+Template argument size: 0/2048000 bytes
+Expensive parser function count: 0/500
+-->
+
+<!-- Saved in parser cache with key ptwiki:pcache:idhash:98042-0!1!0!!pt!4 and timestamp 20100630144239 -->
+<div class="printfooter">
+Obtida de "<a href="http://pt.wikipedia.org/wiki/Insertion_sort">http://pt.wikipedia.org/wiki/Insertion_sort</a>"</div>
+				<!-- /bodytext -->
+								<!-- catlinks -->
+				<div id="catlinks" class="catlinks"><div id="mw-normal-catlinks"><a 
+href="http://pt.wikipedia.org/wiki/Especial:Categorias" 
+title="Especial:Categorias">Categoria</a>: <span dir="ltr"><a 
+href="http://pt.wikipedia.org/wiki/Categoria:Algoritmos_de_ordena%C3%A7%C3%A3o"
+ title="Categoria:Algoritmos de ordenação">Algoritmos de ordenação</a></span></div></div>
+				<!-- /catlinks -->
+												<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="mw-head" class="noprint">
+			
+<!-- 0 -->
+<div id="p-personal" class="">
+	<h5>Ferramentas pessoais</h5>
+	<ul>
+					<li id="pt-prefswitch-link-anon"><a 
+href="http://pt.wikipedia.org/w/index.php?title=Especial:UsabilityInitiativePrefSwitch&amp;from=Insertion_sort"
+ title="Descubra as funcionalidades novas" class="no-text-transform">Funcionalidades
+ novas</a></li>
+					<li id="pt-login"><a 
+href="http://pt.wikipedia.org/w/index.php?title=Especial:Entrar&amp;returnto=Insertion_sort"
+ title="Aconselhamos-lhe a criar uma conta na Wikipédia, embora tal não 
+seja obrigatório. [alt-shift-o]" accesskey="o">Entrar / criar conta</a></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+			<div id="left-navigation">
+				
+<!-- 0 -->
+<div id="p-namespaces" class="vectorTabs">
+	<h5>Espaços nominais</h5>
+	<ul>
+					<li id="ca-nstab-main" class="selected"><a 
+href="http://pt.wikipedia.org/wiki/Insertion_sort" title="Ver a página 
+de conteúdo [alt-shift-c]" accesskey="c"><span>Página</span></a></li>
+					<li id="ca-talk"><a 
+href="http://pt.wikipedia.org/wiki/Discuss%C3%A3o:Insertion_sort" 
+title="Discussão sobre o conteúdo da página [alt-shift-t]" accesskey="t"><span>Discussão</span></a></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-variants" class="vectorMenu emptyPortlet">
+		<h5><span>Variantes</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+			</div>
+			<div id="right-navigation">
+				
+<!-- 0 -->
+<div id="p-views" class="vectorTabs">
+	<h5>Vistas</h5>
+	<ul>
+					<li id="ca-view" class="selected"><a 
+href="http://pt.wikipedia.org/wiki/Insertion_sort"><span>Ler</span></a></li>
+					<li id="ca-edit"><a 
+href="http://pt.wikipedia.org/w/index.php?title=Insertion_sort&amp;action=edit"
+ title="Pode editar esta página.
+Utilize o botão &quot;Antever resultado&quot; antes de gravar, por 
+favor. [alt-shift-e]" accesskey="e"><span>Editar</span></a></li>
+					<li id="ca-history" class="collapsible "><a 
+href="http://pt.wikipedia.org/w/index.php?title=Insertion_sort&amp;action=history"
+ title="Edições anteriores desta página. [alt-shift-h]" accesskey="h"><span>Ver
+ histórico</span></a></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-cactions" class="vectorMenu emptyPortlet">
+	<h5><span>Ações</span><a href="#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+
+<!-- 2 -->
+<div id="p-search">
+	<h5><label for="searchInput">Busca</label></h5>
+	<form action="/w/index.php" id="searchform">
+		<input name="title" value="Especial:Pesquisar" type="hidden">
+				<div id="simpleSearch">
+			<input autocomplete="off" tabindex="1" id="searchInput" name="search"
+ title="Pesquisar na Wikipédia [alt-shift-f]" accesskey="f" type="text">
+			<button id="searchButton" type="submit" name="button" title="Procurar
+ páginas que contêm este texto">&nbsp;</button>
+		<label style="position: absolute; color: rgb(153, 153, 153); cursor: 
+text; margin: 0pt 4px; top: 6px; line-height: 13px; left: 0px;">Pesquisa</label></div>
+			</form>
+</div>
+
+<!-- /2 -->
+			</div>
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="mw-panel" class="noprint collapsible-nav">
+				<!-- logo -->
+					<div id="p-logo"><a style="background-image: 
+url(&quot;http://upload.wikimedia.org/wikipedia/commons/c/c3/Wikipedia-logo-v2-pt.png&quot;);"
+ href="http://pt.wikipedia.org/wiki/P%C3%A1gina_principal" title="Visite
+ a página principal"></a></div>
+				<!-- /logo -->
+				
+<!-- SEARCH -->
+
+<!-- /SEARCH -->
+
+<!-- navigation -->
+<div class="portal first persistent" id="p-navigation">
+	<h5>Navegação</h5>
+	<div class="body">
+				<ul>
+					<li id="n-mainpage"><a 
+href="http://pt.wikipedia.org/wiki/P%C3%A1gina_principal" title="Visitar
+ a página principal [alt-shift-z]" accesskey="z">Página principal</a></li>
+					<li id="n-featuredcontent"><a 
+href="http://pt.wikipedia.org/wiki/Portal:Conte%C3%BAdo_destacado">Conteúdo
+ destacado</a></li>
+					<li id="n-currentevents"><a 
+href="http://pt.wikipedia.org/wiki/Portal:Eventos_atuais" 
+title="Informação temática sobre eventos atuais">Eventos atuais</a></li>
+					<li id="n-villagepump"><a 
+href="http://pt.wikipedia.org/wiki/Wikipedia:Esplanada">Esplanada</a></li>
+					<li id="n-randompage"><a 
+href="http://pt.wikipedia.org/wiki/Especial:Aleat%C3%B3ria" 
+title="Carregar página aleatória [alt-shift-x]" accesskey="x">Página 
+aleatória</a></li>
+					<li id="n-portals"><a 
+href="http://pt.wikipedia.org/wiki/Portal:%C3%8Dndice">Portais</a></li>
+				</ul>
+			</div>
+</div>
+
+<!-- /navigation -->
+
+<!-- interaction -->
+<div class="portal expanded" id="p-interaction">
+	<h5 tabindex="2">Colaboração</h5>
+	<div style="display: block;" class="body">
+				<ul>
+					<li id="n-welcome"><a 
+href="http://pt.wikipedia.org/wiki/Wikipedia:Boas-vindas">Boas-vindas</a></li>
+					<li id="n-help"><a 
+href="http://pt.wikipedia.org/wiki/Ajuda:P%C3%A1gina_principal" 
+title="Um local reservado para auxílio.">Ajuda</a></li>
+					<li id="n-testpage"><a 
+href="http://pt.wikipedia.org/wiki/Wikipedia:P%C3%A1gina_de_testes">Página
+ de testes</a></li>
+					<li id="n-portal"><a 
+href="http://pt.wikipedia.org/wiki/Wikipedia:Portal_comunit%C3%A1rio" 
+title="Sobre o projeto">Portal comunitário</a></li>
+					<li id="n-recentchanges"><a 
+href="http://pt.wikipedia.org/wiki/Especial:Mudan%C3%A7as_recentes" 
+title="A lista de mudanças recentes nesta wiki. [alt-shift-r]" 
+accesskey="r">Mudanças recentes</a></li>
+					<li id="n-maintenance"><a 
+href="http://pt.wikipedia.org/wiki/Wikipedia:Estaleiro">Estaleiro</a></li>
+					<li id="n-createpage"><a 
+href="http://pt.wikipedia.org/wiki/Ajuda:Guia_de_edi%C3%A7%C3%A3o/Como_come%C3%A7ar_uma_p%C3%A1gina">Criar
+ página</a></li>
+					<li id="n-newpages-description"><a 
+href="http://pt.wikipedia.org/wiki/Especial:P%C3%A1ginas_novas">Páginas 
+novas</a></li>
+					<li id="n-contact-description"><a 
+href="http://pt.wikipedia.org/wiki/Wikipedia:Contato">Contato</a></li>
+					<li id="n-sitesupport"><a 
+href="http://wikimediafoundation.org/wiki/Coleta_de_fundos" 
+title="Ajude-nos">Donativos</a></li>
+				</ul>
+			</div>
+</div>
+
+<!-- /interaction -->
+
+<!-- coll-print_export -->
+<div class="portal collapsed" id="p-coll-print_export">
+	<h5 tabindex="3">Imprimir/exportar</h5>
+	<div class="body">
+				<ul id="collectionPortletList"><li id="coll-create_a_book"><a 
+href="http://pt.wikipedia.org/w/index.php?title=Especial:Livro&amp;bookcmd=book_creator&amp;referer=Insertion+sort"
+ title="Cria um livro ou uma colecção de páginas" rel="nofollow">Criar 
+um livro</a></li><li id="coll-download-as-rl"><a 
+href="http://pt.wikipedia.org/w/index.php?title=Especial:Livro&amp;bookcmd=render_article&amp;arttitle=Insertion+sort&amp;oldid=20702823&amp;writer=rl"
+ title="Descarregar uma versão PDF desta página wiki" rel="nofollow">Descarregar
+ como PDF</a></li><li id="t-print"><a 
+href="http://pt.wikipedia.org/w/index.php?title=Insertion_sort&amp;printable=yes"
+ title="Versão para impressão desta página [alt-shift-p]" accesskey="p">Versão
+ para impressão</a></li></ul>			</div>
+</div>
+
+<!-- /coll-print_export -->
+
+<!-- TOOLBOX -->
+<div class="portal collapsed" id="p-tb">
+	<h5 tabindex="4">Ferramentas</h5>
+	<div class="body">
+		<ul>
+					<li id="t-whatlinkshere"><a 
+href="http://pt.wikipedia.org/wiki/Especial:P%C3%A1ginas_afluentes/Insertion_sort"
+ title="Lista de todas as páginas que contêm links para esta 
+[alt-shift-j]" accesskey="j">Páginas afluentes</a></li>
+						<li id="t-recentchangeslinked"><a 
+href="http://pt.wikipedia.org/wiki/Especial:Altera%C3%A7%C3%B5es_relacionadas/Insertion_sort"
+ title="Mudanças recentes nas páginas para as quais esta contém links 
+[alt-shift-k]" accesskey="k">Alterações relacionadas</a></li>
+																																					<li id="t-upload"><a 
+href="http://pt.wikipedia.org/wiki/Ajuda:Como_carregar_ficheiros_no_Commons"
+ title="Carregar ficheiros [alt-shift-u]" accesskey="u">Carregar 
+ficheiro</a></li>
+											<li id="t-specialpages"><a 
+href="http://pt.wikipedia.org/wiki/Especial:P%C3%A1ginas_especiais" 
+title="Lista de páginas especiais [alt-shift-q]" accesskey="q">Páginas 
+especiais</a></li>
+											<li id="t-permalink"><a 
+href="http://pt.wikipedia.org/w/index.php?title=Insertion_sort&amp;oldid=20702823"
+ title="Link permanente para esta versão desta página">Link permanente</a></li>
+				<li id="t-cite"><a 
+href="http://pt.wikipedia.org/w/index.php?title=Especial:Citar&amp;page=Insertion_sort&amp;id=20702823"
+ title="Informação sobre como citar esta página">Citar esta página</a></li>
+		</ul>
+	</div>
+</div>
+
+<!-- /TOOLBOX -->
+
+<!-- LANGUAGES -->
+<div class="portal expanded" id="p-lang">
+	<h5 tabindex="5">Noutras línguas</h5>
+	<div style="display: block;" class="body">
+		<ul>
+					<li class="interwiki-ar"><a 
+href="http://ar.wikipedia.org/wiki/%D8%AA%D8%B1%D8%AA%D9%8A%D8%A8_%D8%A8%D8%A7%D9%84%D8%A5%D8%AF%D8%B1%D8%A7%D8%AC"
+ title="ترتيب بالإدراج">العربية</a></li>
+					<li class="interwiki-cs"><a 
+href="http://cs.wikipedia.org/wiki/Insertion_sort" title="Insertion 
+sort">Česky</a></li>
+					<li class="interwiki-da"><a 
+href="http://da.wikipedia.org/wiki/Inds%C3%A6ttelsessortering" 
+title="Indsættelsessortering">Dansk</a></li>
+					<li class="interwiki-de"><a 
+href="http://de.wikipedia.org/wiki/Insertionsort" title="Insertionsort">Deutsch</a></li>
+					<li class="interwiki-en"><a 
+href="http://en.wikipedia.org/wiki/Insertion_sort" title="Insertion 
+sort">English</a></li>
+					<li class="interwiki-es"><a 
+href="http://es.wikipedia.org/wiki/Ordenamiento_por_inserci%C3%B3n" 
+title="Ordenamiento por inserción">Español</a></li>
+					<li class="interwiki-et"><a 
+href="http://et.wikipedia.org/wiki/Vahelepanemisega_sortimine" 
+title="Vahelepanemisega sortimine">Eesti</a></li>
+					<li class="interwiki-fa"><a 
+href="http://fa.wikipedia.org/wiki/%D9%85%D8%B1%D8%AA%D8%A8%E2%80%8C%D8%B3%D8%A7%D8%B2%DB%8C_%D8%AF%D8%B1%D8%AC%DB%8C"
+ title="مرتب‌سازی درجی">فارسی</a></li>
+					<li class="interwiki-fi"><a 
+href="http://fi.wikipedia.org/wiki/Lis%C3%A4yslajittelu" 
+title="Lisäyslajittelu">Suomi</a></li>
+					<li class="interwiki-fr"><a 
+href="http://fr.wikipedia.org/wiki/Tri_par_insertion" title="Tri par 
+insertion">Français</a></li>
+					<li class="interwiki-he"><a 
+href="http://he.wikipedia.org/wiki/%D7%9E%D7%99%D7%95%D7%9F_%D7%94%D7%9B%D7%A0%D7%A1%D7%94"
+ title="מיון הכנסה">עברית</a></li>
+					<li class="interwiki-hu"><a 
+href="http://hu.wikipedia.org/wiki/Besz%C3%BAr%C3%A1sos_rendez%C3%A9s" 
+title="Beszúrásos rendezés">Magyar</a></li>
+					<li class="interwiki-is"><a 
+href="http://is.wikipedia.org/wiki/Innsetningarr%C3%B6%C3%B0un" 
+title="Innsetningarröðun">Íslenska</a></li>
+					<li class="interwiki-it"><a 
+href="http://it.wikipedia.org/wiki/Insertion_sort" title="Insertion 
+sort">Italiano</a></li>
+					<li class="interwiki-ja"><a 
+href="http://ja.wikipedia.org/wiki/%E6%8C%BF%E5%85%A5%E3%82%BD%E3%83%BC%E3%83%88"
+ title="挿入ソート">日本語</a></li>
+					<li class="interwiki-ko"><a 
+href="http://ko.wikipedia.org/wiki/%EC%82%BD%EC%9E%85_%EC%A0%95%EB%A0%AC"
+ title="삽입 정렬">한국어</a></li>
+					<li class="interwiki-lt"><a 
+href="http://lt.wikipedia.org/wiki/%C4%AEterpimo_rikiavimo_algoritmas" 
+title="Įterpimo rikiavimo algoritmas">Lietuvių</a></li>
+					<li class="interwiki-ml"><a 
+href="http://ml.wikipedia.org/wiki/%E0%B4%87%E0%B5%BB%E0%B4%B8%E0%B5%BC%E0%B4%B7%E0%B5%BB_%E0%B4%B8%E0%B5%8B%E0%B5%BC%E0%B4%9F%E0%B5%8D%E0%B4%9F%E0%B5%8D"
+ title="ഇൻസർഷൻ സോർട്ട്">മലയാളം</a></li>
+					<li class="interwiki-nl"><a 
+href="http://nl.wikipedia.org/wiki/Insertion_sort" title="Insertion 
+sort">Nederlands</a></li>
+					<li class="interwiki-no"><a 
+href="http://no.wikipedia.org/wiki/Sorteringsalgoritme#Innstikksortering"
+ title="Sorteringsalgoritme">‪Norsk (bokmål)‬</a></li>
+					<li class="interwiki-pl"><a 
+href="http://pl.wikipedia.org/wiki/Sortowanie_przez_wstawianie" 
+title="Sortowanie przez wstawianie">Polski</a></li>
+					<li class="interwiki-ru"><a 
+href="http://ru.wikipedia.org/wiki/%D0%A1%D0%BE%D1%80%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0_%D0%B2%D1%81%D1%82%D0%B0%D0%B2%D0%BA%D0%B0%D0%BC%D0%B8"
+ title="Сортировка вставками">Русский</a></li>
+					<li class="interwiki-sk"><a 
+href="http://sk.wikipedia.org/wiki/Triedenie_priamym_vkladan%C3%ADm" 
+title="Triedenie priamym vkladaním">Slovenčina</a></li>
+					<li class="interwiki-sl"><a 
+href="http://sl.wikipedia.org/wiki/Urejanje_z_navadnim_vstavljanjem" 
+title="Urejanje z navadnim vstavljanjem">Slovenščina</a></li>
+					<li class="interwiki-sv"><a 
+href="http://sv.wikipedia.org/wiki/Ins%C3%A4ttningssortering" 
+title="Insättningssortering">Svenska</a></li>
+					<li class="interwiki-tr"><a 
+href="http://tr.wikipedia.org/wiki/Eklemeli_s%C4%B1ralama" 
+title="Eklemeli sıralama">Türkçe</a></li>
+					<li class="interwiki-uk"><a 
+href="http://uk.wikipedia.org/wiki/%D0%A1%D0%BE%D1%80%D1%82%D1%83%D0%B2%D0%B0%D0%BD%D0%BD%D1%8F_%D0%B2%D0%BA%D0%BB%D1%8E%D1%87%D0%B5%D0%BD%D0%BD%D1%8F%D0%BC"
+ title="Сортування включенням">Українська</a></li>
+					<li class="interwiki-vi"><a 
+href="http://vi.wikipedia.org/wiki/S%E1%BA%AFp_x%E1%BA%BFp_ch%C3%A8n" 
+title="Sắp xếp chèn">Tiếng Việt</a></li>
+					<li class="interwiki-zh"><a 
+href="http://zh.wikipedia.org/wiki/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F"
+ title="插入排序">中文</a></li>
+				</ul>
+	</div>
+</div>
+
+<!-- /LANGUAGES -->
+			</div>
+		<!-- /panel -->
+		<!-- footer -->
+		<div id="footer">
+											<ul id="footer-info">
+																	<li id="footer-info-lastmod"> Esta página foi 
+modificada pela última vez às 19h42min de 17 de junho de 2010.</li>
+																							<li id="footer-info-copyright">Este texto é 
+disponibilizado nos termos da licença <a 
+href="http://creativecommons.org/licenses/by-sa/3.0/deed.pt">Atribuição-Compartilhamento
+ pela mesma Licença 3.0 Unported (CC-BY-SA)</a>;
+pode estar sujeito a condições adicionais.
+Consulte as <a 
+href="http://wikimediafoundation.org/wiki/Condi%C3%A7%C3%B5es_de_Uso">Condições
+ de Uso</a> para mais detalhes.</li>
+															</ul>
+															<ul id="footer-places">
+																	<li id="footer-places-privacy"><a 
+href="http://pt.wikipedia.org/wiki/Wikipedia:Pol%C3%ADtica_de_privacidade"
+ title="Wikipedia:Política de privacidade">Política de privacidade</a></li>
+																							<li id="footer-places-about"><a 
+href="http://pt.wikipedia.org/wiki/Wikipedia:Sobre" 
+title="Wikipedia:Sobre">Sobre a Wikipédia</a></li>
+																							<li id="footer-places-disclaimer"><a 
+href="http://pt.wikipedia.org/wiki/Wikipedia:Aviso_Geral" 
+title="Wikipedia:Aviso Geral">Avisos gerais</a></li>
+															</ul>
+										<ul id="footer-icons" class="noprint">
+								<li id="footer-icon-poweredby"><a 
+href="http://www.mediawiki.org/"><img 
+src="Insertion_sort_arquivos/poweredby_mediawiki_88x31.png" alt="Powered
+ by MediaWiki" height="31" width="88"></a></li>
+												<li id="footer-icon-copyright"><a 
+href="http://wikimediafoundation.org/"><img 
+src="Insertion_sort_arquivos/wikimedia-button.png" alt="Wikimedia 
+Foundation" height="31" width="88"></a></li>
+							</ul>
+			<div style="clear: both;"></div>
+		</div>
+		<!-- /footer -->
+		<!-- fixalpha -->
+		<script type="text/javascript"> if ( window.isMSIE55 ) fixalpha(); </script>
+		<!-- /fixalpha -->
+		
+<script type="text/javascript">if (window.runOnloadHook) runOnloadHook();</script>
+		<!-- Served by srv161 in 0.070 secs. -->			<div class="suggestions" 
+style="top: 74px; width: 188px; display: none; left: auto; right: 36px;"><div
+ class="suggestions-results"></div><div class="suggestions-special"></div></div></body></html>
