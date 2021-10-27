@@ -1,0 +1,126 @@
+/* Código CSS colocado aqui afectará os utilizadores do tema Vector */
+
+/* Mostra "Origem: Wikipédia, a enciclopédia livre." */
+#siteSub {
+    display: inline;
+    font-size: 92%;
+    font-weight: normal;
+}
+
+/* Don't display some stuff on the main page */
+body.page-Página_principal #deleteconfirm,
+body.page-Página_principal #t-cite,
+body.page-Página_principal #footer-info-lastmod,
+body.page-Página_principal #siteSub,
+body.page-Página_principal #contentSub,
+body.page-Página_principal h1.firstHeading {
+ display: none !important;
+}
+ 
+body.page-Main_Page #mp-topbanner {
+margin-top: 0 !important;
+}
+
+ /*
+ ** Artigos protegidos
+ */
+#protegida{position:absolute;z-index:100;right:10px;top:85px;}
+
+
+ /*
+ ** Geocoordenadas
+ */
+#coordinates {
+  position: absolute;
+  top: -35px;
+  right: 0px;
+  float: right;
+  margin: 0.0px;
+  padding: 0.0px;
+  line-height: 1.5em;
+  text-align: right;
+  text-indent: 0;
+  font-size: 85%;
+  text-transform: none;
+  white-space: nowrap;
+}
+
+ 
+#coordinates a[href ^="http://"] {
+  background: url(http://upload.wikimedia.org/wikipedia/de/d/d4/Gnome-globe.png) center right no-repeat !important;
+  padding-right: 18px !important;
+}
+
+ /*
+ ** {{tl|atalho}}
+ */
+#atalho {
+  position: absolute;
+  z-index: 100px;
+  border:1px solid #999;
+  background:#fff;
+  right: 0px; 
+  top: -15px;
+  width: 95px;
+  margin:0 0 .5em 1em;
+  padding: 0.0em;
+  line-height: 1.5em;
+  text-align: center;
+  text-indent: 0;
+  font-size: 85%;
+  text-transform: none;
+  white-space: normal;
+}
+ 
+ /* try adding here, this had no effect in [[MediaWiki:Common.css]] */
+ .plainlinksneverexpand a.external.text:after {
+  display: none !important
+ }
+
+ /*
+ ** Artigo Destacado
+ */
+
+#destaques1 {
+ position: absolute;
+ top: -3em;
+ margin-right: -10px;
+ right: 10px;
+ display: block !important;
+}
+
+ /*
+ ** FIST
+ */
+#FIST1 {position:absolute; top: -3em; margin-right: -10px; right:10px;  display: block !important;}
+
+ /* {{tl|Link FA}} */
+#mw-panel div.portal div.body ul li.FA {
+  background: url("http://upload.wikimedia.org/wikipedia/commons/d/d4/Monobook-bullet-star.png") no-repeat 0% 0%;
+  margin-left: -10px;
+  padding-left: 10px;
+  margin-top: -2px;
+}
+#mw-panel div.portal div.body ul li.FL {
+  background: url("http://upload.wikimedia.org/wikipedia/commons/d/d4/Monobook-bullet-star.png") no-repeat 0% 0%;
+  margin-left: -10px;
+  padding-left: 10px;
+  margin-top: -2px;
+}
+#mw-panel div.portal div.body ul li.BOM {
+  background: url("http://upload.wikimedia.org/wikipedia/commons/a/a1/Monobook-bullet-star-gray.png") no-repeat 0% 0%;
+  margin-left: -10px;
+  padding-left: 10px;
+  margin-top: -2px;
+}
+
+/* Correção para bug do Firefox. ver bug #20706 */
+pre, code, tt, mw-geshi {
+  font-family: monospace, sans-serif;
+}
+
+/* Adjust font-size for inline HTML generated TeX formulae */
+.texhtml {
+  font-size: 125%;
+  line-height: 1.5em;
+}
